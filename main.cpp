@@ -4,84 +4,64 @@
 //Check to make sure that numItems returns correct result on a fresh
 // instance of the LinkedList class
 void testCtor(LinkedList<int>& testList){
-  if(testList.getNumItems() == 0){
+  if(testList.size() == 0){
     std::cout << "SUCCESS: Fresh list has 0 items" << std::endl;
   } else {
-    std::cout << "ERROR: Fresh list should have 0 items, but has " << testList.getNumItems() << std::endl;
+    std::cout << "ERROR: Fresh list should have 0 items, but has " << testList.size() << std::endl;
   }
 }
 
 //Add and remove some items, making sure they come back in the
 // correct order
 void testAddRemove(LinkedList<int>& testList){
-  testList.add(5);
-  testList.add(10);
-  testList.add(4);
-  if(testList.getNumItems() == 3){
-    std::cout << "SUCCESS: 3 items added" << std::endl;
+  testList.add(0,0);
+  testList.add(0,1);
+  testList.add(0,2);
+  testList.add(3,3);
+  testList.add(4,4);
+  testList.add(5,5);
+
+  if(testList.size() == 6){
+    std::cout << "SUCCESS: 6 items added" << std::endl;
   } else {
-    std::cout << "ERROR: Added 3 items, but getNumItems says " << testList.getNumItems() << std::endl;
+    std::cout << "ERROR: Added 6 items, but size says " << testList.size() << std::endl;
     return;
   }
-  int x = testList.remove();
-  int y = testList.remove();
-  int z = testList.remove();
-  if(x != 5 || y != 10 || z != 4){
-    std::cout << "ERROR: Expected 5, 10, 4, but got " << x <<", " << y << ", " << "z" << std::endl;
+
+  int x0 = testList.get(0);
+  int x1 = testList.get(1);
+  int x2 = testList.get(2);
+  int x3 = testList.get(3);
+  int x4 = testList.get(4);
+  int x5 = testList.get(5);
+
+  if(x0 != 2 || x1 != 1 || x2 != 0 || x3 != 3 || x4 != 4 || x5 != 5){
+    std::cout << "ERROR: Expected 2,1,0,3,4,5, but got " << x0 <<"," << x1 << "," << "x2" << "," << "x3" << "," << x4 << "," << x5 << std::endl;
   } else {
-    std::cout << "SUCCESS: 3 added items came back out in the correct order" << std::endl;
-  }
-}
-
-//Test to see if your list still works if we do add, remove, add, remove
-// many times
-void testAroundTheHorn(LinkedList<int>& testList){
-  for(int i=0;i<1000;i++){
-    testList.add(i);
-    int t = testList.remove();
-    if(t != i){
-      std::cout << "ERROR: Added " << i << " but got back " << t << std::endl;
-      return;
-    }
-  }
-  std::cout << "SUCCESS: Added and removed 1000 items successfully" << std::endl;
-}
-
-//Test to see if your list can grow to handle lots of items
-void testGrow(LinkedList<int>& testList){
-  for(int i=0;i<1000;i++){
-    testList.add(i);
+    std::cout << "SUCCESS: 6 added items came back out in the correct order" << std::endl;
   }
 
-  if(testList.getNumItems() != 1000){
-    std::cout << "ERROR: Should have 1000 items in list, but only found " << testList.getNumItems() << std::endl;
+  testList.remove(5);
+  testList.remove(0);
+
+  if(testList.size() == 4){
+    std::cout << "SUCCESS: 4 items after removing" << std::endl;
+  } else {
+    std::cout << "ERROR: Expected 4 items, but size says " << testList.size() << std::endl;
     return;
   }
 
-  for(int i=0;i<1000;i++){
-    int t = testList.remove();
-    if(t != i){
-      std::cout << "ERROR: Added " << i << " but got back " << t << std::endl;
-      return;
-    }
-  }
-  std::cout << "SUCCESS: Added 1000 items, then removed 1000" << std::endl;
-}
+  x0 = testList.get(0);
+  x1 = testList.get(1);
+  x2 = testList.get(2);
+  x3 = testList.get(3);
 
-//Test to make sure you are throwing an exception if remove is
-// called improperly
-void testRemoveException(LinkedList<int>& testList){
-  try {
-    int t = testList.remove();
-  } catch (std::string s) {
-    std::cout << "SUCCESS: Caught exception: " << s << std::endl;
-    return;
-  } catch (...) {
-    std::cout << "ERROR: Caught an exception, but it wasn't a string type" << std::endl;
-    return;
+  if(x0 != 1 || x1 != 0 || x2 != 3 || x3 != 4){
+    std::cout << "ERROR: Expected 1,0,3,4, but got " << x0 <<"," << x1 << "," << "x2" << "," << "x3" << std::endl;
+  } else {
+    std::cout << "SUCCESS: After remove, 4 items came back out in the correct order" << std::endl;
   }
 
-  std::cout << "ERROR: Tried to remove from an empty list, but did not get an exception" << std::endl;
 }
 
 //A simple main function which creates a list, and tests it.

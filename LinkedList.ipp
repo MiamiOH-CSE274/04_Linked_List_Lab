@@ -17,16 +17,37 @@ LinkedList<T>::~LinkedList() {
 }
 
 template <class T>
-void LinkedList<T>::add(T toAdd){
+void LinkedList<T>::set(unsigned long i, T x){
 
 }
 
 template <class T>
-T LinkedList<T>::remove(){
+void LinkedList<T>::add(unsigned long i, T x){
   
 }
 
 template <class T>
-unsigned long LinkedList<T>::getNumItems(){
+void LinkedList<T>::remove(unsigned long i){
+
+}
+
+template <class T>
+T LinkedList<T>::get(unsigned long i){
+  
+}
+
+template <class T>
+void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, unsigned long t){
+
+}
+
+template <class T>
+T LinkedList<T>::get(unsigned long i){
+  
+}
+
+
+template <class T>
+unsigned long LinkedList<T>::size(){
 
 }
