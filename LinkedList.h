@@ -51,10 +51,13 @@ class LinkedList : public List <T> {
   //Pointer to the dummy node.
   Node* dummyNode;
 
+  //Return a pointer to item i.
+  //Special cases: If i == (unsigned long)-1, return a pointer to the dummyNode
+  //If i is an invalid number, throw a string exception
   Node* find(unsigned long i);
   
   //Number of items in the list
   unsigned long numItems;
 };
 
-#include "LinkedList.ipp.bak"
+#include "LinkedList.ipp"
