@@ -6,9 +6,9 @@ Implement a simple linked list using pointers and classes.
 Requirements
 ------------
 
-1. All methods that take an index, `i`, should be O(1) if `i == 0` or if `i == size()-1`
+1. Add, remove, get, and set should be O(1) if `i == 0` or if `i == size()-1`
 2. All methods that take index, `i`, should throw a string exception if `i < 0` or `i >= size()`
-3. Do not leak memory (make sure grow and the destructor do the right thing)
+3. Do not leak memory (make sure remove and the destructor do the right thing)
 4. `size()` is O(1) time (keep track of the numItems when you add or remove, so you can just return the variable)
 
 Reading
