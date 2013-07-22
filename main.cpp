@@ -178,15 +178,19 @@ void testSplice(){
   testList2.splice(2,2,testList1,2);
   int res1[] = {2,3,10,11,4,5,6,7,8,9};
   int res2[] = {0,1,12,13,14,15,16,17,18,19};
+  bool spliceWorks = true;
   for(int i=0;i<10;i++){
     if(res1[i] != testList1.get(i)){
       std::cout << "ERROR: In list1, expected " << res1[i] << " at position " << i << " but got " << testList1.get(i) << std::endl;
+	  spliceWorks = false;
     }
     if(res2[i] != testList2.get(i)){
       std::cout << "ERROR: In list2, expected " << res1[i] << " at position " << i << " but got " << testList2.get(i) << std::endl;
-    }
+	  spliceWorks = false;
+    }	
   }
-  std::cout << "SUCCESS: Splice test worked" << std::endl;
+  if(spliceWorks)
+	  std::cout << "SUCCESS: Splice test worked" << std::endl;
 }
 
 //A simple main function which creates a list, and tests it.
