@@ -1,3 +1,6 @@
+Author
+==========
+Andy Shear, shearar
 04_Linked_List_Lab
 ==================
 
