@@ -1,3 +1,6 @@
+Author
+==========
+Bo Brinkman, brinkmwj
 04_Linked_List_Lab
 ==================
 
