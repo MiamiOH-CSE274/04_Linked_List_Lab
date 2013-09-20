@@ -8,7 +8,7 @@
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-  dummyNode = new Node();
+  dummyNode = new Node*;
   dummyNode.next = &dummyNode;
   dummyNode.prev = &dummyNode;
   numItems = 0;
@@ -35,23 +35,35 @@ template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
   
   if(i>numItems)
-    throw (std::string) "Linked list does not contain " + i + "items.
-            Nothing added.";
+    throw (std::string) "Linked list does not have enough items. Nothing added";
   
-  Node newItem = new Node();
+  Node newItem;
   newItem.data = x;
 
   if(numItems==0){
-    dummyNode.next = &newItem.data;
-    dummyNode.prev = &newItem.data;
-    newItem.next = &dummyNode.data;
-    newItem.prev = &dummyNode.data;
+    dummyNode.next = newItem.data;
+    dummyNode.prev = newItem.data;
+    newItem.next = dummyNode.data;
+    newItem.prev = dummyNode.data;
     }
     
     Node* pointer = new Node();
-    pointer.next = get(i);
-    pointer.prev = get(i-1);
-
+    if(i<(numItems/2)){
+        pointer.next = dummyNode.next;
+        for(int location = 0; location<i; location++){
+            pointer = pointer.next;
+        }
+    }
+    
+    else {
+        pointer=dummy.prev;
+        for(int location = numItems; location>i; location--){
+            pointer = pointer.prev;
+        }
+        
+        newItem.next = pointer;
+        newItem.prev = pointer.prev;
+    }
     
     numItems++;
 
@@ -64,9 +76,7 @@ void LinkedList<T>::remove(unsigned long i){
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  if(i<(numItems/2)){
-  
-  }
+
   Node junkNode;
   return junkNode.data; //This is unitialized data
 }
