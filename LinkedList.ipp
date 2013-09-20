@@ -8,7 +8,11 @@
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-  //TODO
+  dummyNode = new Node();
+  dummyNode.next = &dummyNode;
+  dummyNode.prev = &dummyNode;
+  numItems = 0;
+
 }
 
 template <class T>
@@ -29,7 +33,28 @@ void LinkedList<T>::set(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-  //TODO
+  
+  if(i>numItems)
+    throw (std::string) "Linked list does not contain " + i + "items.
+            Nothing added.";
+  
+  Node newItem = new Node();
+  newItem.data = x;
+
+  if(numItems==0){
+    dummyNode.next = &newItem.data;
+    dummyNode.prev = &newItem.data;
+    newItem.next = &dummyNode.data;
+    newItem.prev = &dummyNode.data;
+    }
+    
+    Node* pointer = new Node();
+    pointer.next = get(i);
+    pointer.prev = get(i-1);
+
+    
+    numItems++;
+
 }
 
 template <class T>
@@ -39,8 +64,9 @@ void LinkedList<T>::remove(unsigned long i){
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  //TODO -- The code that is here is a useless stub, you probably
-  // want to delete it
+  if(i<(numItems/2)){
+  
+  }
   Node junkNode;
   return junkNode.data; //This is unitialized data
 }
@@ -52,6 +78,5 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, 
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-  //TODO
-  return 0;
+  return numItems;
 }
