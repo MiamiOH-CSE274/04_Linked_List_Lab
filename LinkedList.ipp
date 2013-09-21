@@ -8,10 +8,11 @@
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-  dummyNode = new Node*;
-  dummyNode.next = &dummyNode;
-  dummyNode.prev = &dummyNode;
-  numItems = 0;
+    Node dummyNodeR;
+    dummyNodeR.next = &dummyNodeR;
+    dummyNodeR.prev = &dummyNodeR;
+    dummyNode = &dummyNodeR;
+    numItems = 0;
 
 }
 
@@ -22,8 +23,26 @@ LinkedList<T>::~LinkedList() {
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  //TODO
-  return NULL;
+    
+    if(i>numItems)
+        throw (std::string) "Linked list does not have enough items. Nothing to find.";
+    Node* pointer;
+    
+    if(i<(numItems/2)){
+        pointer = dummyNode;
+        for(int location = 0; location<i; location++){
+            pointer = pointer->next;
+        }
+    }
+    
+    else {
+        pointer=dummyNode;
+        for(unsigned long location = numItems; location>i; location--){
+            pointer = pointer->prev;
+        }
+    }
+    
+    return pointer;
 }
 
 template <class T>
@@ -41,29 +60,18 @@ void LinkedList<T>::add(unsigned long i, T x){
   newItem.data = x;
 
   if(numItems==0){
-    dummyNode.next = newItem.data;
-    dummyNode.prev = newItem.data;
-    newItem.next = dummyNode.data;
-    newItem.prev = dummyNode.data;
+    dummyNode->next = &newItem;
+    dummyNode->prev = &newItem;
+    newItem.next = dummyNode;
+    newItem.prev = dummyNode;
     }
     
-    Node* pointer = new Node();
-    if(i<(numItems/2)){
-        pointer.next = dummyNode.next;
-        for(int location = 0; location<i; location++){
-            pointer = pointer.next;
-        }
-    }
+    Node* pointer = find(i);
+
     
-    else {
-        pointer=dummy.prev;
-        for(int location = numItems; location>i; location--){
-            pointer = pointer.prev;
-        }
-        
-        newItem.next = pointer;
-        newItem.prev = pointer.prev;
-    }
+    newItem.next = pointer;
+    newItem.prev = pointer->prev;
+    
     
     numItems++;
 
@@ -76,9 +84,14 @@ void LinkedList<T>::remove(unsigned long i){
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-
-  Node junkNode;
-  return junkNode.data; //This is unitialized data
+    if (i>numItems) {
+        throw (std::string)"Out of bounds exception.";
+    }
+    
+    Node* info = find(i);
+    Node toReturn;
+    toReturn= *info;
+  return toReturn.data;
 }
 
 template <class T>
