@@ -27,5 +27,5 @@ Questions
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
 
-#### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
+#### 3. What is one question that confused you about this exercise, or one piece of advice you would share with students next semester?
 
