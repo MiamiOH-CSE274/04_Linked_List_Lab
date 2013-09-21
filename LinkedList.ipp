@@ -23,6 +23,7 @@ LinkedList<T>::~LinkedList() {
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
   Node temp;
+  temp=dummy.next;
   for(int j=0;j<i;j++)
 	temp=temp->next;
   return temp;
@@ -33,23 +34,35 @@ void LinkedList<T>::set(unsigned long i, T x){
 	if (i < 0 ||i >= size())
 		throw (std::string) "Can't set at that point"
 	else
-  //TODO
+  get(i)=x;
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
 	if (i < 0 ||i >= size())
 		throw (std::string) "Can't add at that point"
-	else
-
-  //TODO
+	else{
+	Node *temp= new Node;
+	Node *before= find(i);
+	temp->x=x;
+	temp->prev= before->prev;
+	temp->next= before;
+	temp->next->prev=u;
+	temp->prev->next=u;
+	numItems++;
+	}
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
 	if (i < 0 ||i >= size())
 		throw (std::string) "Can't remove at that point"
-	else
+	else{
+	Node d=find(i);
+	d->prev=d->next->prev;
+	d->next=d->prev->next;
+	numItems--;
+	}
 }
 
 template <class T>
