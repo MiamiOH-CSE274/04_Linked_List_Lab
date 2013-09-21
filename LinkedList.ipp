@@ -8,18 +8,24 @@
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-  //TODO
+	dummyNode= new Node;
+	dummyNode.next=&dummyNode;
+	dummyNode.prev=&dummyNode;
+	numItems=0;
+	
 }
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-  //TODO
+	Delete dummyNode;
 }
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  //TODO
-  return NULL;
+  Node temp;
+  for(int j=0;j<i;j++)
+	temp=temp->next;
+  return temp;
 }
 
 template <class T>
@@ -52,6 +58,5 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, 
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-  //TODO
-  return 0;
+  return numItems;
 }
