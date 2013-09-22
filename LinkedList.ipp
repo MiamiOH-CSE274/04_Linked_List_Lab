@@ -40,10 +40,17 @@ void LinkedList<T>::remove(unsigned long i){
 template <class T>
 T LinkedList<T>::get(unsigned long i){
   
-   
-  
-  
-  
+    //Create a pointer points to item in the list that wants to be get.
+    Node * getter = find(i);
+    
+    return ( getter -> data);
+    
+    //Delete the pointer.
+    delete getter;
+    
+    //Set pointer to be NULL.
+    getter = NULL;
+    
 }
 
 template <class T>
