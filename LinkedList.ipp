@@ -8,12 +8,16 @@
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-  //TODO
+  Node* next;
+Node* prev;
+
+  numItems=0;
 }
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-  //TODO
+  delete next;
+  delete prev;
 }
 
 template <class T>
@@ -30,19 +34,18 @@ void LinkedList<T>::set(unsigned long i, T x){
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
   //TODO
+  numItems++;
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
   //TODO
+  numItems--;
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  //TODO -- The code that is here is a useless stub, you probably
-  // want to delete it
-  Node junkNode;
-  return junkNode.data; //This is unitialized data
+  //TODO
 }
 
 template <class T>
@@ -52,6 +55,6 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, 
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-  //TODO
-  return 0;
+
+  return numItems;
 }
