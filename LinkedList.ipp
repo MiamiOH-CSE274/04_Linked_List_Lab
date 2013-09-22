@@ -31,6 +31,11 @@ void LinkedList<T>::set(unsigned long i, T x){
     //Set the value of index i to x.
     PointTo ->data = x;
     
+    //Delete pointer.
+    delete PointTo;
+    
+    PointTo = NULL;
+    
 }
 
 template <class T>
