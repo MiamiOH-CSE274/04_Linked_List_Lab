@@ -24,7 +24,13 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-  //TODO
+
+    //Creat a pointer points to the index i.
+    Node * PointTo = find(i);
+    
+    //Set the value of index i to x.
+    PointTo ->data = x;
+    
 }
 
 template <class T>
