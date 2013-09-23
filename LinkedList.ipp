@@ -8,9 +8,11 @@
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
+  numItems = 0;
   dummyNode = new Node();
   dummyNode -> next = dummyNode;
   dummyNode -> prev = dummyNode;
+  dummyNode -> data = NULL;
 }
 
 template <class T>
@@ -20,8 +22,15 @@ LinkedList<T>::~LinkedList() {
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  //TODO
-  return NULL;
+
+  Node* cur = dummyNode -> next;
+  int currentNum = i;
+  while (currentNum > 0) {
+	cur = cur -> next;
+	currentNum--;
+	}
+
+  return cur;
 }
 
 template <class T>
@@ -31,7 +40,14 @@ void LinkedList<T>::set(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-  //TODO
+  Node* cur = find(i);
+  Node* temp = new Node();
+  temp -> data = x;
+  temp ->next = cur;
+  temp -> prev = cur -> prev;
+  temp -> prev -> next = temp;
+  temp -> next -> prev = temp;
+  numItems++;
 }
 
 template <class T>
@@ -55,5 +71,5 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, 
 template <class T>
 unsigned long LinkedList<T>::size(){
   //TODO
-  return 0;
+  return numItems;
 }
