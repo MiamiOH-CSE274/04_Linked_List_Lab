@@ -8,24 +8,71 @@
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-  //TODO
+
+   dummyNode = new Node();
+  
+   numItems = 0;
+  
 }
 
 template <class T>
-LinkedList<T>::~LinkedList() {
-  //TODO
+LinkedList<T>::~LinkedList()
+{
+      
+    delete dummyNode;
+    
+    for(int i = 0;i < numItems;i++)
+    {
+             remove(0);
+    }
+    
+       
 }
 
 template <class T>
-typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  //TODO
-  return NULL;
+typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i)
+{
+
+     
+      if (i == (unsigned long)-1)
+      
+      {
+      
+         return dummyNode;
+         
+      }
+
+    
+      if( i < 0 || i >= numItems)
+	  {
+
+	  throw std :: string("Error! Invalid index!");
+
+	  }
+	  
+	  
+	  Node * head = dummyNode;
+	  
+	  
+	  for(int j = 0; j < numItems;j++)
+	  {
+	      if( j == i)
+	      {
+	      
+	          return head;
+	      
+	      }
+	   head = head -> next;
+	  
+	  }
+
+   return NULL;
 }
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
 
-    if( i < 0 || i >= numItems)
+     if( i < 0 || i >= numItems)
 	  {
 
 	  throw std :: string("Error! Invalid index!");
@@ -37,62 +84,64 @@ void LinkedList<T>::set(unsigned long i, T x){
     
     //Set the value of index i to x.
     PointTo ->data = x;
-    
-    //Delete pointer.
-    delete PointTo;
-    
-    PointTo = NULL;
+   
     
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-   
-    
-    //Create a pointer points to the head of the node.
-    Node * head;
-    
-    //Create a memory block in the Heap.
-    //temp1 stores the address of the memory block.
-    //For instance, let's say the address of temp1 is 150.
-    Node * temp1 = new Node();
-    
-    //Set the item you want to add.
-    temp1 ->data = x;
-  
-    //Increas the number of the item.
-    numItems++;
-    
-    temp1 ->next = NULL;
-    
-    //Special case when n is 0.
-    if(i == 0)
-    {
-       temp1 ->next = head;
-       
-       //head now stores the address 150 like temp1.
-       head = temp1;
-       return; 
-    }
-    
-      if( i < 0 || i >= numItems)
+
+     if( i < 0 || i >= numItems)
        {
-	      throw std :: string("Error! Invalid index!");
+         throw std :: string("Error! Invalid index!");     
        }
     
-    
-    //temp2 now stores the address of head which is 150
-    //Because I set temp2 as head.
-    //Which means temp2 now points to head node.
-    Node * temp2 = head;
-    
-    for(int i = 0;i<i-2;i++)
-    {
-        temp2 = temp2->next;
+          if( i == 0)
+          {
           
-    }
-    temp1 ->next = temp2->next;
-    temp2 ->next = temp1;
+          Node * head = find(0);
+     
+          Node * newOne = new Node();
+          
+          newOne->data = x;
+          
+          newOne->next = head;
+          
+          head = newOne;
+     
+          numItems++;  
+          }
+         
+         
+           if( i > 0 && i != (numItems-1) )
+           {
+         
+           Node * newOne = new Node();
+           
+           newOne -> data = x;
+         
+           Node * T = find(i);
+           
+           newOne ->next = T->next;
+           
+           T->next = newOne;
+           
+           }
+           
+           
+           if( i == (numItems - 1)){
+          
+    
+           Node * lastOne = find(i);
+           
+           Node * newOne = new Node();
+           
+           newOne ->data = x;
+           
+           lastOne ->next = newOne;
+           
+           newOne ->next = NULL; 
+     } 
 }
 
 template <class T>
@@ -108,21 +157,17 @@ void LinkedList<T>::remove(unsigned long i)
        throw std :: string("There is no item to delete.");         
      }
     
+     Node * tmp = find(i-1);
+     Node * toRemove = tmp->next;
+     if(toRemove == NULL)
+     {
+     throw std :: string("Error! Invalid index!");     
+     }
+     tmp->next = toRemove->next;
+     delete toRemove;
+     numItems--;
+     
     
-    //Create a pointer points to the head of the node.
-    Node * head = find(0);
-    
-    for(int j = 0;j<numItems;j++)
-    {
-         if( j = i){
-             
-             delete head;
-             
-             head = NULL;
-         } 
-         
-         head = head ->next;
-    }
 }
 
 template <class T>
@@ -130,23 +175,17 @@ T LinkedList<T>::get(unsigned long i){
   
     if( i < 0 || i >= numItems)
 	   {
-	  
+
 	  throw std :: string("Error! Invalid index!");
 
-	   }
+	 }
 
-   T ret;
+     Node * ret = find(i);
+     
+     
+     return (ret ->data);
   
-   //Create a pointer points to item in the list that wants to be get.
-   Node * pointer = find(i);
-    
-   ret = (pointer->data);
-   
-   delete pointer;
-   
-   pointer = nullptr;
 
-   return ret;
 }
 
 template <class T>
