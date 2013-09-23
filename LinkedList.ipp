@@ -6,14 +6,25 @@
 // to which classes. That is why we have to use the scope operator to
 // tell the compiler that this LinkedList() method belongs to the
 // LinkedList<T> class.
+#define START_SIZE 10
+
 template <class T>
 LinkedList<T>::LinkedList(){
-  //TODO
+	T* data = new T[START_SIZE];
+	Node* prev = new Node[START_SIZE];
+	Node* next = new Node[START_SIZE];
+	
+
+	Node* dummyNode = new Node[START_SIZE];
+	Node* find = new Node[START_SIZE];
+	numItems = 0;
+
 }
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-  //TODO
+ // delete dummyNode[];
+ // delete data[];
 }
 
 template <class T>
@@ -29,7 +40,17 @@ void LinkedList<T>::set(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-  //TODO
+	Node *u = new Node[x];
+	Node* next;
+	//Node* find;
+	if (numItems == 0) {
+	Node* prev = u;
+	}
+	else
+	//	next = u;
+	//	u = next[i];
+	next = u;
+	numItems++;
 }
 
 template <class T>
@@ -39,10 +60,12 @@ void LinkedList<T>::remove(unsigned long i){
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
+	Node dummyNode;
+	return dummyNode.data;
   //TODO -- The code that is here is a useless stub, you probably
   // want to delete it
-  Node junkNode;
-  return junkNode.data; //This is unitialized data
+  //Node junkNode;
+ // return junkNode.data; //This is unitialized data
 }
 
 template <class T>
@@ -53,5 +76,5 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, 
 template <class T>
 unsigned long LinkedList<T>::size(){
   //TODO
-  return 0;
+  return numItems;
 }
