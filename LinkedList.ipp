@@ -17,13 +17,17 @@ LinkedList<T>::LinkedList(){
 template <class T>
 LinkedList<T>::~LinkedList() {
 	while(dummyNode->next != dummyNode){
-		delete dummyNode->next;
+		remove(0);
 	}
 	delete dummyNode;
 }
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
+	if(i==numItems)
+	  return dummyNode;
+	else if(i>numItems)
+	  throw (std::string)"Not a valid index!";
 	Node* result = dummyNode;
 	int j = -1;
 	while(j!=i){
@@ -52,6 +56,9 @@ void LinkedList<T>::add(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
+  if(numItems==0){
+    throw (std::string)"No items to remove.";
+  }
   Node* toBeRemoved = find(i);
   toBeRemoved->prev->next = toBeRemoved->next;
   toBeRemoved->next->prev = toBeRemoved->prev;
