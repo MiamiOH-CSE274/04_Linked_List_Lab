@@ -11,7 +11,7 @@ LinkedList<T>::LinkedList(){
   dummyNode = new Node();
   dummyNode->next=dummyNode;
   dummyNode->prev=dummyNode;
-  int numItems = 0;
+  numItems = 0;
 }
 
 template <class T>
@@ -61,7 +61,7 @@ void LinkedList<T>::remove(unsigned long i){
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  return find(i)->data; //This is unitialized data
+  return find(i)->data;
 }
 
 template <class T>
