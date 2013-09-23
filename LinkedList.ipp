@@ -10,19 +10,19 @@
 
 template <class T>
 LinkedList<T>::LinkedList(){
-	T* data = new T[START_SIZE];
-	Node* prev = new Node[START_SIZE];
-	Node* next = new Node[START_SIZE];
 	
-
-	Node* dummyNode = new Node[START_SIZE];
-	Node* find = new Node[START_SIZE];
+	Node* dummyNode = new Node();
+	//Node* find = new Node[START_SIZE];
 	numItems = 0;
 
 }
 
 template <class T>
 LinkedList<T>::~LinkedList() {
+	while (numItems > 0)
+		remove(0);
+	delete dummyNode;
+	//delete prev;
  // delete dummyNode[];
  // delete data[];
 }
@@ -40,17 +40,27 @@ void LinkedList<T>::set(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	Node *u = new Node[x];
-	Node* next;
+	Node* u = find(i);
+	Node* temp = new Node();
+	temp -> data = x;
+	temp -> next = u;
+	temp -> prev = u -> prev;
+	temp -> prev -> next = temp;
+	temp -> next -> prev = temp;
+//	Node *u = new Node[x];
+//	Node* next;
+	//Node* tail;
 	//Node* find;
-	if (numItems == 0) {
-	Node* prev = u;
-	}
-	else
+//	if (numItems == 0) {
+//	Node* prev = u;
+//	}
+	//else
+	//	Node* tail = u;
+	// tail->next = u
 	//	next = u;
 	//	u = next[i];
-	next = u;
-	numItems++;
+	//next = u;
+	//numItems++;
 }
 
 template <class T>
@@ -60,12 +70,12 @@ void LinkedList<T>::remove(unsigned long i){
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-	Node dummyNode;
-	return dummyNode.data;
+//	Node dummyNode;
+//	return dummyNode.data;
   //TODO -- The code that is here is a useless stub, you probably
   // want to delete it
-  //Node junkNode;
- // return junkNode.data; //This is unitialized data
+  Node junkNode;
+  return junkNode.data; //This is unitialized data
 }
 
 template <class T>
