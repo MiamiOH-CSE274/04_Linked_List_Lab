@@ -47,7 +47,46 @@ void LinkedList<T>::set(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-  //TODO
+   
+    
+    //Create a pointer points to the head of the node.
+    Node * head;
+    
+    //Create a memory block in the Heap.
+    //temp1 stores the address of the memory block.
+    //For instance, let's say the address of temp1 is 150.
+    Node * temp1 = new Node();
+    
+    //Set the item you want to add.
+    temp1 ->data = x;
+  
+    //Increas the number of the item.
+    numItems++;
+    
+    temp1 ->next = NULL;
+    
+    //Special case when n is 0.
+    if(i == 0)
+    {
+       temp1 ->next = head;
+       
+       //head now stores the address 150 like temp1.
+       head = temp1;
+       return; 
+    }
+    
+    //temp2 now stores the address of head which is 150
+    //Because I set temp2 as head.
+    //Which means temp2 now points to head node.
+    Node * temp2 = head;
+    
+    for(int i = 0;i<i-2;i++)
+    {
+        temp2 = temp2->next;
+          
+    }
+    temp1 ->next = temp2->next;
+    temp2 ->next = temp1;
 }
 
 template <class T>
