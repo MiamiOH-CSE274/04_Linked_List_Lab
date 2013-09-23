@@ -6,7 +6,7 @@
 // to which classes. That is why we have to use the scope operator to
 // tell the compiler that this LinkedList() method belongs to the
 // LinkedList<T> class.
-#define START_SIZE 10
+//#define START_SIZE 10
 
 template <class T>
 LinkedList<T>::LinkedList(){
@@ -19,44 +19,66 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	while (numItems > 0)
-		remove(0);
-	delete dummyNode;
-	//delete prev;
- // delete dummyNode[];
- // delete data[];
+//	while (numItems > 0)
+//		remove(0);
+//	delete dummyNode;
 }
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  //TODO
-  return NULL;
+  Node* p = new Node();
+  if (i < (numItems/2)) {
+	p = dummyNode -> next;
+	for (int j = 0; (j < (int)i); j++)
+		p = p -> next;
+	}
+	else {
+		p = dummyNode;
+		for (int j = numItems; j > (int)i; j--)
+			p = p -> prev;
+		}
+	return (p);
+
 }
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
   //TODO
+  if (numItems < (int) i)
+		throw (std::string) "List does not contain i items";
+	Node* s = find(i);
+	s->data = x;
+
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
+	
 	Node* u = find(i);
 	Node* temp = new Node();
+	if (numItems < (int) i)
+	//	throw (std::string) "List does not contain i items";
+
 	temp -> data = x;
+	// THIS LINE BAD.
+	//temp -> prev = u -> prev;
 	temp -> next = u;
-	temp -> prev = u -> prev;
-	temp -> prev -> next = temp;
-	temp -> next -> prev = temp;
-//	Node *u = new Node[x];
-//	Node* next;
-	//Node* tail;
-	//Node* find;
-//	if (numItems == 0) {
-//	Node* prev = u;
-//	}
-	//else
-	//	Node* tail = u;
-	// tail->next = u
+	//temp -> next -> prev = temp;
+	//temp -> prev -> next = temp;
+	//numItems++;
+
+	/*Node *u = find(i);
+	Node* temp = new Node();
+	temp -> data = x;
+	if (numItems == 0) {
+//		u->prev = temp;
+	}
+	else
+		u->next = temp;
+	 u = temp;
+//	 numItems++;
+
+*/
 	//	next = u;
 	//	u = next[i];
 	//next = u;
@@ -70,12 +92,10 @@ void LinkedList<T>::remove(unsigned long i){
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-//	Node dummyNode;
-//	return dummyNode.data;
-  //TODO -- The code that is here is a useless stub, you probably
-  // want to delete it
-  Node junkNode;
-  return junkNode.data; //This is unitialized data
+	if (numItems < (int) i)
+		throw (std::string) "List does not contain i items";
+	Node* f = find(i);
+	return (f->data);
 }
 
 template <class T>
@@ -85,6 +105,5 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, 
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-  //TODO
-  return numItems;
+	return numItems;
 }
