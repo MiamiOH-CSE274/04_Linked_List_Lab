@@ -17,29 +17,44 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-  //TODO
-}
+  Node* toDelete = dummyNode -> next;
+  int numTimes = numItems;
+  for (int i = 0; i < numTimes; i++) {
+    remove(0);
+  }
+  delete dummyNode;
+
+  }
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-
+  if (i >= numItems) {
+  return dummyNode;
+  }
   Node* cur = dummyNode -> next;
   int currentNum = i;
   while (currentNum > 0) {
 	cur = cur -> next;
 	currentNum--;
 	}
-
+	
   return cur;
 }
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-  //TODO
+  Node* cur = find(i);
+  if (cur == dummyNode) {
+    throw std::string("That index does not exist. Please choose a different one.");
+  }
+  cur -> data = x;
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
+  if (i > numItems) {
+    throw std::string("You can not add a node at that index. Please choose a different one.");
+  }
   Node* cur = find(i);
   Node* temp = new Node();
   temp -> data = x;
@@ -52,15 +67,32 @@ void LinkedList<T>::add(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-  //TODO
+  if (numItems == 0) {
+	throw std::string("You cannot remove an item from a list that does not contain any.");
+  }
+  Node* cur = find(i);
+  Node* previous = cur -> prev;
+  Node* nextUp = cur -> next;
+  previous->next = nextUp;
+  nextUp -> prev = previous;
+  numItems--;
+  delete cur;
+  
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  //TODO -- The code that is here is a useless stub, you probably
-  // want to delete it
-  Node junkNode;
-  return junkNode.data; //This is unitialized data
+  if (find(i) == dummyNode) {
+    throw std::string("That node does not exist, so you cannot get the value associated with it.");
+  }
+  Node* cur = dummyNode -> next;
+  int currentNum = i;
+  while (currentNum > 0) {
+	cur = cur -> next;
+	currentNum--;
+	}
+	return cur -> data;
+	
 }
 
 template <class T>
@@ -70,6 +102,5 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, 
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-  //TODO
   return numItems;
 }
