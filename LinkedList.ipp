@@ -68,7 +68,7 @@ T LinkedList<T>::get(unsigned long i){
    T ret;
   
    //Create a pointer points to item in the list that wants to be get.
-   Node * pointer = find(i-1);
+   Node * pointer = find(i);
     
    ret = (pointer->data);
    
