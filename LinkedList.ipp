@@ -96,8 +96,33 @@ void LinkedList<T>::add(unsigned long i, T x){
 }
 
 template <class T>
-void LinkedList<T>::remove(unsigned long i){
-  //TODO
+void LinkedList<T>::remove(unsigned long i)
+{
+    if( i < 0 || i >= numItems)
+     {
+         throw std :: string("Error! Invalid index!");     
+     }
+    
+    if( numItems == 0)
+     {
+       throw std :: string("There is no item to delete.");         
+     }
+    
+    
+    //Create a pointer points to the head of the node.
+    Node * head = find(0);
+    
+    for(int j = 0;j<numItems;j++)
+    {
+         if( j = i){
+             
+             delete head;
+             
+             head = NULL;
+         } 
+         
+         head = head ->next;
+    }
 }
 
 template <class T>
