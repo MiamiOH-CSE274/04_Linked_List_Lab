@@ -8,41 +8,60 @@
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-  //TODO
+  dummyNode = new Node();
+  dummyNode->next=dummyNode;
+  dummyNode->prev=dummyNode;
+  int numItems = 0;
 }
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-  //TODO
+	while(dummyNode->next != dummyNode){
+		delete dummyNode->next;
+	}
+	delete dummyNode;
 }
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  //TODO
-  return NULL;
+	Node* result = dummyNode;
+	int j = -1;
+	while(j!=i){
+		result = result->next;
+		j++;
+		}
+	return result;
 }
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-  //TODO
+  find(i)->data = x;
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-  //TODO
+  Node* temp = new Node();
+  temp->data = x;
+  Node* bump = find(i);
+  temp->next = bump;
+  temp->prev = bump->prev;
+  bump->prev = temp;
+  temp->prev->next = temp;
+  numItems++;
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-  //TODO
+  Node* toBeRemoved = find(i);
+  toBeRemoved->prev->next = toBeRemoved->next;
+  toBeRemoved->next->prev = toBeRemoved->prev;
+  delete toBeRemoved;
+  numItems--;
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  //TODO -- The code that is here is a useless stub, you probably
-  // want to delete it
-  Node junkNode;
-  return junkNode.data; //This is unitialized data
+  return find(i)->data; //This is unitialized data
 }
 
 template <class T>
@@ -52,6 +71,5 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, 
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-  //TODO
-  return 0;
+  return numItems;
 }
