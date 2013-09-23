@@ -75,6 +75,12 @@ void LinkedList<T>::add(unsigned long i, T x){
        return; 
     }
     
+      if( i < 0 || i >= numItems)
+       {
+	      throw std :: string("Error! Invalid index!");
+       }
+    
+    
     //temp2 now stores the address of head which is 150
     //Because I set temp2 as head.
     //Which means temp2 now points to head node.
