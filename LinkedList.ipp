@@ -60,7 +60,7 @@ void LinkedList<T>::add(unsigned long i, T x){
 	//	throw (std::string) "List does not contain i items";
 
 	temp -> data = x;
-	// THIS LINE BAD.
+	// THIS LINE BAD
 	//temp -> prev = u -> prev;
 	temp -> next = u;
 	//temp -> next -> prev = temp;
