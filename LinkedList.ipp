@@ -25,6 +25,13 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
 
+    if( i < 0 || i >= numItems)
+	  {
+
+	  throw std :: string("Error! Invalid index!");
+
+	  }
+
     //Creat a pointer points to the index i.
     Node * PointTo = find(i);
     
@@ -51,17 +58,25 @@ void LinkedList<T>::remove(unsigned long i){
 template <class T>
 T LinkedList<T>::get(unsigned long i){
   
-    //Create a pointer points to item in the list that wants to be get.
-    Node * getter = find(i);
+    if( i < 0 || i >= numItems)
+	   {
+	  
+	  throw std :: string("Error! Invalid index!");
+
+	   }
+
+   T ret;
+  
+   //Create a pointer points to item in the list that wants to be get.
+   Node * pointer = find(i-1);
     
-    return ( getter -> data);
-    
-    //Delete the pointer.
-    delete getter;
-    
-    //Set pointer to be NULL.
-    getter = NULL;
-    
+   ret = (pointer->data);
+   
+   delete pointer;
+   
+   pointer = nullptr;
+
+   return ret;
 }
 
 template <class T>
