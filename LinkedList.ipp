@@ -11,6 +11,7 @@ LinkedList<T>::LinkedList(){
   //Initialize variables
   dummyNode = new Node();
   dummyNode->next = dummyNode;
+  numItems = 0;
 }
 
 template <class T>
@@ -58,7 +59,8 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, 
 }
 
 template <class T>
+//Method to return the current size of the list
 unsigned long LinkedList<T>::size(){
   //TODO
-  return 0;
+  return numItems;
 }
