@@ -26,6 +26,8 @@ LinkedList<T>::~LinkedList() {
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
+  if(i > numItems)
+	throw std::string("That is an invalid input");
   unsigned long count = 0;
   Node* current = dummyNode->next;
   while(current != dummyNode) {
