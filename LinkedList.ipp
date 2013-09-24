@@ -89,59 +89,32 @@ void LinkedList<T>::set(unsigned long i, T x){
 }
 
 template <class T>
-void LinkedList<T>::add(unsigned long i, T x){
+void LinkedList<T>::add(unsigned long i, T x)
+{
 
-     if( i < 0 || i >= numItems)
-       {
-         throw std :: string("Error! Invalid index!");     
-       }
-    
-          if( i == 0)
-          {
-          
-          Node * head = find(0);
-     
-          Node * newOne = new Node();
-          
-          newOne->data = x;
-          
-          newOne->next = head;
-          
-          head = newOne;
-     
-          numItems++;  
-          }
-         
-         
-           if( i > 0 && i != (numItems-1) )
-           {
-         
-           Node * newOne = new Node();
-           
-           newOne -> data = x;
-         
-           Node * T = find(i);
-           
-           newOne ->next = T->next;
-           
-           T->next = newOne;
-           
-           }
-           
-           
-           if( i == (numItems - 1)){
-          
-    
-           Node * lastOne = find(i);
-           
-           Node * newOne = new Node();
-           
-           newOne ->data = x;
-           
-           lastOne ->next = newOne;
-           
-           newOne ->next = NULL; 
-     } 
+  //Create a pointer points to the previous index of the index you want to return.
+  Node * n = new Node();
+  n -> prev = find(i-1);
+  
+  //Create a memory block in the heap.
+  Node * newNode = new Node();
+  
+  //Store the data in this memory block.
+  newNode -> data = x;
+  
+  //Be very careful the order of setting the pointer here.
+  //You must let the (newNode->next) points to (prevIndex -> next) before 
+  //you let the (prevIndex -> next) points to newNode .
+  //If you let the (prevIndex -> next) points to newNode first,
+  //and then you will completely lose the reference after prevIndex,
+  //and there is no way to access it again.
+  
+  newNode -> next = (n -> prev) ->next;
+  
+  (n -> prev) -> next = newNode;
+  
+  numItems++;
+
 }
 
 template <class T>
