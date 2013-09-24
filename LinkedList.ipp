@@ -11,7 +11,7 @@ LinkedList<T>::LinkedList(){
   //Initialize variables
   dummyNode = new Node();
   dummyNode->next = dummyNode;
-  dummyNode->previous = dummyNode;
+  dummyNode->prev = dummyNode;
   numItems = 0;
 }
 
@@ -27,7 +27,14 @@ LinkedList<T>::~LinkedList() {
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
   //TODO
-  return NULL;
+  unsigned long count = 0;
+  Node* current = dummyNode->next;
+  while(current != dummyNode) {
+		if(count == i)
+			return current;
+		current = current->next;
+		count++;
+  }
 }
 
 template <class T>
@@ -42,9 +49,9 @@ void LinkedList<T>::add(unsigned long i, T x){
   Node* temp = new Node();
   temp->data = x;
   temp->next = current;
-  temp->previous = current->previous;
-  temp->previous->next = temp;
-  temp->next->previous = temp;
+  temp->prev = current->prev;
+  temp->prev->next = temp;
+  temp->next->prev = temp;
   numItems++;
 }
 
