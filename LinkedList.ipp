@@ -28,6 +28,8 @@ template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
   if(i > numItems)
 	throw std::string("That is an invalid input");
+  if(i == numItems)
+	return dummyNode;
   unsigned long count = 0;
   Node* current = dummyNode->next;
   while(current != dummyNode) {
@@ -36,7 +38,6 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 		current = current->next;
 		count++;
   }
-  return dummyNode;
 }
 
 template <class T>
@@ -84,8 +85,7 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& ta
   //Going to attempt this
   
   while(i < len){
-		Node* current = find(i);
-		target.add(current->data, t);
+		target.add(get(i), t);
 		remove(i);
 		i++;
 		t++;
