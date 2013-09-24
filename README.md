@@ -15,7 +15,7 @@ Reading
 =======
 "Open Data Structures," Chapter 3, up through section 2 (DLList), http://opendatastructures.org/ods-cpp/3_Linked_Lists.html
 
-Questionss
+Questions
 =========
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
