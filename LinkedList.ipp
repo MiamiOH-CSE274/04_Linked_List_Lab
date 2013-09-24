@@ -88,6 +88,15 @@ template <class T>
 void LinkedList<T>::add(unsigned long i, T x)
 {
 
+
+  if( i < 0 || i >= numItems)
+   {
+
+	 throw std :: string("Error! Invalid index!");
+
+   }
+
+
   //Create a pointer points to the previous index of the index you want to return.
   Node * n = new Node();
   n -> prev = find(i-1);
@@ -166,8 +175,32 @@ T LinkedList<T>::get(unsigned long i)
 }
 
 template <class T>
-void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, unsigned long t){
-  //TODO
+void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, unsigned long t)
+{
+   if( i < 0 || i >= numItems)
+   {
+
+	 throw std :: string("Error! Invalid index!");
+
+   }
+   
+    //Be careful here, len is the number of item you want to remov.
+    //And it starts at position i, so the total amount of time
+    //to loop through is (len+i-1).
+	for(int j=i;j < len+i;j++)
+	{
+	    //Create a pointer points to the beginning of index i.
+		Node * StartPoint = new Node();
+		StartPoint -> next = find(i);
+		
+		//Add the item to the target list.
+		target.add(t, (StartPoint -> next)->data);
+		
+		remove(i);
+		
+		t++;
+		
+	}
 }
 
 template <class T>
