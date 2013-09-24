@@ -66,6 +66,8 @@ T LinkedList<T>::get(unsigned long i){
   //Check if we need to throw an exception
   if(i > numItems)
 	throw std::string("That is an invalid input");
+  Node* current = find(i);
+  return current->data;
   
 }
 
@@ -77,6 +79,5 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, 
 template <class T>
 //Method to return the current size of the list
 unsigned long LinkedList<T>::size(){
-  //TODO
   return numItems;
 }
