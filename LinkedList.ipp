@@ -6,17 +6,14 @@
 // to which classes. That is why we have to use the scope operator to
 // tell the compiler that this LinkedList() method belongs to the
 // LinkedList<T> class.
-//#define START_SIZE 10
 
 template <class T>
 LinkedList<T>::LinkedList(){
 	
 	Node* dummyNode = new Node();
-	//Node* find = new Node[START_SIZE];
 	dummyNode -> next = dummyNode;
 	dummyNode -> prev = dummyNode;
 	numItems = 0;
-
 }
 
 template <class T>
@@ -24,48 +21,67 @@ LinkedList<T>::~LinkedList() {
 //	while (numItems > 0){
 //		remove(0);
 //	}
-	//delete dummyNode;
+//	delete dummyNode;
 }
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  Node* p;
-// if (i > numItems)
-//	throw (std::string) "Invalid i (find)";
-  if (i == numItems)
+	Node* p;
+	if (i > numItems)
+		throw (std::string) "Invalid i (find)";
+	if (i == numItems)
 		return dummyNode;
-  if (i < (numItems/2)) {
-	p = dummyNode -> next;
-	for (int j = 0; (j < (int)i); j++)
-		p = p -> next;
+	if (i < (numItems/2)) {
+		p = dummyNode -> next;
+		for (int j = 0; (j < (int)i); j++)
+			p = p -> next;
 	}
 	else {
 		p = dummyNode;
-		for (int j = numItems; j > (int)i; j--)
-			p = p -> prev;
-		}
+			for (int j = numItems; j > (int)i; j--)
+				p = p -> prev;
+	}
+
+std::cout << "FIND" << p << std::endl;
+	
 	return (p);
+
 //return dummyNode;
 }
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-  if (numItems < (int) i)
+ /* if (numItems < (int) i)
 		throw (std::string) "List does not contain i items";
+		*/
 	Node* s = find(i);
+//	T y = s->data;
+//	s->data = x;
+
+//	std::cout << "SET" << s << std::endl;
+	
 	s->data = x;
 
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	Node* u = find(i);
+//	numItems++;
+std::cout << "i" << i << std::endl;
+std::cout << "X" << x << std::endl;
+// Freezes when find(i), updating numItems, and temp prev next and temp next prev
+
+//	Node* u = find(i);
+
+//	std::cout << "ADD" << u->data << std::endl;
+
 	Node* temp = new Node();
-//.	if (numItems < (int) i)
+
+//	if (i > numItems)
 //		throw (std::string) "List does not contain i items";
 
 	temp -> data = x;
-	temp -> next = u;
+//	temp -> next = u;
 //	temp -> prev = u -> prev;
 //	temp -> prev -> next = temp;
 //	temp -> next -> prev = temp;
@@ -82,7 +98,9 @@ void LinkedList<T>::add(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-  Node *w = find(i);
+//numItems--;
+ // Node *w = find(i);
+//  std::cout << "REMOVE" << w << std::endl;
 //  w -> prev -> next = w -> next;
  // w -> next -> prev = w -> prev;
  // delete w;
