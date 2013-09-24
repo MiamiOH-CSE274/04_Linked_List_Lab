@@ -38,8 +38,8 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	}
 	else {
 		p = dummyNode;
-			for (int j = numItems; j > (int)i; j--)
-				p = p -> prev;
+		for (int j = numItems; j > (int)i; j--)
+			p = p -> prev;
 	}
 
 //std::cout << "FIND" << p << std::endl;
@@ -87,10 +87,11 @@ numItems++;
 //	temp -> next -> prev = temp;
 
 
-	temp -> prev = u -> prev;
 	temp -> next = u;
-	temp -> next -> prev = temp;
+	temp -> prev = u -> prev;
 	temp -> prev -> next = temp;
+	temp -> next -> prev = temp;
+	
 
 //	numItems++;
 
@@ -104,7 +105,7 @@ void LinkedList<T>::remove(unsigned long i){
 //  w -> prev -> next = w -> next;
  // w -> next -> prev = w -> prev;
  // delete w;
-//  numItems--;
+  numItems--;
 }
 
 template <class T>
