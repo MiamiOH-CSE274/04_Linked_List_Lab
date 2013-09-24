@@ -89,7 +89,15 @@ T LinkedList<T>::get(unsigned long i){
 
 template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, unsigned long t){
-  //TODO
+  if (i + len >= numItems)
+    throw std::string ("Not enough items to splice from this position");
+
+  for (unsigned long j = 0; j < len; j++) {
+    Node* move = find(i);                   //find element
+    target.add(t, move -> data);            //add element to target
+    remove(i);                              //remove element from original list
+    t++;                                    //increase position in target to add next element
+  }
 }
 
 template <class T>
