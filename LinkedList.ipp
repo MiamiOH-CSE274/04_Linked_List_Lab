@@ -29,12 +29,22 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	else if(i>numItems)
 	  throw (std::string)"Not a valid index!";
 	Node* result = dummyNode;
+	if(i<numItems/2){
 	int j = -1;
 	while(j!=i){
 		result = result->next;
 		j++;
 		}
 	return result;
+	}
+	else{
+	  int j = numItems;
+	  while(j!=i){
+		result = result->prev;
+		j--;
+		}
+    return result;
+	}
 }
 
 template <class T>
