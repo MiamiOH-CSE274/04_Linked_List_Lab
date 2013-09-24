@@ -13,6 +13,8 @@ LinkedList<T>::LinkedList(){
 	
 	Node* dummyNode = new Node();
 	//Node* find = new Node[START_SIZE];
+	dummyNode -> next = dummyNode;
+	dummyNode -> prev = dummyNode;
 	numItems = 0;
 
 }
@@ -22,7 +24,7 @@ LinkedList<T>::~LinkedList() {
 //	while (numItems > 0){
 //		remove(0);
 //	}
-//	delete dummyNode;
+	//delete dummyNode;
 }
 
 template <class T>
@@ -30,8 +32,8 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
   Node* p;
 // if (i > numItems)
 //	throw (std::string) "Invalid i (find)";
- // if (i == numItems)
-//		return dummyNode;
+  if (i == numItems)
+		return dummyNode;
   if (i < (numItems/2)) {
 	p = dummyNode -> next;
 	for (int j = 0; (j < (int)i); j++)
@@ -51,7 +53,7 @@ void LinkedList<T>::set(unsigned long i, T x){
   if (numItems < (int) i)
 		throw (std::string) "List does not contain i items";
 	Node* s = find(i);
-//	s->data = x;
+	s->data = x;
 
 }
 
@@ -63,34 +65,19 @@ void LinkedList<T>::add(unsigned long i, T x){
 //		throw (std::string) "List does not contain i items";
 
 	temp -> data = x;
-//	// THIS LINE BAD
-//	temp -> next -> prev = temp;
+	temp -> next = u;
+//	temp -> prev = u -> prev;
 //	temp -> prev -> next = temp;
-	//temp -> prev = u -> prev;
-	//temp -> next = u;
+//	temp -> next -> prev = temp;
+
 
 //.	temp -> prev = u -> prev;
 //.	temp -> next = u;
 //.	temp -> next -> prev = temp;
 //.	temp -> prev -> next = temp;
 
-//.	numItems++;
+//	numItems++;
 
-//Node *u = find(i);
-//	Node* temp = new Node();
-//	temp -> data = x;
-//	if (numItems == 0) {
-//		u->prev = temp;
-//	}
-//	else
-//		u->next = temp;
-//	 u = temp;
-//	 numItems++;
-
-	//	next = u;
-	//	u = next[i];
-	//next = u;
-	//numItems++;
 }
 
 template <class T>
