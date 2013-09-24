@@ -8,12 +8,19 @@
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-  //TODO
+  //Initialize variables
+  dummyNode = new Node();
+  dummyNode->next = dummyNode;
 }
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-  //TODO
+  //De-allocate remaining list items
+  while(numItems > 0){
+		remove(0);
+  }
+
+  delete dummyNode;
 }
 
 template <class T>
