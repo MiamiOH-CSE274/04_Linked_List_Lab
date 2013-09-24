@@ -32,41 +32,36 @@ LinkedList<T>::~LinkedList()
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i)
 {
+  if(i == (unsigned long)-1)
+  
+  {
 
-     
-      if (i == (unsigned long)-1)
-      
-      {
-      
-         return dummyNode;
-         
-      }
+	  return dummyNode;
+	  
+  }
+   
+  if(i<0 || i>=numItems)
+  {
+  
+	  throw std::string("Invalid index.");
 
-    
-      if( i < 0 || i >= numItems)
-	  {
-
-	  throw std :: string("Error! Invalid index!");
-
-	  }
-	  
-	  
-	  Node * head = dummyNode;
-	  
-	  
-	  for(int j = 0; j < numItems;j++)
-	  {
-	      if( j == i)
-	      {
-	      
-	          return head;
-	      
-	      }
-	   head = head -> next;
-	  
+  }
+  
+  //Crate a head node points to the head of the list.
+  Node * head = new Node();
+  head = dummyNode ->next;
+  
+  for(int j=0; j<numItems; j++)
+  {
+	  if(j == i)
+	  {	
+		  return head;
 	  }
 
-   return NULL;
+	  head = head -> next;
+  }
+  
+  return NULL;
 }
 
 template <class T>
