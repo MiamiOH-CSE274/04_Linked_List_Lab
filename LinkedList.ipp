@@ -147,19 +147,20 @@ void LinkedList<T>::remove(unsigned long i)
 }
 
 template <class T>
-T LinkedList<T>::get(unsigned long i){
+T LinkedList<T>::get(unsigned long i)
+{
   
-    if( i < 0 || i >= numItems)
-	   {
+  if( i < 0 || i >= numItems)
+   {
 
-	  throw std :: string("Error! Invalid index!");
+	 throw std :: string("Error! Invalid index!");
 
-	 }
-
-     Node * ret = find(i);
-     
-     
-     return (ret ->data);
+   }
+   
+  //Pretty strightforward.
+  Node * getter = find(i);
+  
+  return (getter -> data);
   
 
 }
