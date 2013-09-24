@@ -17,7 +17,10 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-  //TODO
+    while (numItems!=0) {
+        remove(0);
+    }
+    delete dummyNode;
 }
 
 template <class T>
@@ -27,8 +30,8 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
     }
     if(i>numItems)
         throw (std::string) "Linked list does not have enough items. Nothing to find.";
-    if(i<0)
-        throw (std::string) "Invalid index";
+//    if(i<0)
+//        throw (std::string) "Invalid index";
     Node* pointer = new Node();
     pointer = dummyNode;
     if(i!=numItems-1){
