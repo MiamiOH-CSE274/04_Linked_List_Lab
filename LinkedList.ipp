@@ -47,10 +47,10 @@ void LinkedList<T>::remove(unsigned long i){
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  //TODO -- The code that is here is a useless stub, you probably
-  // want to delete it
-  Node junkNode;
-  return junkNode.data; //This is unitialized data
+  //Check if we need to throw an exception
+  if(i > numItems)
+	throw std::string("That is an invalid input");
+  
 }
 
 template <class T>
