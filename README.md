@@ -20,10 +20,10 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
-4. TODO
+1. Add, remove, get, and set are O(1) if i is referring to the first or last node because I use an if statement to check if i is the index of the last node.
+2. Exceptions are thrown when i<0 and i is >=size() in the find method, which is called by any method that takes index `i`.
+3. The destructor calls remove() to delete individual nodes, and then when there are no nodes left, the destructor deletes the dummy node.
+4. size() is O(1) because numItems is incremented appropriately when a node is added or deleted, and the size() method just returns the value of numItems.
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
 
