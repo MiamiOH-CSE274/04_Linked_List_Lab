@@ -45,7 +45,11 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-  //TODO
+  if (i >= numItems)
+    throw std::string ("No element to set at this location");
+    
+  Node* setter = find(i);
+  setter -> data = x;
 }
 
 template <class T>
@@ -65,15 +69,22 @@ void LinkedList<T>::add(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-  //TODO
+  if (i >= numItems)
+    throw std::string ("No element to remove at this location");
+  Node* goodbye = find(i);
+  goodbye -> prev -> next = goodbye -> next;
+  goodbye -> next -> prev = goodbye -> prev;
+  delete goodbye;
+  numItems--;
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  //TODO -- The code that is here is a useless stub, you probably
-  // want to delete it
-  Node junkNode;
-  return junkNode.data; //This is unitialized data
+  if (i >= numItems)
+    throw std::string ("No element at this location");
+
+  Node* retrieve = find(i);
+  return retrieve -> data;
 }
 
 template <class T>
