@@ -7,30 +7,29 @@
 // tell the compiler that this LinkedList() method belongs to the
 // LinkedList<T> class.
 template <class T>
-LinkedList<T>::LinkedList(){
+LinkedList<T>::LinkedList()
+{
+  
+  dummyNode = new Node();
 
-   dummyNode = new Node();
-  
-   numItems = 0;
-  
+  numItems = 0;  
 }
 
 template <class T>
-LinkedList<T>::~LinkedList()
-{
-      
-    delete dummyNode;
-    
-    for(int i = 0;i < numItems;i++)
-    {
-             remove(0);
-    }
-    
-       
+LinkedList<T>::~LinkedList()    
+	{	
+	for(int i=0;i<numItems;i++)
+	
+	{
+	  remove(0);
+	}
+
+	delete dummyNode;
 }
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i)
+
 {
   if(i == (unsigned long)-1)
   
@@ -68,7 +67,7 @@ template <class T>
 void LinkedList<T>::set(unsigned long i, T x)
 {
 
-  if( i < 0 || i >= numItems)
+   if( i < 0 || i >= numItems)
    {
 
 	 throw std :: string("Error! Invalid index!");
@@ -80,26 +79,17 @@ void LinkedList<T>::set(unsigned long i, T x)
   
    setter -> data = x;
 
-   
-    
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x)
-{
-
-
-  if( i < 0 || i >= numItems)
-   {
-
-	 throw std :: string("Error! Invalid index!");
-
-   }
-
+{ 
 
   //Create a pointer points to the previous index of the index you want to return.
   Node * n = new Node();
   n -> prev = find(i-1);
+  
+  
   
   //Create a memory block in the heap.
   Node * newNode = new Node();
@@ -125,7 +115,7 @@ void LinkedList<T>::add(unsigned long i, T x)
 template <class T>
 void LinkedList<T>::remove(unsigned long i)
 {
-    
+
 //because this remove function is very similary to add() function.
 //So i write this function by BASE ON ANOTHER STUDENT'S CODE. 
 
@@ -151,14 +141,12 @@ void LinkedList<T>::remove(unsigned long i)
   delete del;
   
   numItems--;
-     
-    
+  
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i)
 {
-  
   if( i < 0 || i >= numItems)
    {
 
@@ -170,13 +158,12 @@ T LinkedList<T>::get(unsigned long i)
   Node * getter = find(i);
   
   return (getter -> data);
-  
-
 }
 
 template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, unsigned long t)
-{
+{  
+
    if( i < 0 || i >= numItems)
    {
 
@@ -186,7 +173,7 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, 
    
     //Be careful here, len is the number of item you want to remov.
     //And it starts at position i, so the total amount of time
-    //to loop through is (len+i-1).
+    //to loop through is (le
 	for(int j=i;j < len+i;j++)
 	{
 	    //Create a pointer points to the beginning of index i.
@@ -204,8 +191,10 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, 
 }
 
 template <class T>
-unsigned long LinkedList<T>::size(){
-  
+unsigned long LinkedList<T>::size()
+{
+
+  //Simply return the number of item.
+
   return numItems;
-  
 }
