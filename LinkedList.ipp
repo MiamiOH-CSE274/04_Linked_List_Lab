@@ -26,7 +26,6 @@ LinkedList<T>::~LinkedList() {
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  //TODO
   unsigned long count = 0;
   Node* current = dummyNode->next;
   while(current != dummyNode) {
@@ -35,11 +34,13 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 		current = current->next;
 		count++;
   }
+  return dummyNode;
 }
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-  //TODO
+  Node* current = find(i);
+  current->data = x;
 }
 
 template <class T>
