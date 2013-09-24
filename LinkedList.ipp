@@ -65,20 +65,21 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i)
 }
 
 template <class T>
-void LinkedList<T>::set(unsigned long i, T x){
+void LinkedList<T>::set(unsigned long i, T x)
+{
 
-     if( i < 0 || i >= numItems)
-	  {
+  if( i < 0 || i >= numItems)
+   {
 
-	  throw std :: string("Error! Invalid index!");
+	 throw std :: string("Error! Invalid index!");
 
-	  }
+   }
 
-    //Creat a pointer points to the index i.
-    Node * PointTo = find(i);
-    
-    //Set the value of index i to x.
-    PointTo ->data = x;
+
+   Node * setter  = find(i);
+  
+   setter -> data = x;
+
    
     
 }
