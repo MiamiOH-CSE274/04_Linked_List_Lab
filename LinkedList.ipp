@@ -10,7 +10,7 @@
 template <class T>
 LinkedList<T>::LinkedList(){
 	
-	Node* dummyNode = new Node();
+	dummyNode = new Node();
 	dummyNode -> next = dummyNode;
 	dummyNode -> prev = dummyNode;
 	numItems = 0;
@@ -42,7 +42,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 				p = p -> prev;
 	}
 
-std::cout << "FIND" << p << std::endl;
+//std::cout << "FIND" << p << std::endl;
 	
 	return (p);
 
@@ -66,12 +66,12 @@ void LinkedList<T>::set(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-//	numItems++;
-std::cout << "i" << i << std::endl;
-std::cout << "X" << x << std::endl;
+numItems++;
+//std::cout << "i" << i << std::endl;
+//std::cout << "X" << x << std::endl;
 // Freezes when find(i), updating numItems, and temp prev next and temp next prev
 
-//	Node* u = find(i);
+	Node* u = find(i);
 
 //	std::cout << "ADD" << u->data << std::endl;
 
@@ -87,10 +87,10 @@ std::cout << "X" << x << std::endl;
 //	temp -> next -> prev = temp;
 
 
-//.	temp -> prev = u -> prev;
-//.	temp -> next = u;
-//.	temp -> next -> prev = temp;
-//.	temp -> prev -> next = temp;
+	temp -> prev = u -> prev;
+	temp -> next = u;
+	temp -> next -> prev = temp;
+	temp -> prev -> next = temp;
 
 //	numItems++;
 
