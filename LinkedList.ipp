@@ -8,18 +8,39 @@
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-  //TODO
+    numItems = 0;
+    dummyNode = new Node();
+    dummyNode -> data = NULL;
+    dummyNode -> next = dummyNode;
+    dummyNode -> prev = dummyNode;
 }
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-  //TODO
-}
+
+  while (numItems > 0) {
+        remove(0);
+        }
+  delete dummyNode;
+  
+  }
+
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  //TODO
-  return NULL;
+  if (i > numItems)
+    throw std::string ("List does not hold a Node at this value of i");
+    
+  if (i == numItems)
+    return dummyNode;
+    
+  Node* finder = dummyNode -> next; //we are now at element i = 0
+  unsigned long j = 0;
+  while (j != i) {
+    finder = finder -> next;
+    j++;
+  }
+  return finder;
 }
 
 template <class T>
@@ -29,7 +50,17 @@ void LinkedList<T>::set(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-  //TODO
+    if (numItems < i)
+      throw std::string ("Not enough elements to add at position i");
+
+  Node* cur = find(i);
+  Node* newNode = new Node();
+  newNode -> data = x;
+  newNode -> next = cur; //sets newNode's "next" to cur, moving cur up to i+1
+  newNode -> prev = cur -> prev; //sets newNode's "previous" pointer to the "previous" pointer of cur.
+  newNode -> prev -> next = newNode; //sets element i-1's "next" pointer to newNode's location
+  newNode -> next -> prev = newNode; //sets element i+1's "prev" pointer to newNode's location
+  numItems++;
 }
 
 template <class T>
@@ -52,6 +83,6 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, 
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-  //TODO
-  return 0;
+
+  return numItems;
 }
