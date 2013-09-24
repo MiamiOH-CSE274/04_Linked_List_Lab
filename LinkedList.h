@@ -52,7 +52,7 @@ class LinkedList : public List <T> {
   Node* dummyNode;
 
   //Return a pointer to item i.
-  //Special cases: If i == (unsigned long)-1, return a pointer to the dummyNode
+  //Special cases: If i == numItems, return a pointer to the dummyNode
   //If i is an invalid number, throw a string exception
   Node* find(unsigned long i);
   
