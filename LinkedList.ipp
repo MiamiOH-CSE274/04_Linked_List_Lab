@@ -173,7 +173,7 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, 
    
     //Be careful here, len is the number of item you want to remov.
     //And it starts at position i, so the total amount of time
-    //to loop through is (le
+    //to loop through is (len + i -1)
 	for(int j=i;j < len+i;j++)
 	{
 	    //Create a pointer points to the beginning of index i.
