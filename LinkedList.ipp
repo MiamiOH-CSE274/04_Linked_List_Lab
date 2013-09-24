@@ -38,6 +38,13 @@ void LinkedList<T>::set(unsigned long i, T x){
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
   //TODO
+  Node* current = find(i);
+  Node* temp = new Node();
+  temp->data = x;
+  temp->next = current;
+  temp->previous = current->previous;
+  temp->previous->next = temp;
+  temp->next->previous = temp;
 }
 
 template <class T>
