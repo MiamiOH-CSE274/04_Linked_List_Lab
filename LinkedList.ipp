@@ -78,8 +78,8 @@ void LinkedList<T>::add(unsigned long i, T x){
 
 	Node* temp = new Node();
 
-//	if (i > numItems)
-//		throw (std::string) "List does not contain i items";
+	if (i > numItems)
+		throw (std::string) "List does not contain i items(add)";
 
 	temp -> data = x;
 //	temp -> next = u;
@@ -101,6 +101,9 @@ void LinkedList<T>::add(unsigned long i, T x){
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
 //numItems--;
+	if (numItems == 0)
+		throw (std::string) "List is already empty! (remove)";
+
   Node* w = find(i);
 //  std::cout << "REMOVE" << w << std::endl;
   w -> prev -> next = w -> next;
