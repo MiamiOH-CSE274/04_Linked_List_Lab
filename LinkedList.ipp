@@ -83,8 +83,10 @@ template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
   //Going to attempt this
 
-  for(i; i <= len; i++){
-		
+  for(i; i < len; i++){
+		Node* current = find(i);
+		target.add(current->data, t);
+		remove(i);
   }
 }
 
