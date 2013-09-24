@@ -58,7 +58,8 @@ void LinkedList<T>::add(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-  //TODO
+  Node* current = find(i);
+
 }
 
 template <class T>
