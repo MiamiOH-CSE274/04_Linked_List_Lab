@@ -116,25 +116,32 @@ void LinkedList<T>::add(unsigned long i, T x)
 template <class T>
 void LinkedList<T>::remove(unsigned long i)
 {
-    if( i < 0 || i >= numItems)
-     {
-         throw std :: string("Error! Invalid index!");     
-     }
     
-    if( numItems == 0)
-     {
-       throw std :: string("There is no item to delete.");         
-     }
-    
-     Node * tmp = find(i-1);
-     Node * toRemove = tmp->next;
-     if(toRemove == NULL)
-     {
-     throw std :: string("Error! Invalid index!");     
-     }
-     tmp->next = toRemove->next;
-     delete toRemove;
-     numItems--;
+//because this remove function is very similary to add() function.
+//So i write this function by BASE ON ANOTHER STUDENT'S CODE. 
+
+
+   if( i < 0 || i >= numItems)
+   {
+
+	 throw std :: string("Error! Invalid index!");
+
+   }
+
+  
+  Node * n = new Node();
+  
+  n -> prev = find(i-1); 
+  
+  Node * del = new Node();
+  
+  del = (n->prev) -> next;
+  
+  (n->prev) -> next = del -> next;
+  
+  delete del;
+  
+  numItems--;
      
     
 }
