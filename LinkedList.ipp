@@ -80,7 +80,7 @@ T LinkedList<T>::get(unsigned long i){
 }
 
 template <class T>
-void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, unsigned long t){
+void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
   //TODO
 }
 

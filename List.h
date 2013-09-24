@@ -46,9 +46,4 @@ class List {
   // at position i+1 or higher get moved backwards 1 to fill the gap.
   // If list does not contain i items, throw a string exception
   virtual void remove(unsigned long i) = 0;
-
-  //Optional, but may be useful in the Shuffle project
-  //Remove len items, starting with index i, and insert into target list
-  // at position t. 
-  virtual void splice(unsigned long i, unsigned long len, List<T>& target, unsigned long t) = 0;
 };
