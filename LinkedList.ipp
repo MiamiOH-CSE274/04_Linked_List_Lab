@@ -27,6 +27,7 @@ LinkedList<T>::~LinkedList() {
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	Node* p;
+	
 	if (i > numItems)
 		throw (std::string) "Invalid i (find)";
 	if (i == numItems)
@@ -66,7 +67,7 @@ void LinkedList<T>::set(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-numItems++;
+//numItems++;
 //std::cout << "i" << i << std::endl;
 //std::cout << "X" << x << std::endl;
 // Freezes when find(i), updating numItems, and temp prev next and temp next prev
@@ -93,17 +94,17 @@ numItems++;
 	temp -> next -> prev = temp;
 	
 
-//	numItems++;
+	numItems++;
 
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
 //numItems--;
- // Node *w = find(i);
+  Node* w = find(i);
 //  std::cout << "REMOVE" << w << std::endl;
-//  w -> prev -> next = w -> next;
- // w -> next -> prev = w -> prev;
+  w -> prev -> next = w -> next;
+  w -> next -> prev = w -> prev;
  // delete w;
   numItems--;
 }
