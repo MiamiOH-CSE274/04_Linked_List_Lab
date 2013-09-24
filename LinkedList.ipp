@@ -87,6 +87,7 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& ta
 		Node* current = find(i);
 		target.add(current->data, t);
 		remove(i);
+		t++;
   }
 }
 
