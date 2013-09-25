@@ -1,3 +1,6 @@
+Author
+==========
+"Kimmet, Adrian", kimmetad
 04_Linked_List_Lab
 ==================
 
