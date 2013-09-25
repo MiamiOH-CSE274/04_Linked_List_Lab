@@ -30,25 +30,20 @@ class List {
   virtual unsigned long size() = 0;
 
   //Get the value at index i, and return it.
-  // If list does not contain i items, through a string exception
+  // If list does not contain i items, throw a string exception
   virtual T get(unsigned long i) = 0;
 
   //Set the value at index i to x
-  // If list does not contain i items, through a string exception
+  // If list does not contain i items, throw a string exception
   virtual void set(unsigned long i, T x) = 0;
 
   //Add a new item, x, at position i. All items that were originally
   // at position i or higher get moved forward 1 to make room.
-  // If list does not contain i items, through a string exception
+  // If list does not contain i items, throw a string exception
   virtual void add(unsigned long i, T x) = 0;
 
   //Remove the item at position i. All items that were originally
   // at position i+1 or higher get moved backwards 1 to fill the gap.
-  // If list does not contain i items, through a string exception
+  // If list does not contain i items, throw a string exception
   virtual void remove(unsigned long i) = 0;
-
-  //Optional, but may be useful in the Shuffle project
-  //Remove len items, starting with index i, and insert into target list
-  // at position t. 
-  virtual void splice(unsigned long i, unsigned long len, List<T>& target, unsigned long t) = 0;
 };
