@@ -24,8 +24,8 @@ LinkedList<T>::~LinkedList() {
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i) {
-  if (i > numItems) {
-	throw (std::string) "Error: Not enough items in list";
+  if (i > numItems || i < 0) {
+	throw (std::string) "Error: Invalid index";
   }
   Node* p;
   if (i == numItems) {
@@ -48,8 +48,8 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i) {
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x) {
-  if (i > numItems) {
-	throw (std::string) "Error: Not enough items in list";
+  if (i > numItems || i < 0) {
+	throw (std::string) "Error: Invalid index";
   }
   Node* p = find(i);
   p -> data = x;
@@ -57,8 +57,8 @@ void LinkedList<T>::set(unsigned long i, T x) {
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x) {
-  if (i > numItems) {
-	throw (std::string) "Error: Not enough items in list";
+  if (i > numItems || i < 0) {
+	throw (std::string) "Error: Invalid index";
   }
   Node* cur = find(i);
   Node* temp = new Node();
@@ -72,8 +72,8 @@ void LinkedList<T>::add(unsigned long i, T x) {
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i) {
-  if (i > numItems) {
-	throw (std::string) "Error: Not enough items in list";
+  if (i > numItems || i < 0) {
+	throw (std::string) "Error: Invalid index";
   }
   Node* p = find(i);
   p -> prev -> next = p -> next;
@@ -84,8 +84,8 @@ void LinkedList<T>::remove(unsigned long i) {
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  if (i > numItems) {
-	throw (std::string) "Error: Not enough items in list";
+  if (i > numItems || i < 0) {
+	throw (std::string) "Error: Invalid index";
   }
   return find(i) -> data;
 }
