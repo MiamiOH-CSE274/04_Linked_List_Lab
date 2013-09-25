@@ -57,12 +57,17 @@ template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
 // Test to make sure that the placing the variable x
 // in position i is legal
-	if (i > numItems) {
+	if (i > numItems || i < 0) {
 		throw std::string("Couldn't place item in the list!");
 	}
 // If i is a position in the list then go ahead and add item
 	Node* temp = new Node();
 	Node* cur = find(i);
+	temp->next = cur;
+	temp->prev = cur->prev;
+	temp->data = x;
+	temp->prev->next = temp;
+	temp->next->prev = temp;
 
 }
 
