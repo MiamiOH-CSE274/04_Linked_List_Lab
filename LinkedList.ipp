@@ -23,9 +23,27 @@ LinkedList<T>::~LinkedList() {
 }
 
 template <class T>
-typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  //TODO
-  return NULL;
+typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i) {
+  if (i > numItems) {
+	throw (std::string) "Error: Not enough items in list";
+  }
+  Node* p;
+  if (i == numItems) {
+	p = dummyNode;
+	return p;
+  }
+  if (i < n / 2) {
+	p = dummyNode -> next;
+	for (int j = 0; j < i; j++) {
+		p = p -> next;
+	}
+  } else {
+	p = dummyNode -> prev;
+	for (int j = n; j > i; j--) {
+		p = p -> prev;
+	}
+  }
+  return p;
 }
 
 template <class T>
