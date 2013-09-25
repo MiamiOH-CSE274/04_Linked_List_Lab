@@ -1,3 +1,6 @@
+Author
+==========
+"Bickley, Daniel", bickledb
 04_Linked_List_Lab
 ==================
 
