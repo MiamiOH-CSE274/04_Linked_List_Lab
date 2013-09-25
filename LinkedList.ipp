@@ -80,7 +80,14 @@ void LinkedList<T>::add(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-  //TODO
+	if (numItems == 0) {
+		throw std::string ("No item to remove!");
+	}
+	Node*temp = find(i);
+	temp->next->prev = temp->prev;
+	temp->prev->next = temp->next;
+	delete temp;
+	numItems--;
 }
 
 template <class T>
