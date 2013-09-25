@@ -40,6 +40,9 @@ class LinkedList : public List <T> {
   // at position t. 
   virtual void splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t);
 
+  //Check to see if it is within the range
+  virtual void checkRange(unsigned long i);
+
   //Initialize all private member variables.
   // Be sure to create the dummy node using "new"
   LinkedList();
