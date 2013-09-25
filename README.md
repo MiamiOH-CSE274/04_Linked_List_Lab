@@ -1,3 +1,6 @@
+Author
+==========
+"Monnin, Sebastian", monninse
 04_Linked_List_Lab
 ==================
 
