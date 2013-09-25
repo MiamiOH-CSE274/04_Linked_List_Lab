@@ -1,3 +1,6 @@
+Author
+==========
+"Mullins, Harrison", mullingh
 04_Linked_List_Lab
 ==================
 
