@@ -26,6 +26,6 @@ Questions
 4. Size() is O(1) time
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
-
+If we did an ArrayList instead of a LinkedList, the get and set methods will be faster, and the add and remove methods will be slower. When using ArrayList, the relevant array item can be found in constant time, but when trying to add or remove item, many items has to be rearranged. 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
-
+I was confused with the debugging process. I would suggest other students learn to how to do dubugging. 
