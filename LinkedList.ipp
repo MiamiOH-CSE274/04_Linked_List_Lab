@@ -15,7 +15,7 @@ template <class T>
 LinkedList<T>::LinkedList(){
   numItems =0;
   cur = 0;
-  dummyNode = new Node;
+  dummyNode = new Node();
 }
 
 template <class T>
@@ -31,12 +31,27 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
+  Node* cur = dummyNode->nextj;
+  while(cur != dummyNode){
+  cur = cur -> next;
+  }
+
   //TODO
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-  //TODO
+  Node* cur = find(i);
+  Node* temp = new Node();
+  //Below is making the new node.
+  temp -> data = x;
+  temp -> next = cur;
+  temp -> prev = cur ->prev;
+  //Below is adjusting old nodes to point in the correct direction
+  temp -> prev -> next = temp;
+  temp -> next -> prev = temp;
+
+
 }
 
 template <class T>
