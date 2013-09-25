@@ -76,6 +76,14 @@ T LinkedList<T>::get(unsigned long i){
 
 template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
+	
+	for(int j = i; j<i+len; j++){
+		target.add(t, find(i)->data);
+		remove(i);
+		t++;
+	}
+	
+	/*
 	Node* first = find(i);
 	Node* last = find(i+len-1);
 	Node* targetFront = target.find(t-1);
@@ -89,6 +97,7 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& ta
 	Node* back = find(i+len);
 	front->next = back;
 	back->prev = front;
+	*/
 
 	
 }
