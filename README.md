@@ -1,3 +1,6 @@
+Author
+==========
+"Bailey, Sam", baileys2
 04_Linked_List_Lab
 ==================
 
