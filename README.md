@@ -1,3 +1,6 @@
+Author
+==========
+"Turner, Chace", turnerce
 04_Linked_List_Lab
 ==================
 
