@@ -1,3 +1,6 @@
+Author
+==========
+"Stilgenbauer, Kendall", stilgeki
 04_Linked_List_Lab
 ==================
 
