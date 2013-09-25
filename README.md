@@ -37,18 +37,37 @@ get() function works. Get the pointer points to index by using find() function, 
 Set() function works. Get the pointer points to index by using find() function, then set the value to that memory address.
 
 
-1.Add() function is O(1). Every line of code is either creating a new memory 
-block or switch the pointers.
+Add() function is O(1). Every line of code is either creating a new memory 
+block or switching the pointers.
 
-2. The test of throwing exception is successful.
+The test of throwing exception is successful.
 
-3. Memory is not leaking, delete dummyNode. By using remove() function to keeep
+Memory is not leaking, delete dummyNode. By using remove() function to keep
 deleting node at the beginning of the list.(loop)
 
-4. size() is O(1) time. It simply just returns a value.
+size() is O(1) time. It simply just returns a value.
 
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
 
+The remove() method will definitely slower, because once you remove a item, you 
+will need move the rest of items forwardly or backwardly. The running time will depend on how many items in the array.
+
+The add() method might even slower than remove() method. You are not only need to move the rest of items forwardly or backwardly to make a room,which the running time will depend on the number of items in the array, but also you might need to resize the array if it is full. The resize() method will have a loop to copy
+your original array to a new array, the running time will also depend on
+the number of items in the array.
+
+The add() and get() method will be faster. Because in ArrayList you can just
+return the value or set the value to that index. But in linkedList, you will 
+need to get the memory address of that index by using find() method. The find()
+method will have a loop to find the address of that index, the running time
+will depend on the amount of items in the list and the size of index you are
+inserting to it.
+
+
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
+
+
+
+
 
