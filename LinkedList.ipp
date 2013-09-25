@@ -50,7 +50,14 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-  //TODO
+  // Test to make sure item i is in the list
+	if (i < numItems || i < 0) {
+		throw std::string ("Couldn't set the value x in node i!");
+	}
+	// I orginally had Node* cur = dummyNode + i;, Would this be okay to 
+	// use if we didn't have the find method?
+	Node* cur = find(i);
+	cur->data = x;
 }
 
 template <class T>
@@ -68,7 +75,7 @@ void LinkedList<T>::add(unsigned long i, T x){
 	temp->data = x;
 	temp->prev->next = temp;
 	temp->next->prev = temp;
-
+	numItems++;
 }
 
 template <class T>
