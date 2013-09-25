@@ -32,14 +32,14 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i) {
 	p = dummyNode;
 	return p;
   }
-  if (i < n / 2) {
+  if (i < numItems / 2) {
 	p = dummyNode -> next;
 	for (int j = 0; j < i; j++) {
 		p = p -> next;
 	}
   } else {
 	p = dummyNode -> prev;
-	for (int j = n; j > i; j--) {
+	for (int j = numItems; j > i; j--) {
 		p = p -> prev;
 	}
   }
@@ -49,12 +49,19 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i) {
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x) {
   Node* p = find(i);
-  p -> x = x;
+  p -> data = x;
 }
 
 template <class T>
-void LinkedList<T>::add(unsigned long i, T x){
-  //TODO
+void LinkedList<T>::add(unsigned long i, T x) {
+  Node* cur = find(i);
+  Node* temp = new Node();
+  temp -> data = x;
+  temp -> next = cur;
+  temp -> prev = cur -> prev;
+  temp -> prev -> next = temp;
+  temp -> next -> prev = temp;
+  numItems++;
 }
 
 template <class T>
@@ -76,7 +83,6 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, 
 }
 
 template <class T>
-unsigned long LinkedList<T>::size(){
-  //TODO
-  return 0;
+unsigned long LinkedList<T>::size() {
+  return numItems;
 }
