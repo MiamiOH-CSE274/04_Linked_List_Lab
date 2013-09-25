@@ -30,8 +30,9 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	
 // Test to make sure that i is a legal position in 
 // the list, if not throw an exception
-	if (i > numItems || i < 0)
+	if (i > numItems || i < 0) {
 		throw std::string("Item not valid!");
+	}
 // Create a node pointer that can hold the item address
 	Node* item;
 	if (i < numItems/2) {
@@ -76,6 +77,7 @@ void LinkedList<T>::add(unsigned long i, T x){
 	temp->prev->next = temp;
 	temp->next->prev = temp;
 	numItems++;
+	// Wasn't sure if we needed to delete the temp or not?
 }
 
 template <class T>
@@ -83,19 +85,25 @@ void LinkedList<T>::remove(unsigned long i){
 	if (numItems == 0) {
 		throw std::string ("No item to remove!");
 	}
-	Node*temp = find(i);
+	// If the item is in the list then go ahead and remove it
+	Node* temp = find(i);
+	// Make sure to reset the list so that the previous
+	// and next node to the one removed are up to date
 	temp->next->prev = temp->prev;
 	temp->prev->next = temp->next;
+	// Since we allocated a new node we must delete it now that we are 
+	// done with it.
 	delete temp;
 	numItems--;
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  //TODO -- The code that is here is a useless stub, you probably
-  // want to delete it
-  Node junkNode;
-  return junkNode.data; //This is unitialized data
+	if (numItems == 0) {
+		throw std::string ("No value to get!");
+	}
+	Node* temp = find(i);
+	return temp->data;
 }
 
 template <class T>
