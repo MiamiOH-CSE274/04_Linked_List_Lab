@@ -48,7 +48,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i) {
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x) {
-  if (i > numItems || i < 0) {
+  if (i >= numItems || i < 0) {
 	throw (std::string) "Error: Invalid index";
   }
   Node* p = find(i);
@@ -72,7 +72,7 @@ void LinkedList<T>::add(unsigned long i, T x) {
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i) {
-  if (i > numItems || i < 0) {
+  if (i >= numItems || i < 0) {
 	throw (std::string) "Error: Invalid index";
   }
   Node* p = find(i);
@@ -84,7 +84,7 @@ void LinkedList<T>::remove(unsigned long i) {
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  if (i > numItems || i < 0) {
+  if (i >= numItems || i < 0) {
 	throw (std::string) "Error: Invalid index";
   }
   return find(i) -> data;
