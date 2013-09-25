@@ -1,3 +1,6 @@
+Author
+==========
+"Emrick, Garrett", emrickgj
 04_Linked_List_Lab
 ==================
 
