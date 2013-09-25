@@ -13,12 +13,12 @@ LinkedList<T>::LinkedList(){
   dummyNode = new Node();
   dummyNode->next = dummyNode;
   dummyNode->prev = dummyNode;
-
 }
 
 template <class T>
 // Destructor
 LinkedList<T>::~LinkedList() {
+// Deallocate memory
   while (numItems > 0) {
 	remove(0);
 	}
@@ -37,12 +37,12 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	Node* item;
 	if (i < numItems/2) {
 		item = dummyNode->next;
-		for (int j = 0; j < i; j++) {
+		for (unsigned long j = 0; j < i; j++) {
 			item = item->next;
 		} 
 	 } else {
 		item = dummyNode;
-		for (int k = numItems; k > i; k--) {
+		for (unsigned long k = numItems; k > i; k--) {
 			item = item->prev;
 		}
 	  }
@@ -52,7 +52,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
   // Test to make sure item i is in the list
-	if (i < numItems || i < 0) {
+	if (i > numItems || i < 0) {
 		throw std::string ("Couldn't set the value x in node i!");
 	}
 	// I orginally had Node* cur = dummyNode + i;, Would this be okay to 
@@ -108,9 +108,18 @@ T LinkedList<T>::get(unsigned long i){
 
 template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
-  //TODO
+/*
+  Node* temp = find(i);
+  while (i < len) {
+	for (int j = 0; j < len; j++) {
+		
+		numItems--;
+		delete temp;	
+	}
+	Node* temp = find();
+   }
+   */
 }
-
 template <class T>
 unsigned long LinkedList<T>::size(){
   // Return the number of items in the list by calling numItems
