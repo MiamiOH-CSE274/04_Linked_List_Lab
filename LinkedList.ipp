@@ -102,6 +102,5 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& ta
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-
   return numItems;
 }
