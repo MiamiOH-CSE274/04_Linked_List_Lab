@@ -1,3 +1,6 @@
+Author
+==========
+"Harvey, Steven", harveysd
 04_Linked_List_Lab
 ==================
 
