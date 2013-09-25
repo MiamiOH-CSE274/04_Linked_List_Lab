@@ -46,4 +46,6 @@ class List {
   // at position i+1 or higher get moved backwards 1 to fill the gap.
   // If list does not contain i items, throw a string exception
   virtual void remove(unsigned long i) = 0;
+
 };
+
