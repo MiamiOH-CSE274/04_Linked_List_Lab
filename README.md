@@ -31,3 +31,4 @@ Find would be quicker because with an Array you can just access the index you wa
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
 
+One piece of advice I would give to students next semester is to do the readings and start the programs far in advance so that they can ask questions when they run into problems.
