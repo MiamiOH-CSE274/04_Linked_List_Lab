@@ -67,7 +67,9 @@ inserting to it.
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
 
-
+To understand the implementation of linkedList, we need to understand what goes
+where, what section of the memory, what is the scope of variables, what goes to
+stack section of memory and what goes to heap section of memory. 
 
 
 
