@@ -8,7 +8,10 @@
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-  //TODO
+  dummyNode = new Node();
+  dummyNode -> next = dummyNode;
+  dummyNode -> prev = dummyNode;
+  numItems = 0;
 }
 
 template <class T>
