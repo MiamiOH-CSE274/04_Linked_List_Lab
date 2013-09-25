@@ -1,3 +1,6 @@
+Author
+==========
+"Contini, Nick", continnd
 04_Linked_List_Lab
 ==================
 
