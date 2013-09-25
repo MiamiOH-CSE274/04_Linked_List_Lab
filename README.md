@@ -1,3 +1,6 @@
+Author
+==========
+"Gardner, Daniel", gardnedn
 04_Linked_List_Lab
 ==================
 
