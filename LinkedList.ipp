@@ -48,12 +48,18 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i) {
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x) {
+  if (i > numItems) {
+	throw (std::string) "Error: Not enough items in list";
+  }
   Node* p = find(i);
   p -> data = x;
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x) {
+  if (i > numItems) {
+	throw (std::string) "Error: Not enough items in list";
+  }
   Node* cur = find(i);
   Node* temp = new Node();
   temp -> data = x;
@@ -65,16 +71,23 @@ void LinkedList<T>::add(unsigned long i, T x) {
 }
 
 template <class T>
-void LinkedList<T>::remove(unsigned long i){
-  //TODO
+void LinkedList<T>::remove(unsigned long i) {
+  if (i > numItems) {
+	throw (std::string) "Error: Not enough items in list";
+  }
+  Node* p = find(i);
+  p -> prev -> next = p -> next;
+  p -> next -> prev = p -> prev;
+  delete p;
+  numItems--;
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  //TODO -- The code that is here is a useless stub, you probably
-  // want to delete it
-  Node junkNode;
-  return junkNode.data; //This is unitialized data
+  if (i > numItems) {
+	throw (std::string) "Error: Not enough items in list";
+  }
+  return find(i) -> data;
 }
 
 template <class T>
