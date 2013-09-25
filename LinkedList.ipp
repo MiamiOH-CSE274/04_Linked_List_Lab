@@ -2,13 +2,20 @@
 // remove
 #include <string>
 
+//Instance Variables
+int numItems;
+int cur;
+Node dummyNode;
+
 //Syntax note: C++ is not very good at figuring out which methods belong
 // to which classes. That is why we have to use the scope operator to
 // tell the compiler that this LinkedList() method belongs to the
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-  //TODO
+  numItems =0;
+  cur = 0;
+  dummyNode = new Node;
 }
 
 template <class T>
