@@ -1,3 +1,6 @@
+Author
+==========
+"Blase, Douglas", blasedd
 04_Linked_List_Lab
 ==================
 
