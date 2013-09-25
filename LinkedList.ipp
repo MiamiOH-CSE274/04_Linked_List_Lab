@@ -88,7 +88,14 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& ta
 	  end->next->prev=beginning->prev;
 	  beginning->prev->next=end->next;
 	  numItems=numItems-len;
-	  Node* insertHere = target.find(i);
+
+	  Node* insertHere;
+	  if(target.numItems!=0){
+		insertHere = target.find(t);
+		}
+	  else if(t=0){
+		insertHere=target.dummyNode;
+		}
 	  end->next=insertHere;
 	  beginning->prev=insertHere->prev;
 	  insertHere->prev->next=beginning;
