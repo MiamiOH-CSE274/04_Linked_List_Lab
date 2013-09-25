@@ -26,17 +26,17 @@ LinkedList<T>::~LinkedList() {
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  //if(i > numItems)
-  //	throw std::string("That is an invalid input");
+  if(i > numItems)
+  	throw std::string("That is an invalid input");
   Node* current;
   if(i < numItems/2) {
 		current = dummyNode->next;
-		for(int j = 0; j < i; j++)
+		for(unsigned long j = 0; j < i; j++)
 			current = current->next;
   }
   else {
 		current = dummyNode;
-		for(int j = numItems; j > i; j--)
+		for(unsigned long j = numItems; j > i; j--)
 			current = current->prev;
   }
   return current;
@@ -85,11 +85,10 @@ T LinkedList<T>::get(unsigned long i){
 template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
   //Going to attempt this
-  
+
   for(unsigned long j = 0; j < len; j++){
-		target.add(get(i),t);
+		target.add(t,get(i));
 		remove(i);
-		i++;
 		t++;
   }
 }
