@@ -20,10 +20,10 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
-4. TODO
+1. Add, remove, get, and set are O(1) if i==0 or if i==size()-1
+2. All methods that take index, i, will throw a string exception if i<0 or i>=size
+3. The remove and the destructor is doing the right thing.
+4. Size() is O(1) time
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
 
