@@ -1,3 +1,6 @@
+Author
+==========
+"Vutisalchavakul, Pob", vutisat
 04_Linked_List_Lab
 ==================
 
