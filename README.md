@@ -20,10 +20,10 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
-4. TODO
+1. This works.  If i is the first or last index, then find will get the correct Node the first time it goes through its loops.
+2. Yes, all of the functions that have a parameter i throw string exceptions if the index value is invalid.
+3. Yep, my remove and destructor methods should be doing the correct thing.
+4. I update numItems anytime add or remove alter the list, so size() is constant time.
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
 
