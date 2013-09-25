@@ -30,7 +30,7 @@ template <class T>
 //Method to find the given index in the Linked list and return the pointer to that index
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
   //Check if the index inputted is invalid
-  if(i > numItems)
+  if(i > numItems || i < 0)
   	throw std::string("That is an invalid input");
   //Originally had the find() implemented from the in-class example, changed it to the example given from the book
   Node* current;
@@ -84,9 +84,6 @@ void LinkedList<T>::remove(unsigned long i){
 template <class T>
 //Method to get the data from a node at a specific index
 T LinkedList<T>::get(unsigned long i){
-  //Check if we need to throw an exception
-  if(i > numItems)
-	throw std::string("That is an invalid input");
   Node* current = find(i);
   return current->data;
   
