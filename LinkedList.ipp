@@ -30,8 +30,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
     }
     if(i>numItems)
         throw (std::string) "Linked list does not have enough items. Nothing to find.";
-//    if(i<0)
-//        throw (std::string) "Invalid index";
+
     Node* pointer = new Node();
     pointer = dummyNode;
     if(i!=numItems-1){
@@ -91,29 +90,15 @@ void LinkedList<T>::remove(unsigned long i){
 template <class T>
 T LinkedList<T>::get(unsigned long i){
     
-    
     Node* pointer = find(i);
-    
-//    if(i<(numItems/2)){
-//        pointer = dummyNode;
-//        for(int location = 0; location<i; location++){
-//            pointer = pointer->next;
-//        }
-//    }
-//    
-//    else {
-//        pointer=dummyNode;
-//        for(unsigned long location = numItems; location>i; location--){
-//            pointer = pointer->prev;
-//        }
-//    }
 
   return pointer->data;
 }
 
 template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
-  //TODO
+    //Change 6 pointers -> pointer sugery
+    //Will complete later
 }
 
 template <class T>
