@@ -8,49 +8,192 @@
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-  Node* next;
-Node* prev;
+    T data;
+    dummyNode= new Node();
+    numItems=0;
 
-  numItems=0;
+    dummyNode->next=dummyNode;
+    dummyNode->prev=dummyNode;
 }
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-  delete next;
-  delete prev;
-}
+  while (numItems>0) {
+remove (0);
+  }
+  delete dummyNode;
+  }
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  //TODO
-  return NULL;
+  //Return a pointer to item i.
+  //Special cases: If i == (numItems), return a pointer to the dummyNode
+  //If i is an invalid number, throw a string exception
+
+  int count= -1;
+  Node* cur = dummyNode;
+
+  if (i==numItems) {
+        return cur;
 }
+  if (i>numItems) {
+    throw (std::string) "invalid number: not that many items in list";
+  }
+  while (count != i) {
+        cur=cur->next;
+        count++;
+  }
+  return cur;
+  }
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-  //TODO
+  //Set the value at index i to x
+  // If list does not contain i items, through a string exception
+
+    if (i>numItems) {
+    throw (std::string) "List doesn't have that many items";
+    }
+    if (i<0) {
+    throw (std::string) "I must be positive.";
+    }
+    if (i==0) {
+    dummyNode->next->data=x;
+    }
+    if (i == numItems) {
+    dummyNode->prev->data=x;
+    }
+    else {
+  Node* cur = find(i);
+  cur->data = x;
+}
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-  //TODO
+  //Add a new item, x, at position i. All items that were originally
+  // at position i or higher get moved forward 1 to make room.
+  // If list does not contain i items, through a string exception
+
+
+
+  if (numItems<i){
+    throw (std::string) "Error: Cannot add because there aren't that many items.";
+  }
+  if (i<0) {
+    throw (std::string) "I must be positive.";
+    }
+
+  Node* temp = new Node();
+//to make add(0) take O(1)
+  if (i==0) {
+  Node* cur = dummyNode->next;
+  temp->data = x;
+  temp->next=cur;
+  temp->prev = cur->prev;
+  temp->prev->next = temp;
+  temp->next->prev = temp;
+
+  //temp->data=x;
+  //dummyNode->next= temp;
+  //dummyNode->prev=temp;
+  //temp->prev=dummyNode;
+  //temp->next=dummyNode;
+  }
+//if (i==numItems) {
+//Node* cur = dummyNode->prev;
+//temp->data = x;
+  //temp->next=cur;
+  //temp->prev = cur->prev;
+  //temp->prev->next = temp;
+  //temp->next->prev = temp;
+
+//}
+else {
+Node* cur = find(i);
+
+  temp->data = x;
+  temp->next=cur;
+  temp->prev = cur->prev;
+  temp->prev->next = temp;
+  temp->next->prev = temp;
+  }
   numItems++;
+
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-  //TODO
+  //Remove the item at position i. All items that were originally
+  // at position i+1 or higher get moved backwards 1 to fill the gap.
+  // If list does not contain i items, through a string exception
+  
+  if (numItems==0) {
+    throw (std::string) "array is empty";
+  }
+  if (numItems<i){
+    throw (std::string) "Error: Cannot search because there aren't that many items.";
+  }
+  if (i==0) {
+  Node* cur = dummyNode->next;
+  cur->prev->next = cur->next;
+  cur->next->prev = cur->prev;
+
+  }
+  //if (i==numItems-1) {
+  //Node* cur = dummyNode->prev;
+  //cur->prev->next = cur->next;
+  //cur->next->prev = cur->prev;
+
+//  }
+  
+else{
+  Node* cur = find(i);
+  
+  cur->prev->next = cur->next;
+  cur->next->prev = cur->prev;
+}
   numItems--;
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  //TODO
+  if (i<0) {
+    throw (std::string) "I must be positive.";
+    }
+   if (numItems<i){
+    throw (std::string) "Error: Cannot search because there aren't that many items.";
+  }
+  if (i==0) {
+  Node* cur= dummyNode->next;
+  return cur->data;
+  }
+  if (i==numItems-1) {
+  Node* cur = dummyNode->prev;
+  return cur->data;
+  }
+
+else{
+  Node* cur = find(i);
+  return cur->data;
+  }
+
 }
 
 template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, unsigned long t){
-  //TODO
+    //Remove len items, starting with index i, and insert into target list
+  // at position t.
+ // Node* temp = find(i);
+  //Node* beforeSlicedSection = find(i-1);
+  //Node* afterSlicedSection = find(i+len);
+  //target.add(t, i);
+  //beforeSlicedSection->next = afterSlicedSection;
+  //afterSlicedSection->prev = beforeSlicedSection;
+
+  
+  
+
 }
 
 template <class T>
