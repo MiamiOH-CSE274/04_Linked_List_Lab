@@ -26,7 +26,7 @@ template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	if(i==numItems)
 	  return dummyNode;
-	else if(i>numItems)
+	else if(i>numItems||i<0)
 	  throw (std::string)"Not a valid index!";
 	Node* result = dummyNode;
 	if(i<numItems/2){
@@ -82,9 +82,19 @@ T LinkedList<T>::get(unsigned long i){
 }
 
 template <class T>
-void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, unsigned long t){
-  //TODO
-}
+void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
+	  Node* beginning = find(i);
+	  Node* end = find(i+len-1);
+	  end->next->prev=beginning->prev;
+	  beginning->prev->next=end->next;
+	  numItems=numItems-len;
+	  Node* insertHere = target.find(i);
+	  end->next=insertHere;
+	  beginning->prev=insertHere->prev;
+	  insertHere->prev->next=beginning;
+	  insertHere->prev=end;
+	  target.numItems=target.numItems+len;
+  }
 
 template <class T>
 unsigned long LinkedList<T>::size(){
