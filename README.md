@@ -1,4 +1,4 @@
-04_Linked_List_Lab
+04_Linked_List_Lab (Going to give shuffle a try instead seems like fun :)
 ==================
 
 Implement a simple linked list using pointers and classes.
