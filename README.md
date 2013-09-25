@@ -26,6 +26,6 @@ Questions
 4. Working, constant time because numItems stores the number of items in the list, all I am doing is returning that value.
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
-
-#### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
-
+Both the get() method and set() method would be faster in an ArrayList since they are constant time, whereas in the LinkedList we have to use the find() method which is not in constant time.  Yet for an ArrayList the add() and remove() methods would both be slower since ArrayList requires shifting every element iteratively.  
+#### 3. What is one question that confused you about this exercise, or one piece of advice you would share with students next semester?
+This homework as with all is better to get started early, it's really easy to make simple errors that can turn into hours of frustration.  Solving even these simple issues is not something to be done last minute.
