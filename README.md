@@ -1,3 +1,6 @@
+Author
+==========
+"Kojs, Michelle", kojsmn
 04_Linked_List_Lab
 ==================
 
