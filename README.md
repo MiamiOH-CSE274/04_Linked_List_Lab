@@ -1,3 +1,6 @@
+Author
+==========
+"Li, Yang", liy28
 04_Linked_List_Lab
 ==================
 
