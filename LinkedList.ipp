@@ -7,13 +7,22 @@
 // tell the compiler that this LinkedList() method belongs to the
 // LinkedList<T> class.
 template <class T>
+// Constructor
 LinkedList<T>::LinkedList(){
-  //TODO
+  numItems = 0;
+  dummyNode = new Node();
+  dummyNode->next = dummyNode;
+  dummyNode->prev = dummyNode;
+
 }
 
 template <class T>
+// Destructor
 LinkedList<T>::~LinkedList() {
-  //TODO
+  while (numItems > 0) {
+	remove(0);
+	}
+	delete dummyNode;
 }
 
 template <class T>
