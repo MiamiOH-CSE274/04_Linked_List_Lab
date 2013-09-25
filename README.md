@@ -1,3 +1,6 @@
+Author
+==========
+"Griffith, David", griffid5
 04_Linked_List_Lab
 ==================
 
