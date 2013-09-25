@@ -29,7 +29,7 @@ template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	Node* p;
 	
-	if (i > numItems || i < 0)
+	if (i > size() || i < 0)
 		throw (std::string) "Invalid i (find)";
 	if (i == numItems)
 		return dummyNode;
@@ -49,7 +49,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	if (numItems < i || i < 0)
+	if (i >= size() || i < 0)
 		throw (std::string) "List does not contain i items";
 		
 	Node* s = find(i);	
@@ -63,7 +63,7 @@ void LinkedList<T>::add(unsigned long i, T x){
 
 	Node* temp = new Node();
 
-	if (i > numItems || i < 0)
+	if (i > size() || i < 0)
 		throw (std::string) "List does not contain i items(add)";
 
 	temp -> data = x;
@@ -82,7 +82,7 @@ void LinkedList<T>::remove(unsigned long i){
 	if (numItems == 0)
 		throw (std::string) "List is already empty! (remove)";
 	
-	if (numItems < i || i < 0)
+	if (i >= size() || i < 0)
 		throw (std::string) "Invalid i!";
 	
 	Node* w = find(i);
@@ -96,7 +96,7 @@ void LinkedList<T>::remove(unsigned long i){
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-	if (numItems < i || i < 0)
+	if (i >= size() || i < 0)
 		throw (std::string) "List does not contain i items";
 	Node* f = find(i);
 	return (f -> data);
