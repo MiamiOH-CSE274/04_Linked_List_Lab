@@ -45,6 +45,8 @@ block or switch the pointers.
 3. Memory is not leaking, delete dummyNode. By using remove() function to keeep
 deleting node at the beginning of the list.(loop)
 
+4. size() is O(1) time. It simply just returns a value.
+
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
 
