@@ -38,7 +38,7 @@ class LinkedList : public List <T> {
   //Optional, but may be useful in the Shuffle project
   //Remove len items, starting with index i, and insert into target list
   // at position t. 
-  virtual void splice(unsigned long i, unsigned long len, List<T>& target, unsigned long t);
+  virtual void splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t);
 
   //Initialize all private member variables.
   // Be sure to create the dummy node using "new"
