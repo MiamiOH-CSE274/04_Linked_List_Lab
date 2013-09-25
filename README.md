@@ -27,5 +27,7 @@ Questions
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
 
+Find would be quicker because with an Array you can just access the index you want.  With our List, you have to go in sequential order.  Add and remove would be slower with an ArrayList, because when you add something you have to push everything that comes after it over one spot and when you remove something you have to move things back to fill the whole.
+
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
 
