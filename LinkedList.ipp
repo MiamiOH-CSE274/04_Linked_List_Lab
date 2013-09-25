@@ -72,7 +72,6 @@ void LinkedList<T>::add(unsigned long i, T x){
 	temp -> prev -> next = temp;
 	temp -> next -> prev = temp;
 	
-
 	numItems++;
 
 }
