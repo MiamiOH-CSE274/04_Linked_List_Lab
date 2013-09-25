@@ -1,3 +1,6 @@
+Author
+==========
+"Luo, Yu", luoy6
 04_Linked_List_Lab
 ==================
 
