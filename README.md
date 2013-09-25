@@ -26,6 +26,14 @@ Questions
 4. This requirement works. Size() is 0(1) time. The time per iteration is constant and the number of iterations is constant so the running time will be constant.
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
+If an ArrayList was used instead of a LinkedList the get and set methods would be faster because these methods are already a part of the ArrayList class.
+However, the remove and add methods would be slower in the ArrayList. ArrayList allows random access in the array very quickly and easily but as the array grows
+the process of adding or removing items becomes slower since the new array gets copied into the old array. With a Linked List, the opposite is true. Random access is 
+really slow since the list must be searched item by item for the desired one. With adding and removing, the Linked List does not need to copy any data, it just finds the 
+place where the add or remove takes place and updates the links. So if an ArrayList was used instead of a LinkedList get and set would be faster and add and remove
+would be slower. The method size would neither be faster nor slower as long as the numItems is updated correctly.
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
+One piece of advice I have for students next semester is make sure your constructor is correct! Do not make a local variable of dummyNode
+instead initalize dummyNode to be a new Node() so that it updates with the instance variable.
 
