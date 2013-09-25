@@ -23,12 +23,15 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
-4. TODO
+1. This works.  If i is the first or last index, then find will get the correct Node the first time it goes through its loops.
+2. Yes, all of the functions that have a parameter i throw string exceptions if the index value is invalid.
+3. Yep, my remove and destructor methods should be doing the correct thing.
+4. I update numItems anytime add or remove alter the list, so size() is constant time.
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
 
+Find would be quicker because with an Array you can just access the index you want.  With our List, you have to go in sequential order.  Add and remove would be slower with an ArrayList, because when you add something you have to push everything that comes after it over one spot and when you remove something you have to move things back to fill the whole.
+
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
 
+One piece of advice I would give to students next semester is to do the readings and start the programs far in advance so that they can ask questions when they run into problems.
