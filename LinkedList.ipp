@@ -83,7 +83,6 @@ T LinkedList<T>::get(unsigned long i){
 
 template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
-<<<<<<< HEAD
 	  Node* beginning = find(i);
 	  Node* end = find(i+len-1);
 	  end->next->prev=beginning->prev;
@@ -95,11 +94,7 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& ta
 	  insertHere->prev->next=beginning;
 	  insertHere->prev=end;
 	  target.numItems=target.numItems+len;
-  }
-=======
-  //TODO
 }
->>>>>>> 0bb8b42c652be9035dd3edf399ea8890af83c75c
 
 template <class T>
 unsigned long LinkedList<T>::size(){
