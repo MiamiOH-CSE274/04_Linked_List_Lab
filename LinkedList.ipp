@@ -28,8 +28,14 @@ LinkedList<T>::~LinkedList() {
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  if (i >= numItems) {
+  if (i >= numItems || i < 0) {
   return dummyNode;
+  }
+  if (i == size()-1) {
+    return dummyNode->prev;
+  }
+  if (i == 0) {
+  return dummyNode -> next;
   }
   Node* cur = dummyNode -> next;
   int currentNum = i;
@@ -43,6 +49,8 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
+  if (i >= numItems || i < 0)
+    throw std::string("That is an invalid index. Please choose a different one.");
   Node* cur = find(i);
   if (cur == dummyNode) {
     throw std::string("That index does not exist. Please choose a different one.");
@@ -52,7 +60,7 @@ void LinkedList<T>::set(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-  if (i > numItems) {
+  if (i > numItems || i < 0) {
     throw std::string("You can not add a node at that index. Please choose a different one.");
   }
   Node* cur = find(i);
@@ -70,6 +78,9 @@ void LinkedList<T>::remove(unsigned long i){
   if (numItems == 0) {
 	throw std::string("You cannot remove an item from a list that does not contain any.");
   }
+  if (i >= numItems || i < 0)
+    throw std::string("That is an invalid index. Please choose a different one.");
+
   Node* cur = find(i);
   Node* previous = cur -> prev;
   Node* nextUp = cur -> next;
@@ -82,6 +93,8 @@ void LinkedList<T>::remove(unsigned long i){
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
+  if (i >= numItems || i < 0)
+    throw std::string("That is an invalid index. Please choose a different one.");
   if (find(i) == dummyNode) {
     throw std::string("That node does not exist, so you cannot get the value associated with it.");
   }
