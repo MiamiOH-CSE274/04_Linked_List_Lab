@@ -18,27 +18,33 @@ class LinkedList : public List <T> {
   virtual unsigned long size();
 
   //Get the value at index i, and return it.
-  // If list does not contain i items, through a string exception
+  // If list does not contain i items, throw a string exception
   virtual T get(unsigned long i);
 
   //Set the value at index i to x
-  // If list does not contain i items, through a string exception
+  // If list does not contain i items, throw a string exception
   virtual void set(unsigned long i, T x);
 
   //Add a new item, x, at position i. All items that were originally
   // at position i or higher get moved forward 1 to make room.
-  // If list does not contain i items, through a string exception
+  // If list does not contain i items, throw a string exception
   virtual void add(unsigned long i, T x);
 
   //Remove the item at position i. All items that were originally
   // at position i+1 or higher get moved backwards 1 to fill the gap.
-  // If list does not contain i items, through a string exception
+  // If list does not contain i items, throw a string exception
   virtual void remove(unsigned long i);
 
   //Optional, but may be useful in the Shuffle project
   //Remove len items, starting with index i, and insert into target list
   // at position t. 
-  virtual void splice(unsigned long i, unsigned long len, List<T>& target, unsigned long t);
+  //Note: Due to poor class design on my part, it isn't practical to make
+  //  this O(1) time because you will need to use find(), and you will
+  //  need to take O(n) time to measure the length of the sublist that is
+  //  being spliced. I recommend, however, that you still use list surgery,
+  //  instead of add/remove, to do the modification. Learning to do list
+  //  manipulation is the point of this exercise.
+  virtual void splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t);
 
   //Initialize all private member variables.
   // Be sure to create the dummy node using "new"
@@ -52,7 +58,7 @@ class LinkedList : public List <T> {
   Node* dummyNode;
 
   //Return a pointer to item i.
-  //Special cases: If i == (unsigned long)-1, return a pointer to the dummyNode
+  //Special cases: If i == (numItems), return a pointer to the dummyNode
   //If i is an invalid number, throw a string exception
   Node* find(unsigned long i);
   
