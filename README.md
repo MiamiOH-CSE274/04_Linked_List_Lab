@@ -1,3 +1,6 @@
+Author
+==========
+"Hiler, Rodney", hilerrw
 04_Linked_List_Lab
 ==================
 
