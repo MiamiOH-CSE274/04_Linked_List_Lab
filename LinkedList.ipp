@@ -47,8 +47,9 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i) {
 }
 
 template <class T>
-void LinkedList<T>::set(unsigned long i, T x){
-  //TODO
+void LinkedList<T>::set(unsigned long i, T x) {
+  Node* p = find(i);
+  p -> x = x;
 }
 
 template <class T>
