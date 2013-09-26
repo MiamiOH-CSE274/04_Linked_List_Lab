@@ -195,6 +195,7 @@ int main(){
   testBasicMethods();
   testExceptions();
   testSplice();
+  std::cin.get();
 
   return 0;
 }

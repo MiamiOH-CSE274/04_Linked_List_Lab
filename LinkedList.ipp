@@ -25,23 +25,28 @@ template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
   Node* temp;
   temp=dummyNode->next;
-  for(unsigned long j=0;j<i;j++)
+  if(i>numItems)
+  i--;
+  for(unsigned long j=1;j<=i;j++)
 	temp=temp->next;
   return temp;
 }
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	if (i < 0 ||i >= size())
-		throw (std::string) "Can't set at that point";
+	if (i < 0 ||i > size()){
+		throw (std::string) "Can't set at that point";}
 	else{
-  add(i,x);
+	Node* temp = find(i);
+	temp->data=x;
+  //add(i,x);
+  //numItems--;
   }
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	if (i < 0 ||i >= size())
+	if (i < 0 ||i > size())
 		throw (std::string) "Can't add at that point";
 	else{
 	Node *temp= new Node;
@@ -60,20 +65,23 @@ void LinkedList<T>::remove(unsigned long i){
 	if (i < 0 ||i >= size())
 		throw (std::string) "Can't remove at that point";
 	else{
-	Node* d=find(i);
-	d->prev=d->next->prev;
-	d->next=d->prev->next;
+	Node* d;
+	d= find(i);
+
+	d->prev->next=d->next;
+	d->next->prev=d->prev;
+	//delete d;
 	numItems--;
 	}
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-	if (i < 0 ||i >= size()){
+	if (i < 0 ||i > size()){
 		throw (std::string) "Can't get the data at that point";}
 	else{
 	Node* temp=dummyNode;
-	for(int j=0;j<<i;j++)
+	for(unsigned long j=0;j<=i;j++)
 		temp=temp->next;
 		//dummyNode=dummyNode->next;
 	return temp->data;}

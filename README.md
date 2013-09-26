@@ -21,8 +21,8 @@ Questions
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
 1. TODO
-2. TODO
-3. TODO
+2. They do.
+3. remove and the destructor get rid of the correct things
 4. TODO
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
