@@ -163,27 +163,10 @@ void testSplice(){
     testList1.add(i,i);
     testList2.add(i,10+i);
   }
-  std::cout << "LIST1" << std::endl;
-  for (int i = 0; i < 10; i++){
-		std::cout << " " << testList1.get(i) << " ";
-  }
-  std::cout << "LIST2" << std::endl;
-  for (int j = 0; j < 10; j++){
-		std::cout << " " << testList2.get(j) << " ";
-  }
-
-
+  
   testList1.splice(0,2,testList2,0);
   //2,3,4,5,6,7,8,9
   //0,1,10,11,12,13,14,15,16,17,18,19
-  std::cout << "LIST1after" << std::endl;
-  for (int i = 0; i < 8; i++){
-		std::cout << " " << testList1.get(i) << " ";
-  }
-  std::cout << "LIST2AFTER" << std::endl;
-  for (int j = 0; j < 12; j++){
-		std::cout << " " << testList2.get(j) << " ";
-  }
  
   if(testList1.size() == 8 && testList2.size() == 12){
     std::cout << "SUCCESS: List sizes correct after splice" << std::endl;
@@ -196,16 +179,7 @@ void testSplice(){
   int res1[] = {2,3,10,11,4,5,6,7,8,9};
   int res2[] = {0,1,12,13,14,15,16,17,18,19};
 
-  std::cout << "LIST1SECOND" << std::endl;
-  for (int k = 0; k < 10; k++){
-		std::cout << " " << testList1.get(k) << " ";
-  }
-  std::cout << "LIST2SECOND" << std::endl;
-  for (int f = 0; f < 10; f++){
-		std::cout << " " << testList2.get(f) << " ";
-  }
-
-  for(int i=0;i<10;i++){
+   for(int i=0;i<10;i++){
     if(res1[i] != testList1.get(i)){
       std::cout << "ERROR: In list1, expected " << res1[i] << " at position " << i << " but got " << testList1.get(i) << std::endl;
     }
