@@ -30,7 +30,7 @@ LinkedList<T>::~LinkedList() {
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
   // throw string exception if i is an invalid number
-  if(i > numItems-1){
+  if(i > numItems){
 	throw (std::string)"Cannot find value: given index is invalid";
   }
   // returns a pointer to item i, UNLESS i==numItems 
@@ -53,7 +53,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
   // throw string exception if list doesn't contain i items
-  if(i > numItems - 1 || i<0){
+  if(i > numItems || i<0){
 	throw (std::string)"Cannot set value; list doesn't contain specific num items";
   }
   else{
@@ -64,22 +64,21 @@ void LinkedList<T>::set(unsigned long i, T x){
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
   // throw string exception if list doesn't contain i items
-  if(i > numItems - 1){
+  if(i > numItems){
 	throw (std::string)"Cannot add value; list doesn't contain specified num items";
   }
   // add a new item, x, at position i. (2 sections to check:
   // section 1: if item to insert is at the back of the list, or
   // section 2: item to insert has items already after it)
-  if(i==numItems){ // Item's at the back
+  else if(i==numItems){ // Item's at the back
 
 	// Point the new node
 	Node* addMe = new Node();
 	addMe->data=x;
 	addMe->next=dummyNode;
-	addMe->prev=find(i-1);
-	find(i-1)->next=addMe;
+	addMe->prev=find(i);
+	find(i)->next=addMe;
 	dummyNode->prev=addMe;
-
   }
   ++numItems; /*Why is this always getting a runtime error?? Am I casting something wrong?
   I keep getting this:
@@ -95,7 +94,7 @@ void LinkedList<T>::remove(unsigned long i){
   // set node->prev->next = node->next
   // set node->next->prev = node->next
   // delete the node
-  if(i > numItems - 1){
+  if(i > numItems){
 	throw (std::string)"Cannot remove value; list doesn't contain specified num items";
   }
   Node* deleteMe = find(i);
