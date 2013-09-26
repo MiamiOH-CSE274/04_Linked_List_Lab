@@ -81,6 +81,20 @@ numItems=numItems+1;
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
 
+
+
+
+ if(i>numItems|| numItems==0)
+ throw (std::string) "not enough items in list";
+ 
+Node* cur=find(i);
+Node* temp=find(i+1);
+
+temp->prev=cur->prev;
+cur->prev->next=temp;
+ 
+ numItems=numItems-1;
+
 }
 
 template <class T>
