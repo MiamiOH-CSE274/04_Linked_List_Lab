@@ -9,22 +9,23 @@
 template <class T>
 LinkedList<T>::LinkedList(){
 	dummyNode= new Node;
-	dummyNode.next=&dummyNode;
-	dummyNode.prev=&dummyNode;
+	dummyNode->next=dummyNode;
+	dummyNode->prev=dummyNode;
 	numItems=0;
 	
 }
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	Delete dummyNode;
+	while(numItems!=0)
+	remove(0);
 }
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  Node temp;
-  temp=dummy.next;
-  for(int j=0;j<i;j++)
+  Node* temp;
+  temp=dummyNode->next;
+  for(unsigned long j=0;j<i;j++)
 	temp=temp->next;
   return temp;
 }
@@ -32,23 +33,24 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
 	if (i < 0 ||i >= size())
-		throw (std::string) "Can't set at that point"
-	else
-  get(i)=x;
+		throw (std::string) "Can't set at that point";
+	else{
+  add(i,x);
+  }
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
 	if (i < 0 ||i >= size())
-		throw (std::string) "Can't add at that point"
+		throw (std::string) "Can't add at that point";
 	else{
 	Node *temp= new Node;
 	Node *before= find(i);
-	temp->x=x;
+	temp->data=x;
 	temp->prev= before->prev;
 	temp->next= before;
-	temp->next->prev=u;
-	temp->prev->next=u;
+	temp->next->prev=temp;
+	temp->prev->next=temp;
 	numItems++;
 	}
 }
@@ -56,9 +58,9 @@ void LinkedList<T>::add(unsigned long i, T x){
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
 	if (i < 0 ||i >= size())
-		throw (std::string) "Can't remove at that point"
+		throw (std::string) "Can't remove at that point";
 	else{
-	Node d=find(i);
+	Node* d=find(i);
 	d->prev=d->next->prev;
 	d->next=d->prev->next;
 	numItems--;
@@ -67,13 +69,14 @@ void LinkedList<T>::remove(unsigned long i){
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-	if (i < 0 ||i >= size())
-		throw (std::string) "Can't get the data at that point"
+	if (i < 0 ||i >= size()){
+		throw (std::string) "Can't get the data at that point";}
 	else{
-	Node temp;
-	for(int j=0;j<i;j++)
+	Node* temp=dummyNode;
+	for(int j=0;j<<i;j++)
 		temp=temp->next;
-	return temp.data;}
+		//dummyNode=dummyNode->next;
+	return temp->data;}
 }
 
 template <class T>
