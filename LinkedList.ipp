@@ -31,7 +31,7 @@ template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
   // throw string exception if i is an invalid number
   if(i > numItems-1){
-	throw std::string("Cannot find value: given index is invalid");
+	throw (std::string)"Cannot find value: given index is invalid";
   }
   // returns a pointer to item i, UNLESS i==numItems 
   //      (if i==NumItems, return pointer to dummy node)
@@ -41,16 +41,20 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
   }
   else{
 	// return pointer to item i
+	Node* returnme = dummyNode->next; // Set what we want to return at the first element
+	for(unsigned int p=0; p<i; p++){
+		returnme = returnme->next;
+	}
+	return returnme;
   }
 
-  return NULL;
 }
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
   // throw string exception if list doesn't contain i items
   if(i > numItems - 1 || i<0){
-	throw std::string("Cannot set value; list doesn't contain specific num items");
+	throw (std::string)"Cannot set value; list doesn't contain specific num items";
   }
   else{
 	// find the node at i, then set it equal to x
@@ -61,7 +65,7 @@ template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
   // throw string exception if list doesn't contain i items
   if(i > numItems - 1){
-	throw std::string("Cannot add value; list doesn't contain specified num items");
+	throw (std::string)"Cannot add value; list doesn't contain specified num items";
   }
   // add a new item, x, at position i. (2 sections to check:
   // section 1: if item to insert is at the back of the list, or
@@ -75,7 +79,11 @@ void LinkedList<T>::add(unsigned long i, T x){
 	dummyNode->prev=x;*/
 
   }
-  ++numItems;
+  ++numItems; /*Why is this always getting a runtime error?? Am I casting something wrong?
+  I keep getting this:
+  Unhandled exception at 0x751a4b32 in Lab4.exe: Microsoft C++ exception: 
+  std::basic_string<char,std::char_traits<char>,std::allocator<char> > at memory location 0x007ff7b4..
+  */
 }
 
 template <class T>
@@ -86,7 +94,7 @@ void LinkedList<T>::remove(unsigned long i){
   // set node->next->prev = node->next
   // delete the node
   if(i > numItems - 1){
-	throw std::string("Cannot remove value; list doesn't contain specified num items");
+	throw (std::string)"Cannot remove value; list doesn't contain specified num items";
   }
   Node* deleteMe = find(i);
   deleteMe->prev->next = deleteMe->next;
@@ -103,7 +111,7 @@ T LinkedList<T>::get(unsigned long i){
 
   // throw a string exception if list < i items, otherwise
   if(i > numItems -1){
-	throw std::string("Cannot get value; list doesn't contained specified num items");
+	throw (std::string)"Cannot get value; list doesn't contained specified num items";
   }
   // get the value at index i
   return find(i)->data;
