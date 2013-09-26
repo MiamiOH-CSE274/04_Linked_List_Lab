@@ -78,7 +78,7 @@ void LinkedList<T>::add(unsigned long i, T x){
   else{
 	
   }
-  numItems+=1;
+  ++numItems;
 }
 
 template <class T>
@@ -91,7 +91,12 @@ void LinkedList<T>::remove(unsigned long i){
   if(i > numItems - 1){
 	throw std::string("Cannot remove value; list doesn't contain specified num items");
   }
-  numItems-=1;
+  Node* deleteMe = find(i);
+  deleteMe->prev->next = deleteMe->next;
+  deleteMe->next->prev = deleteMe->prev;
+  delete deleteMe;
+
+  --numItems;
 }
 
 template <class T>
