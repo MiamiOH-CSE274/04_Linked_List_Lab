@@ -14,12 +14,17 @@ LinkedList<T>::LinkedList(){
   // Point sentinel's prev and next to itself
   dummyNode->next = dummyNode;
   dummyNode->prev = dummyNode;
+  numItems = 0;
 }
 
 template <class T> //This is the destructor
 LinkedList<T>::~LinkedList() {
   // Remove all other nodes in the list
+  while(find(0)!=dummyNode){
+	remove(0);
+  }
   // Delete the sentinel node
+  delete dummyNode;
 }
 
 template <class T>
@@ -100,5 +105,5 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& ta
 template <class T>
 unsigned long LinkedList<T>::size(){
   //TODO
-  return 0; // should return numItems eventually
+  return numItems; // should return numItems eventually
 }
