@@ -4,8 +4,6 @@
 
 //Instance Variables
 int numItems;
-Node dummyNode;
-Node* cur;
 
 //Syntax note: C++ is not very good at figuring out which methods belong
 // to which classes. That is why we have to use the scope operator to
@@ -17,7 +15,6 @@ LinkedList<T>::LinkedList(){
   dummyNode = new Node();
   dummyNode -> next = dummyNode;
   dummyNode -> prev = dummyNode;
-  cur = dummyNode -> next;
 }
 
 template <class T>
@@ -26,8 +23,7 @@ LinkedList<T>::~LinkedList() {
   remove(0);
   }
   delete dummyNode;
-  delete numItems;
-  delete cur;
+  delete &numItems;
 }
 
 template <class T>
@@ -39,6 +35,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
   return dummyNode;
   }
   //below it is indexing to find index i.
+  Node* cur = dummyNode;
   int count;
   while(count != i){
     cur = cur -> next;
