@@ -66,6 +66,18 @@ void LinkedList<T>::add(unsigned long i, T x){
   // add a new item, x, at position i. (2 sections to check:
   // section 1: if item to insert is at the back of the list, or
   // section 2: item to insert has items already after it)
+  else if(i==numItems){ // Item's at the back
+
+	// Point the new node
+	/*x->next=dummyNode;
+	x->prev=find(i-1);
+	find(i-1)->next=x;
+	dummyNode->prev=x;*/
+
+  }
+  else{
+	
+  }
   numItems+=1;
 }
 
@@ -92,8 +104,13 @@ T LinkedList<T>::get(unsigned long i){
 	throw std::string("Cannot get value; list doesn't contained specified num items");
   }
   // get the value at index i
-
   Node junkNode;
+	for(i=0; i<numItems; i++)
+	{
+		//junkNode.data=dummyNode->next;
+	}
+
+  
   return junkNode.data; //This is unitialized data
 }
 
