@@ -66,7 +66,7 @@ void LinkedList<T>::add(unsigned long i, T x){
   // add a new item, x, at position i. (2 sections to check:
   // section 1: if item to insert is at the back of the list, or
   // section 2: item to insert has items already after it)
-  
+  numItems+=1;
 }
 
 template <class T>
@@ -79,7 +79,7 @@ void LinkedList<T>::remove(unsigned long i){
   if(i > numItems - 1){
 	throw std::string("Cannot remove value; list doesn't contain specified num items");
   }
-
+  numItems-=1;
 }
 
 template <class T>
