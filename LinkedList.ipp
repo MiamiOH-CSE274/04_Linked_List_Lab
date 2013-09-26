@@ -38,7 +38,13 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
   if(i == numItems){
   return dummyNode;
   }
-
+  //below it is indexing to find index i.
+  int count;
+  while(count != i){
+    cur = cur -> next;
+	count++;
+  }
+  return cur;
 }
 
 template <class T>
