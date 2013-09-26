@@ -51,17 +51,36 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-  //TODO
+
+  if(i>numItems )
+  throw (std::string) "not enough items in list";
+
+find(i)->data=x;
+
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-  //TODO
+if(i>numItems )
+ throw (std::string) "not enough items in list";
+ 
+ 
+
+
+Node* cur= find(i);
+Node* temp= new Node();
+temp->data=x;
+temp->next=cur;
+temp->prev=cur->prev;
+temp->prev->next=temp;
+temp->next->prev=temp;
+numItems=numItems+1;
+
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-  //TODO
+
 }
 
 template <class T>
