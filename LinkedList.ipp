@@ -18,7 +18,12 @@ dummyNode=new Node();
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-  //TODO
+  
+while(numItems>=1){
+
+remove(0);}
+
+delete dummyNode;
 }
 
 template <class T>
