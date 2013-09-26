@@ -45,7 +45,7 @@ class LinkedList : public List <T> {
   //  instead of add/remove, to do the modification. Learning to do list  
   //  manipulation is the point of this exercise.  
 
-  virtual void splice(unsigned long i, unsigned long len, List<T>& target, unsigned long t);
+  virtual void splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t);
 
   //Initialize all private member variables.
   // Be sure to create the dummy node using "new"
