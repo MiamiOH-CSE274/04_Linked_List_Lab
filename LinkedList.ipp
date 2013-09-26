@@ -24,11 +24,21 @@ LinkedList<T>::~LinkedList() {
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
   Node* temp;
-  temp=dummyNode->next;
+  //temp=dummyNode->next;
   if(i>numItems)
   i--;
-  for(unsigned long j=1;j<=i;j++)
+  if(i<numItems/2){  
+	temp=dummyNode->next;
+	for(unsigned long j=0;j<i;j++)
 	temp=temp->next;
+	} else {
+		temp=dummyNode;
+	  for(unsigned long j=numItems;j>i;j--)
+	temp=temp->prev;
+	}
+
+ // for(unsigned long j=1;j<=i;j++)
+//	temp=temp->next;
   return temp;
 }
 

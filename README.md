@@ -20,12 +20,13 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
+1. Yes all of them work based in that speed if i is zero or one smaller than the size.
 2. They do.
 3. remove and the destructor get rid of the correct things
-4. TODO
+4. yes it is just constant time but using numItems saves a jump
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
+get would be faster but add and remove would be slower
 
 #### 3. What is one question that confused you about this exercise, or one piece of advice you would share with students next semester?
-
+make sure, make absolutely sure, you know what the hell your pointers are doing.
