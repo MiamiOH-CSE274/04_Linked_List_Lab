@@ -31,6 +31,22 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
  
   if(i>numItems)
   throw (std::string) "not enough items in list";
+  
+  
+ if(i==numItems){
+ return dummyNode;}
+
+  Node* foundNumber = dummyNode->next;
+  int j=0;
+  while(j<i){
+  foundNumber = foundNumber->next;
+  j++;
+}
+  
+  return foundNumber;
+  
+  
+
 }
 
 template <class T>
