@@ -28,8 +28,9 @@ delete dummyNode;
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  //TODO
-  return NULL;
+ 
+  if(i>numItems)
+  throw (std::string) "not enough items in list";
 }
 
 template <class T>
