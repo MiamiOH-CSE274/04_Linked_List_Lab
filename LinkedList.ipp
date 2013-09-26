@@ -101,9 +101,35 @@ T LinkedList<T>::get(unsigned long i){
 	return (f -> data);
 }
 
+  //Optional, but may be useful in the Shuffle project
+  //Remove len items, starting with index i, and insert into target list
+  // at position t. 
+  //Note: Due to poor class design on my part, it isn't practical to make  
+  //  this O(1) time because you will need to use find(), and you will  
+  //  need to take O(n) time to measure the length of the sublist that is  
+  //  being spliced. I recommend, however, that you still use list surgery,  
+  //  instead of add/remove, to do the modification. Learning to do list  
+  //  manipulation is the point of this exercise. 
 template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
-  //TODO
+	
+	Node* begin = find(i);
+	Node* end = find(i+len-1);
+	
+	// remove
+	begin -> prev -> next = end -> next;
+	end -> next -> prev = begin -> prev;
+
+	numItems = numItems - (len - i);
+
+	// add to target
+	Node* insert = target.find(t);
+	
+	insert -> prev -> next = begin;
+	begin -> prev = insert -> prev;
+	insert -> prev = end;
+	end -> next = insert;	
+	target.numItems = target.size() + len;
 }
 
 template <class T>
