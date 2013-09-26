@@ -28,7 +28,7 @@ LinkedList<T>::~LinkedList() {
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  if(i > numItems){
+  if(i > numItems || i < 0){
   throw (std::string)"The item does not exists, please enter another index";
   }
   if(i == numItems){
@@ -36,7 +36,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
   }
   //below it is indexing to find index i.
   Node* cur = dummyNode;
-  int count;
+  int count = 0;
   while(count != i){
     cur = cur -> next;
 	count++;
@@ -68,15 +68,20 @@ void LinkedList<T>::add(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-  //TODO
+  if(i > numItems){
+  throw (std::string)"The item does not exists, please enter another index";
+  }
+  Node* cur = find(i);
+  
+  cur -> prev -> next = cur->next;
+  cur -> next -> prev = cur ->prev;
+  delete cur;
+  numItems--; 
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  //TODO -- The code that is here is a useless stub, you probably
-  // want to delete it
-  Node junkNode;
-  return junkNode.data; //This is unitialized data
+  return find(i)->data;
 }
 
 template <class T>
