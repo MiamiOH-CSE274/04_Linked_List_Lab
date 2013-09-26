@@ -73,10 +73,12 @@ void LinkedList<T>::add(unsigned long i, T x){
   if(i==numItems){ // Item's at the back
 
 	// Point the new node
-	/*x->next=dummyNode;
-	x->prev=find(i-1);
-	find(i-1)->next=x;
-	dummyNode->prev=x;*/
+	Node* addMe = new Node();
+	addMe->data=x;
+	addMe->next=dummyNode;
+	addMe->prev=find(i-1);
+	find(i-1)->next=addMe;
+	dummyNode->prev=addMe;
 
   }
   ++numItems; /*Why is this always getting a runtime error?? Am I casting something wrong?
