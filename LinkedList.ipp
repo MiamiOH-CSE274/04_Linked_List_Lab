@@ -99,10 +99,12 @@ cur->prev->next=temp;
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  //TODO -- The code that is here is a useless stub, you probably
-  // want to delete it
-  Node junkNode;
-  return junkNode.data; //This is unitialized data
+ if(i>numItems )
+ throw (std::string) "not enough items in list";
+
+
+
+return find(i)->data;
 }
 
 template <class T>
