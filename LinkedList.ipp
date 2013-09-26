@@ -100,7 +100,9 @@ void LinkedList<T>::add(unsigned long i, T x){
   //temp->prev=dummyNode;
   //temp->next=dummyNode;
   }
-//if (i==numItems) {
+//unable to get it for size()-1 to work in O(1) for add and remove.
+//code below is thought process that was unsuccessful
+//if (i==numItems-1) {
 //Node* cur = dummyNode->prev;
 //temp->data = x;
   //temp->next=cur;
