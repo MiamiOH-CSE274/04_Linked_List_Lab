@@ -17,17 +17,11 @@ void testCtor(){
 void testBasicMethods(){
   LinkedList<int> testList;
   testList.add(0,0);
-  std::cout << "Item 1 added" << std::endl;
   testList.add(0,1);
-  std::cout << "Item 2 added" << std::endl;
   testList.add(0,2);
-  std::cout << "Item 3 added" << std::endl;
   testList.add(3,3);
-  std::cout << "Item 4 added" << std::endl;
   testList.add(4,4);
-  std::cout << "Item 5 added" << std::endl;
   testList.add(5,5);
-  std::cout << "Item 6 added" << std::endl;
 
   if(testList.size() == 6){
     std::cout << "SUCCESS: 6 items added" << std::endl;
@@ -189,7 +183,7 @@ void testSplice(){
       std::cout << "ERROR: In list1, expected " << res1[i] << " at position " << i << " but got " << testList1.get(i) << std::endl;
     }
     if(res2[i] != testList2.get(i)){
-      std::cout << "ERROR: In list2, expected " << res1[i] << " at position " << i << " but got " << testList2.get(i) << std::endl;
+      std::cout << "ERROR: In list2, expected " << res2[i] << " at position " << i << " but got " << testList2.get(i) << std::endl;
     }
   }
   std::cout << "SUCCESS: Splice test worked" << std::endl;

@@ -99,7 +99,31 @@ T LinkedList<T>::get(unsigned long i){
 
 template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
-  //TODO
+  LinkedList::checkRange(i);
+  LinkedList::checkRange(i+len);
+	
+  Node* startingNode = find(i);
+  Node* finishingNode = find(i+len);
+  Node* placeHolder;
+
+  Node* insertionPoint = target.find(t);
+
+  placeHolder = startingNode -> prev;
+  startingNode -> prev -> next = finishingNode -> next;
+  finishingNode -> next -> prev = placeHolder;
+
+  finishingNode -> next = insertionPoint;
+
+  insertionPoint -> prev -> next = startingNode;
+  startingNode -> prev = insertionPoint -> prev;
+
+  insertionPoint -> prev = finishingNode;
+  
+
+  numItems -= len;
+  target.numItems += len;
+
+
 }
 
 template <class T>
