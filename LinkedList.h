@@ -38,6 +38,13 @@ class LinkedList : public List <T> {
   //Optional, but may be useful in the Shuffle project
   //Remove len items, starting with index i, and insert into target list
   // at position t. 
+
+  //Note: Due to poor class design on my part, it isn't practical to make  
+  //  this O(1) time because you will need to use find(), and you will  
+  //  need to take O(n) time to measure the length of the sublist that is  
+  //  being spliced. I recommend, however, that you still use list surgery,  
+  //  instead of add/remove, to do the modification. Learning to do list  
+  //  manipulation is the point of this exercise.  
   virtual void splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t);
 
   //Initialize all private member variables.
