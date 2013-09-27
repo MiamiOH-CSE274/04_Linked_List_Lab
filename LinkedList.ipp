@@ -8,50 +8,102 @@
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-  //TODO
+  dummyNode = new Node();
+  dummyNode->next=dummyNode;
+  dummyNode->prev=dummyNode;
+  numItems = 0;
 }
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-  //TODO
+	while(dummyNode->next != dummyNode){
+		remove(0);
+	}
+	delete dummyNode;
 }
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  //TODO
-  return NULL;
+	if(i==numItems)
+	  return dummyNode;
+	else if(i>numItems||i<0)
+	  throw (std::string)"Not a valid index!";
+	Node* result = dummyNode;
+	if(i<numItems/2){
+	int j = -1;
+	while(j!=i){
+		result = result->next;
+		j++;
+		}
+	return result;
+	}
+	else{
+	  int j = numItems;
+	  while(j!=i){
+		result = result->prev;
+		j--;
+		}
+    return result;
+	}
 }
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-  //TODO
+  find(i)->data = x;
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-  //TODO
+  Node* temp = new Node();
+  temp->data = x;
+  Node* bump = find(i);
+  temp->next = bump;
+  temp->prev = bump->prev;
+  bump->prev = temp;
+  temp->prev->next = temp;
+  numItems++;
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-  //TODO
+  if(numItems==0){
+    throw (std::string)"No items to remove.";
+  }
+  Node* toBeRemoved = find(i);
+  toBeRemoved->prev->next = toBeRemoved->next;
+  toBeRemoved->next->prev = toBeRemoved->prev;
+  delete toBeRemoved;
+  numItems--;
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  //TODO -- The code that is here is a useless stub, you probably
-  // want to delete it
-  Node junkNode;
-  return junkNode.data; //This is unitialized data
+  return find(i)->data;
 }
 
 template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
-  //TODO
+	  Node* beginning = find(i);
+	  Node* end = find(i+len-1);
+	  end->next->prev=beginning->prev;
+	  beginning->prev->next=end->next;
+	  numItems=numItems-len;
+
+	  Node* insertHere;
+	  if(target.numItems!=0){
+		insertHere = target.find(t);
+		}
+	  else if(t=0){
+		insertHere=target.dummyNode;
+		}
+	  end->next=insertHere;
+	  beginning->prev=insertHere->prev;
+	  insertHere->prev->next=beginning;
+	  insertHere->prev=end;
+	  target.numItems=target.numItems+len;
 }
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-  //TODO
-  return 0;
+  return numItems;
 }
