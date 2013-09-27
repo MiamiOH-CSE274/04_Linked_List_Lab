@@ -7,7 +7,7 @@ Requirements
 ------------
 
 1. Add, remove, get, and set should be O(1) if `i == 0` or if `i == size()-1`
-2. All methods that take index, `i`, should throw a string exception if `i < 0` or `i >= size()`
+2. Add, remove, get, and set should throw a string exception if `i >= size()`. Find should throw a string exception if `i > size()`
 3. Do not leak memory (make sure remove and the destructor do the right thing)
 4. `size()` is O(1) time (keep track of the numItems when you add or remove, so you can just return the variable)
 
@@ -28,4 +28,3 @@ Questions
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
-
