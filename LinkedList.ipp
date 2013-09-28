@@ -34,8 +34,8 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 		throw (std::string) "That is an invalid item to check";
 	}
 	else{
-		Node* target = dummyNode;
-		for(int index = -1; index < i; index++){
+		Node* target = dummyNode->next;
+		for(unsigned int index = 0; index < i; index++){
 			target = target->next;
 		}
 		return target;
@@ -60,10 +60,15 @@ void LinkedList<T>::add(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-  find(i)->prev->next = find(i)->next;
-  find(i)->next->prev = find(i)->prev;
-  delete find(i);
-  numItems--;
+  if(numItems == 0){
+	throw (std::string) "No node to be deleted!";
+  }
+  else{
+	find(i)->prev->next = find(i)->next;
+	delete find(i)->prev;
+	find(i)->prev = find(i-1);
+	numItems--;
+  }
 }
 
 template <class T>
