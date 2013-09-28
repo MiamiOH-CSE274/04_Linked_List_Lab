@@ -35,7 +35,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	}
 	else{
 		Node* target = dummyNode;
-		for(int index = 0; index < i; index++){
+		for(int index = -1; index < i; index++){
 			target = target->next;
 		}
 		return target;
