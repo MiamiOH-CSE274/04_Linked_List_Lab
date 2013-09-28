@@ -8,28 +8,48 @@
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-  //TODO
+  numItems = 0; 
+  dummyNode* = new dummyNode();
+  dummyNode->next = dummyNode;
+  dummyNode->prev = dummyNode;
 }
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-  //TODO
+  while(numItems > 0){	
+		dummyNode->next = dummyNode->next->next;
+		delete dummyNode->next->prev 
+		dummyNode->next->prev = dummyNode;
+		numItems--;	
+  }
+  delete dummyNode;
 }
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  //TODO
-  return NULL;
+	if(i == (unsigned long)-1){
+		return dummyNode;
+		}
+	else if(i < 0 || i > itemNums - 1){
+		throw (std::string) "That is an invalid item to check";
+	}
+	else{
+		Node* target = dummyNode;
+		for(int index = 0; index < i; index++){
+			target = target->next;
+		}
+		return target;
+	}
 }
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-  //TODO
+  find(i).data = x;
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-  //TODO
+  
 }
 
 template <class T>
@@ -52,6 +72,5 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, 
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-  //TODO
-  return 0;
+  return numItems;
 }
