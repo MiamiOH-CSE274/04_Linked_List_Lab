@@ -97,8 +97,23 @@ T LinkedList<T>::get(unsigned long i){
 
 template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
-    //Change 6 pointers -> pointer sugery
-    //Will complete later
+    
+    Node* startNewList = find(i);
+    Node* endNewList = find(i+len-1);
+    Node* placeToMerge = (target.find(t));
+    
+    startNewList->prev->next= endNewList->next;
+    endNewList->next->prev = startNewList->prev;
+    
+    startNewList->prev = placeToMerge->prev;
+    endNewList->next = placeToMerge;
+    placeToMerge->prev->next = startNewList;
+    placeToMerge->prev = endNewList;
+    
+    
+    numItems -=len;
+    target.numItems +=len;
+    
 }
 
 template <class T>
