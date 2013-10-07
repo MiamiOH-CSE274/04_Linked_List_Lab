@@ -183,7 +183,7 @@ void testSplice(){
       std::cout << "ERROR: In list1, expected " << res1[i] << " at position " << i << " but got " << testList1.get(i) << std::endl;
     }
     if(res2[i] != testList2.get(i)){
-      std::cout << "ERROR: In list2, expected " << res1[i] << " at position " << i << " but got " << testList2.get(i) << std::endl;
+      std::cout << "ERROR: In list2, expected " << res2[i] << " at position " << i << " but got " << testList2.get(i) << std::endl;
     }
   }
   std::cout << "SUCCESS: Splice test worked" << std::endl;
