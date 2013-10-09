@@ -19,7 +19,7 @@ Running Time Analysis
 4. if 'i==0' or if 'i==size()-1', then the set() method has a running time of O(1); otherwise, the set() method will have a running time of O(n). The set() method calls find() method, thus, the running time of set() will depend on the running time of find(). 
 5. if 'i==0' or if 'i==size()-1', then remove() method has a running time of O(1); otherwise, the add() method will ahve a running time of O(n), where n is the number of nodes in the linked list from 0 to i. Each line of code, except the funciton call to find(), in the remove() method takes constant time(assuming function call of throw() takes constant time). If 'i==0' or if 'i==size()-1', the find() method only takes constant time, otherwise, the find() method will take O(n) time.
 6. the size() method has one lie of code that returns a interger of numItems. This line of code has a constant running time, and thus, the size() method has a running time of O(1).
-
+7. the running time of the splice() method is depending on the running time of the find() method. I called find() method three times in the splice() method. Worst case senario, the find() method will have a linear running time, and thus the splice() will also have a running time of O(n). 
 
 Reading
 =======
