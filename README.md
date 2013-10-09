@@ -11,6 +11,16 @@ Requirements
 3. Do not leak memory (make sure remove and the destructor do the right thing)
 4. `size()` is O(1) time (keep track of the numItems when you add or remove, so you can just return the variable)
 
+Running Time Analysis
+=====================
+1. find() method has a running time of O(n). Each line of code, except the for loop section, in the find() method takes constant time (assuming function call of throw() takes constant time).  The for loop will loop n (n is the value of i) times to find a particular node. Thus, the find() method has a running time of O(n), where n is the value of i. If  if 'i==0', the loop will only loop one time. If 'i==size()-1', the find function will not enter the loop. Thus, if  if 'i==0' or if 'i==size()-1', the find() method will have a running time of O(1). 
+2. if 'i==0' or if 'i==size()-1', then add() method has a running time of O(1); otherwise, the add() method will have a running time of O(n), where n is the number of nodes in the linked list from 0 to i. Each line of code, except the function call to find(), in the add() method takes constant time. If 'i==0' or if 'i==size()-1', the find() method only takes constant time, otherwise, the find() method will take O(n) time. 
+3. if 'i==0' or if 'i==size()-1', then get() method has running time of O(1); otherwise, the get() method will have a running time of O(n). The get() method calls find() method, thus, the running time of get() will depend on the running time of of find(). 
+4. if 'i==0' or if 'i==size()-1', then the set() method has a running time of O(1); otherwise, the set() method will have a running time of O(n). The set() method calls find() method, thus, the running time of set() will depend on the running time of find(). 
+5. if 'i==0' or if 'i==size()-1', then remove() method has a running time of O(1); otherwise, the add() method will ahve a running time of O(n), where n is the number of nodes in the linked list from 0 to i. Each line of code, except the funciton call to find(), in the remove() method takes constant time(assuming function call of throw() takes constant time). If 'i==0' or if 'i==size()-1', the find() method only takes constant time, otherwise, the find() method will take O(n) time.
+6. 
+
+
 Reading
 =======
 "Open Data Structures," Chapter 3, up through section 2 (DLList), http://opendatastructures.org/ods-cpp/3_Linked_Lists.html
