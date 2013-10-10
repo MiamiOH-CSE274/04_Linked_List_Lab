@@ -8,12 +8,22 @@
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-  //TODO
+	numItems = 0;
+    dummyNode = new Node();
+	dummyNode->next = dummyNode;
+	dummyNode->prev = dummyNode;
+	dummyNode->data = NULL; //capital is apparently important...
 }
 
+//Delete dummyNode last. Iterate from beginning of list to the end. Each use of remove(0) will take the head node off of the LL and make the next node node-0. 
 template <class T>
 LinkedList<T>::~LinkedList() {
-  //TODO
+	/*while(numItems > 0){
+		remove(0)
+	}
+
+	delete dummyNode;
+	*/
 }
 
 template <class T>
@@ -46,7 +56,7 @@ T LinkedList<T>::get(unsigned long i){
 }
 
 template <class T>
-void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
+void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, unsigned long t){
   //TODO
 }
 
