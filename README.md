@@ -20,7 +20,7 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. I believe they do work in O(1), but for add remove i cannot get it to work for 'i==size()-1'
+1. All work in constant time. (to fix the size()-1 condition all I needed was "else if", not just an if statement.)
 2. all throw exception under these conditions
 3. memory is not leaked (destructor deletes all nodes
 4. size() is O(1)
