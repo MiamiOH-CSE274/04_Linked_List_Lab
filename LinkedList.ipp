@@ -1,6 +1,7 @@
 //You will need this so you can make a string to throw in
 // remove
 #include <string>
+using std::string;
 
 //Syntax note: C++ is not very good at figuring out which methods belong
 // to which classes. That is why we have to use the scope operator to
@@ -26,14 +27,24 @@ LinkedList<T>::~LinkedList() {
 	*/
 }
 
+//this must take constant time if the address requested is 0 or numItems-1.
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
   //TODO
-  return NULL;
+  return NULL; //delete this
 }
 
+//dependent on the "find(i)" function, must throw string if given an invalid index. Must take constant time if i=0 or i=(numItems-1).
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
+	if(i<0 || i>=numItems)
+		throw string("Invalid index given. Please choose one within the existing range.");
+	Node* cur = find(i); //retrieves the address of the Node at the given index in the LL.
+
+	if(cur==dummyNode) //this should never happen unless I screw up another method.
+		throw string("Invalid index given. Please choose one within the existing range."); 
+
+	cur -> data = x; //sets data in retrieved Node to x.
   //TODO
 }
 
