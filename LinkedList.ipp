@@ -100,17 +100,16 @@ void LinkedList<T>::add(unsigned long i, T x){
   //temp->prev=dummyNode;
   //temp->next=dummyNode;
   }
-//unable to get it for size()-1 to work in O(1) for add and remove.
-//code below is thought process that was unsuccessful
-//if (i==numItems-1) {
-//Node* cur = dummyNode->prev;
-//temp->data = x;
-  //temp->next=cur;
-  //temp->prev = cur->prev;
-  //temp->prev->next = temp;
-  //temp->next->prev = temp;
 
-//}
+else if (i==(numItems-1)) {
+Node* cur = dummyNode->prev;
+temp->data = x;
+  temp->next=dummyNode;
+  temp->prev = cur;
+  cur->next = temp;
+  dummyNode->prev = temp;
+  }
+
 else {
 Node* cur = find(i);
 
@@ -142,12 +141,12 @@ void LinkedList<T>::remove(unsigned long i){
   cur->next->prev = cur->prev;
 
   }
-  //if (i==numItems-1) {
-  //Node* cur = dummyNode->prev;
-  //cur->prev->next = cur->next;
-  //cur->next->prev = cur->prev;
+  else if (i==numItems-1) {
+  Node* cur = dummyNode->prev;
+  cur->prev->next = cur->next;
+  cur->next->prev = cur->prev;
 
-//  }
+  }
   
 else{
   Node* cur = find(i);
@@ -186,12 +185,19 @@ template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, unsigned long t){
     //Remove len items, starting with index i, and insert into target list
   // at position t.
- // Node* temp = find(i);
-  //Node* beforeSlicedSection = find(i-1);
-  //Node* afterSlicedSection = find(i+len);
-  //target.add(t, i);
-  //beforeSlicedSection->next = afterSlicedSection;
-  //afterSlicedSection->prev = beforeSlicedSection;
+  
+  //removing the nodes from the first linked list.
+//  Node* temp = find(i);
+//  Node* endOfSplicedSection = temp->next;
+//  Node* beforeSlicedSection = find(i-1);
+//  Node* afterSlicedSection = find(i+len);
+//  target.add(t, i);
+//  beforeSlicedSection->next = afterSlicedSection;
+//  afterSlicedSection->prev = beforeSlicedSection;
+//  
+//  
+
+
 
   
   
