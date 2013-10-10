@@ -27,7 +27,7 @@ LinkedList<T>::~LinkedList() {
 	*/
 }
 
-//this must take constant time if the address requested is 0 or numItems-1.
+//this must take constant time if the index requested is 0 or (numItems-1).
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
   //TODO
@@ -44,13 +44,23 @@ void LinkedList<T>::set(unsigned long i, T x){
 	if(cur==dummyNode) //this should never happen unless I screw up another method.
 		throw string("Invalid index given. Please choose one within the existing range."); 
 
-	cur -> data = x; //sets data in retrieved Node to x.
+	cur->data = x; //sets data in retrieved Node to x.
   //TODO
 }
 
+//must carefully set the links between adjacent nodes. Nodes at and above current position are moved up one.
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-  //TODO
+    if (i>numItems || i<0) {
+    throw string("Invalid index given. Please choose one within the existing range.");
+  }
+  Node* cur = find(i);
+  Node* temp = new Node();
+  temp->data = x; //sets data
+  temp->next = cur; //moves existant node at position i up by one and links given node to it.
+  temp->prev->next = temp; //links previous node to given node.
+  temp->next->prev = temp; //links existant node to given one. All four links established.
+  numItems += 1;
 }
 
 template <class T>
@@ -62,12 +72,11 @@ template <class T>
 T LinkedList<T>::get(unsigned long i){
   //TODO -- The code that is here is a useless stub, you probably
   // want to delete it
-  Node junkNode;
-  return junkNode.data; //This is unitialized data
+  return NULL;
 }
 
 template <class T>
-void LinkedList<T>::splice(unsigned long i, unsigned long len, List<T>& target, unsigned long t){
+void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
   //TODO
 }
 
