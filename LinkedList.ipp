@@ -110,10 +110,24 @@ T LinkedList<T>::get(unsigned long i){
 
 template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
+	Node* startOfLeavingSegment = find(i);
+	Node* endOfLeavingSegment = find(i+len-1);
+	Node* indexOfAddition = target.find(t);
 
+	startOfLeavingSegment->prev -> next = endOfLeavingSegment -> next;
+	endOfLeavingSegment-> next-> prev = startOfLeavingSegment -> prev;
+	numItems = numItems - (len);
+
+	indexOfAddition -> prev -> next = startOfLeavingSegment;
+	startOfLeavingSegment-> prev = indexOfAddition-> prev;
+	endOfLeavingSegment-> next = indexOfAddition;
+	indexOfAddition -> prev = endOfLeavingSegment;
+	target.numItems = target.numItems + (len);
 }
 
 template <class T>
 unsigned long LinkedList<T>::size(){
+Node* loopRunner = dummyNode-> next;
+	
   return numItems;
 }
