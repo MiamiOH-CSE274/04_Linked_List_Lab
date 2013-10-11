@@ -113,8 +113,16 @@ T LinkedList<T>::get(unsigned long i){
 }
 
 template <class T>
-void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
-  //TODO
+void takeAll(LinkedList<T>& src){//this is a pass by reference and not a pass by value, which is highly inconvenient for our purposes given, if the src list is deleted in
+	Node* cur = find(numItems-1);// its own scope, the reference to it in our own LL will effectively go nowhere (I think).
+	Node* beginning = src.get(0);
+	Node* ending = src.get(src.size()-1);
+
+	cur->next = beginning;
+	beginning->prev = cur;
+	ending->next = dummyNode;
+	dummyNode->prev=ending;
+	numItems += src.size();
 }
 
 template <class T>
