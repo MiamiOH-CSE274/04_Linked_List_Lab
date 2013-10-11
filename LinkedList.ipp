@@ -95,14 +95,17 @@ void LinkedList<T>::remove(unsigned long i){
 	delete cur;
 }
 
+//must be constant time for i=0 and i=(numItems-1)
 template <class T>
 T LinkedList<T>::get(unsigned long i){
 	if (i>=numItems || i<0)
 		throw string("That is an invalid index. Please choose a different one.");
 	if (find(i)==dummyNode)
 		throw string("That node does not exist, so you cannot get the value associated with it.");
+	if(i==numItems-1)
+		return dummyNode->prev->data;
 
-	Node* cur = dummyNode->next; //Make sure to start at "index 0" and not at the dummyNode.
+	Node* cur = dummyNode->next; //Make sure to start at "index 0" and not at the dummyNode. This takes care of constant time for i=0;
 	int remainingNodes = i;
 	while (remainingNodes>0) {
 		cur = cur->next; //Node* = Node*
