@@ -19,12 +19,14 @@ LinkedList<T>::LinkedList(){
 //Delete dummyNode last. Iterate from beginning of list to the end. Each use of remove(0) will take the head node off of the LL and make the next node node-0. 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	/*while(numItems > 0){
-		remove(0)
+	Node* erase = dummyNode->next;
+
+	while(numItems > 0){
+		remove(0);
+		numItems -= 1;
 	}
 
 	delete dummyNode;
-	*/
 }//end destructor
 
 //this must take constant time if the index requested is 0 or (numItems-1). Return dummyNode if i=numItems
