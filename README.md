@@ -23,7 +23,7 @@ Questions
 1. All of the methods mentioned run in constant time.
 2. All methods required to throw error strings do so as needed.
 3. I do not believe any memory is being leaked at this point.
-4. Size90 is in constant time.
+4. Size is in constant time.
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
 Arguably nothing would be faster except get due to array access time being constant. Having to iterate the elements of the list up or down each time we wanted to add/remove/getall 
