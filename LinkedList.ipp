@@ -14,7 +14,7 @@ LinkedList<T>::LinkedList(){
 	dummyNode->next = dummyNode;
 	dummyNode->prev = dummyNode;
 	dummyNode->data = NULL; //capital is apparently important...
-}
+}//end constructor
 
 //Delete dummyNode last. Iterate from beginning of list to the end. Each use of remove(0) will take the head node off of the LL and make the next node node-0. 
 template <class T>
@@ -25,7 +25,7 @@ LinkedList<T>::~LinkedList() {
 
 	delete dummyNode;
 	*/
-}
+}//end destructor
 
 //this must take constant time if the index requested is 0 or (numItems-1). Return dummyNode if i=numItems
 template <class T>
@@ -45,8 +45,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	}
 
 	return cur;
-
-}
+}//end find
 
 //dependent on the "find(i)" function, must throw string if given an invalid index. Must take constant time if i=0 or i=(numItems-1).
 template <class T>
@@ -60,8 +59,7 @@ void LinkedList<T>::set(unsigned long i, T x){
 		throw string("Invalid index given. Please choose one within the existing range."); 
 
 	cur->data = x; //sets data in retrieved Node to x.
-  //TODO
-}
+}//end set
 
 //must carefully set the links between adjacent nodes. Nodes at and above current position are moved up one.
 template <class T>
@@ -78,16 +76,38 @@ void LinkedList<T>::add(unsigned long i, T x){
 	numItems += 1;
 }
 
+//remove node at given index, link previous and following nodes together.
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-  //TODO
+	if (i>=numItems || i<0)
+		throw string("Invalid index given. Please choose one within the existing range.");
+    if (numItems==0)
+		throw string("The list is empty. You cannot remove anything else.");
+
+	Node* cur = find(i); //ah the swap paradigm from 174...good times...
+	Node* previous = cur->prev;
+	Node* upOne = cur->next;
+	previous->next = upOne;
+	upOne->prev = previous;
+	numItems -= 1;
+	delete cur;
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  //TODO -- The code that is here is a useless stub, you probably
-  // want to delete it
-  return NULL;
+	if (i>=numItems || i<0)
+		throw string("That is an invalid index. Please choose a different one.");
+	if (find(i)==dummyNode)
+		throw string("That node does not exist, so you cannot get the value associated with it.");
+
+	Node* cur = dummyNode->next; //Make sure to start at "index 0" and not at the dummyNode.
+	int remainingNodes = i;
+	while (remainingNodes>0) {
+		cur = cur->next; //Node* = Node*
+		remainingNodes -= 1;
+	}
+
+	return cur->data;
 }
 
 template <class T>
@@ -97,6 +117,5 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& ta
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-  //TODO
-  return 0;
+	return numItems;
 }
