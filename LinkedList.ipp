@@ -23,7 +23,6 @@ LinkedList<T>::~LinkedList() {
 
 	while(numItems > 0){
 		remove(0);
-		numItems -= 1;
 	}
 
 	delete dummyNode;
@@ -73,8 +72,9 @@ void LinkedList<T>::add(unsigned long i, T x){
 	Node* temp = new Node();
 	temp->data = x; //sets data
 	temp->next = cur; //moves existant node at position i up by one and links given node to it.
-	temp->prev->next = temp; //links previous node to given node.
-	temp->next->prev = temp; //links existant node to given one. All four links established.
+	temp->prev = cur->prev; //links given node to previous node.
+	temp->prev->next = temp;
+	cur->prev = temp; //links existant node to given one. All four links established.
 	numItems += 1;
 }
 
@@ -116,10 +116,10 @@ T LinkedList<T>::get(unsigned long i){
 }
 
 template <class T>
-void takeAll(LinkedList<T>& src){//this is a pass by reference and not a pass by value, which is highly inconvenient for our purposes given, if the src list is deleted in
+void LinkedList<T>::takeAll(LinkedList<T>& src){//this is a pass by reference and not a pass by value, which is highly inconvenient for our purposes given, if the src list is deleted in
 	Node* cur = find(numItems-1);// its own scope, the reference to it in our own LL will effectively go nowhere (I think).
-	Node* beginning = src.get(0);
-	Node* ending = src.get(src.size()-1);
+	Node* beginning = src.find(0);
+	Node* ending = src.find(src.size()-1);
 
 	cur->next = beginning;
 	beginning->prev = cur;
