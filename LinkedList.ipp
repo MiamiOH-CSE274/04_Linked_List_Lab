@@ -109,11 +109,26 @@ return find(i)->data;
 
 template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
-  //TODO
+  
+  if (len+i > numItems)
+    throw std::string (" List doesn't have enough items ");
+
+
+while(len>0){
+Node* item=find(i);
+
+target.add(t,item->data);
+remove(i);
+
+
+t++;
+len--;
+}
+
 }
 
 template <class T>
 unsigned long LinkedList<T>::size(){
   //TODO
-  return 0;
+  return numItems
 }
