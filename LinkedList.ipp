@@ -130,5 +130,5 @@ len--;
 template <class T>
 unsigned long LinkedList<T>::size(){
   //TODO
-  return numItems
+  return numItems;
 }
