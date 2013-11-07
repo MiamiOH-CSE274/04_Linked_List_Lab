@@ -26,6 +26,7 @@ remove(0);}
 delete dummyNode;
 }
 
+// from book, just made recursive
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
  
@@ -49,6 +50,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 }
 
+
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
 
@@ -59,6 +61,7 @@ find(i)->data=x;
 
 }
 
+// from book, used find to get to node
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
 if(i>numItems )
@@ -78,6 +81,7 @@ numItems=numItems+1;
 
 }
 
+// from book
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
 
@@ -107,6 +111,7 @@ T LinkedList<T>::get(unsigned long i){
 return find(i)->data;
 }
 
+// was stuck and looked at chase turners code to get idea of how to do splice
 template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
   
