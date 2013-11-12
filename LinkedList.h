@@ -58,7 +58,7 @@ class LinkedList : public List <T> {
   //Special cases: If i == numItems, return a pointer to the dummyNode
   //If i is an invalid number, throw a string exception
   Node* find(unsigned long i);
-  
+
   //Number of items in the list
   unsigned long numItems;
 };

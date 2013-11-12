@@ -7,7 +7,7 @@
 // T is until later
 template <class T>
 class List {
-  //This header file is an INTERFACE for a List. 
+  //This header file is an INTERFACE for a List.
   //Because C++ does not support the concept of an interface, we
   // instead use a class declaration to mimic an interface. Notice
   // that we declare only the public methods of the List class,
@@ -47,3 +47,4 @@ class List {
   // If list does not contain at least i+1 items, throw a string exception
   virtual void remove(unsigned long i) = 0;
 };
+
