@@ -76,12 +76,6 @@ T LinkedList<T>::get(unsigned long i){
 
 template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
-	/*
-	for(int j = i; j<i+len; j++){
-		target.add(t, find(i)->data);
-		remove(i);
-		t++;
-	}*/
 	
 	Node* back = find(i+len);
 	Node* firstNodeOfSection = find(i);
