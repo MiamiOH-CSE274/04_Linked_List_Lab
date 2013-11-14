@@ -13,13 +13,14 @@ LinkedList<T>::LinkedList(){
     dummyNode = new Node();
 	dummyNode->next = dummyNode;
 	dummyNode->prev = dummyNode;
+	//TODO: Don't initialize this ... it only works because my test case has T being ints
 	dummyNode->data = NULL; //capital is apparently important...
 }//end constructor
 
 //Delete dummyNode last. Iterate from beginning of list to the end. Each use of remove(0) will take the head node off of the LL and make the next node node-0. 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	Node* erase = dummyNode->next;
+	Node* erase = dummyNode->next; //TODO: Unnecessary
 
 	while(numItems > 0){
 		remove(0);

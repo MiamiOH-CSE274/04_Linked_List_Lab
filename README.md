@@ -1,3 +1,6 @@
+Author
+==========
+"Proctor, Patrick", proctopj
 04_Linked_List_Lab
 ==================
 
