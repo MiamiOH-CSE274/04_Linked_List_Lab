@@ -30,7 +30,7 @@ Questions
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
 
-If we were using an arrayList, we wouldn't need find() because elements an arrayList holds index values for it's elements, where in our linked list we have to iterate the elements and count which one we've reached.  Because we wouldn't use find, anything that calls it would be faster (ex. add(), set(), remove()).  Really, most of our functions would be faster.
+Find would be faster if we used an arrayList O(1), but adding and removing data would require a shift in the array, which consumes much more time than rearranging the pointers we use for the DLL.
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
 
