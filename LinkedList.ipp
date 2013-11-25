@@ -13,15 +13,11 @@ LinkedList<T>::LinkedList(){
     dummyNode = new Node();
 	dummyNode->next = dummyNode;
 	dummyNode->prev = dummyNode;
-	//TODO: Don't initialize this ... it only works because my test case has T being ints
-	dummyNode->data = NULL; //capital is apparently important...
 }//end constructor
 
 //Delete dummyNode last. Iterate from beginning of list to the end. Each use of remove(0) will take the head node off of the LL and make the next node node-0. 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	Node* erase = dummyNode->next; //TODO: Unnecessary
-
 	while(numItems > 0){
 		remove(0);
 	}
@@ -57,6 +53,7 @@ void LinkedList<T>::set(unsigned long i, T x){
 
 	Node* cur = find(i); //retrieves the address of the Node at the given index in the LL.
 
+	/*Is this if statement necessary?*/
 	if(cur==dummyNode) //this should never happen unless I screw up another method.
 		throw string("Invalid index given. Please choose one within the existing range."); 
 
@@ -99,9 +96,9 @@ void LinkedList<T>::remove(unsigned long i){
 //must be constant time for i=0 and i=(numItems-1)
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-	if (i>=numItems || i<0)
+	if(i>=numItems || i<0)
 		throw string("That is an invalid index. Please choose a different one.");
-	if (find(i)==dummyNode)
+	if(find(i)==dummyNode)
 		throw string("That node does not exist, so you cannot get the value associated with it.");
 	if(i==numItems-1)
 		return dummyNode->prev->data;
