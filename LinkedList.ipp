@@ -31,8 +31,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
     if(i>numItems)
         throw (std::string) "Linked list does not have enough items. Nothing to find.";
 
-    Node* pointer = new Node();
-    pointer = dummyNode;
+    Node* pointer= dummyNode;
     if(i!=numItems-1){
         pointer = dummyNode->next;
         for (unsigned long location = 0; location<i; location++) {
