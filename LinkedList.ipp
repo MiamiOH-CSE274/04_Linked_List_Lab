@@ -44,6 +44,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
         count++;
   }
   return cur;
+  delete cur;
   }
 
 template <class T>
@@ -66,6 +67,7 @@ void LinkedList<T>::set(unsigned long i, T x){
     else {
   Node* cur = find(i);
   cur->data = x;
+  delete cur;
 }
 }
 
@@ -138,22 +140,28 @@ void LinkedList<T>::remove(unsigned long i){
   if (i==0) {
   Node* cur = dummyNode->next;
   cur->prev->next = cur->next;
-  cur->next->prev = cur->prev;
 
+  cur->next->prev = cur->prev;
+delete cur;
   }
   else if (i==numItems-1) {
   Node* cur = dummyNode->prev;
   cur->prev->next = cur->next;
-  cur->next->prev = cur->prev;
 
+  cur->next->prev = cur->prev;
+delete cur;
   }
   
 else{
   Node* cur = find(i);
   
   cur->prev->next = cur->next;
+
   cur->next->prev = cur->prev;
+    delete cur;
 }
+
+        
   numItems--;
 }
 
@@ -172,11 +180,13 @@ T LinkedList<T>::get(unsigned long i){
   if (i==numItems-1) {
   Node* cur = dummyNode->prev;
   return cur->data;
+  delete cur;
   }
 
 else{
   Node* cur = find(i);
   return cur->data;
+  delete cur;
   }
 
 }
