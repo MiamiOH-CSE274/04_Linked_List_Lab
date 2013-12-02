@@ -34,12 +34,13 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
   if (i == numItems)
     return dummyNode;
     
-  Node* finder = dummyNode -> next; //we are now at element i = 0
+    Node* finder = dummyNode -> next; //we are now at element i = 0
   unsigned long j = 0;
   while (j != i) {
     finder = finder -> next;
     j++;
   }
+  
   return finder;
 }
 
@@ -92,11 +93,13 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& ta
   if (i + len >= numItems)
     throw std::string ("Not enough items to splice from this position");
 
+    
+    Node* move = find(i);                      //find element
   for (unsigned long j = 0; j < len; j++) {
-    Node* move = find(i);                   //find element
     target.add(t, move -> data);            //add element to target
     remove(i);                              //remove element from original list
     t++;                                    //increase position in target to add next element
+      move = move -> next;
   }
 }
 
