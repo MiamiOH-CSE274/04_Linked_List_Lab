@@ -89,13 +89,14 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& ta
 	  beginning->prev->next=end->next;
 	  numItems=numItems-len;
 
-	  Node* insertHere;
-	  if(target.numItems!=0){
+	  Node* insertHere=target.dummyNode;
+	  if(target.numItems>0){
 		insertHere = target.find(t);
 		}
-	  else if(t=0){
-		insertHere=target.dummyNode;
-		}
+	  if(t<0){
+		throw (std::string)"Not a valid index!";
+	  }
+		
 	  end->next=insertHere;
 	  beginning->prev=insertHere->prev;
 	  insertHere->prev->next=beginning;
