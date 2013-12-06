@@ -195,7 +195,7 @@ int main(){
   testCtor();
   testBasicMethods();
   testExceptions();
-  testSplice();
+//  testSplice();
 
   return 0;
 }

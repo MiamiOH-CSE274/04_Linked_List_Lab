@@ -6,6 +6,7 @@
 // to which classes. That is why we have to use the scope operator to
 // tell the compiler that this LinkedList() method belongs to the
 // LinkedList<T> class.
+// Since I'm not going to do Shuffle project, so I do not do spice().
 template <class T>
 LinkedList<T>::LinkedList(){
   numItems = 0; 
