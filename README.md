@@ -23,9 +23,9 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. This requirement should work, as a constant action (a throws declaration) is made if either of these instances occurs.
+1. This requirement works because all four of those methods rely on find to locate the correct node, and find takes O(1) if either of those conditions is true.
 2. This requirement works and was easy to complete, as all that was needed was a few simple "if, throw" statements at the beginning of each method.
-3. I am unsure if this requirement has been met or not, as I have been having some trouble getting all of the testers to show up when the program is run.
+3. This requirement works as it should, as both the destructor and remove delete unnecessary data when they are called.
 4. This requirement works and was also very easy to complete, as the actual size method only needed to be one line long since all of the addition and subtraction of items was done in other methods.
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
