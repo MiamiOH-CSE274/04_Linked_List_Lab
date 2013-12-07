@@ -8,41 +8,106 @@
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-  //TODO
+  
+  numItems = 0;
+  
+  dummyNode = new Node();
+  dummyNode -> next = dummyNode;
+  dummyNode -> prev = dummyNode;
+  dummyNode -> data = NULL;
+
 }
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-  //TODO
+
+  while (numItems > 0)
+	remove (0);
+  delete dummyNode;
+
 }
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  //TODO
-  return NULL;
+  
+  Node* tempNode = dummyNode;
+
+  if (i > numItems || i < 0)
+	throw (std::string) "Error: invalid input. Index out of bounds.";
+  if (i < numItems/2){
+    tempNode = dummyNode -> next;
+	for (int findCount = 0; findCount < i; findCount++)
+	  tempNode = tempNode -> next;
+  }
+  else{
+    for (int findCount = numItems; findCount > i; findCount--)
+	  tempNode = tempNode -> prev;
+  }
+
+  return tempNode;
+
 }
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-  //TODO
+  
+  if (i > numItems || i < 0)
+	throw (std::string) "Error: invalid input. Index out of bounds.";
+  
+  Node* tempNode = find(i);
+  if (tempNode == dummyNode)
+	throw (std::string) "Error: Index does not exist.";
+  
+  tempNode -> data = x;
+
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-  //TODO
+  
+  if (i > numItems || i < 0)
+	throw (std::string) "Error: invalid input. Item cannot be added at that index.";
+
+  Node* insertPoint = find(i);
+  Node* nodeToAdd = new Node();
+
+  nodeToAdd -> data = x;
+  nodeToAdd -> next = insertPoint;
+  nodeToAdd -> prev = insertPoint -> prev;
+  nodeToAdd -> prev -> next = nodeToAdd;
+  nodeToAdd -> next -> prev = nodeToAdd;
+
+  numItems++;
+
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-  //TODO
+  
+  if (i >= numItems || i < 0)
+	throw (std::string) "Error: invalid action. Index out of bounds.";
+
+  Node* nodeToDelete = find (i);
+  nodeToDelete -> next -> prev = nodeToDelete -> prev;
+  nodeToDelete -> prev -> next = nodeToDelete -> next;
+  delete nodeToDelete;
+
+  numItems--;
+
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  //TODO -- The code that is here is a useless stub, you probably
-  // want to delete it
-  Node junkNode;
-  return junkNode.data; //This is unitialized data
+  
+  if (i > numItems || i < 0)
+	throw (std::string) "Error: invalid action. Index out of bounds.";
+
+  Node* nodeToFind = find (i);
+  if (nodeToFind == dummyNode)
+	throw (std::string) "Error: Index does not exist.";
+  
+  return (nodeToFind -> data);
+
 }
 
 template <class T>
@@ -52,6 +117,7 @@ void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& ta
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-  //TODO
-  return 0;
+  
+  return numItems;
+
 }
