@@ -97,8 +97,10 @@ Node* temp=find(i+1);
 temp->prev=cur->prev;
 cur->prev->next=temp;
  
+ 
  numItems=numItems-1;
 
+delete cur;
 }
 
 template <class T>
