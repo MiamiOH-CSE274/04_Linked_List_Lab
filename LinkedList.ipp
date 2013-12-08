@@ -29,7 +29,9 @@ LinkedList<T>::~LinkedList() {
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-	return dummyNode;
+	if(i==numItems)
+		return dummyNode;
+	else return dummyNode;
 }
 
 template <class T>
