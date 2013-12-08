@@ -87,6 +87,9 @@ template <class T>
 void LinkedList<T>::remove(unsigned long i){
 	if(numItems==0)
 		throw (std::string)"Can't remove from an empty list.";
+	Node* removeMe=find(i);
+	removeMe->prev->next = removeMe->next;
+	removeMe->next->prev = removeMe->prev;
 	numItems--;
 }
 
