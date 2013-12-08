@@ -35,8 +35,12 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 		return dummyNode->prev;
 	if(i>numItems)
 		throw (std::string)"Cannod add value; list doesn't contain specified num items";
-	else{
-		
+	else{ // Found some errors in here from old code! :) Maybe that was it
+		Node* returnme = dummyNode; 
+		for(unsigned long p=0; p<i; p++){
+			returnme = returnme->next;
+		}
+		return returnme;
 	}
 	
 	return dummyNode;
