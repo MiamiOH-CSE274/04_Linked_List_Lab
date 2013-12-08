@@ -49,7 +49,8 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	
+	if(i>=numItems||i<0)
+		throw (std::string)"Can't set on an invalid index";
 }
 
 template <class T>
@@ -71,7 +72,9 @@ void LinkedList<T>::add(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-	
+	if(numItems==0)
+		throw (std::string)"Can't remove from an empty list.";
+	numItems--;
 }
 
 template <class T>
