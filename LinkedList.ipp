@@ -90,6 +90,7 @@ void LinkedList<T>::remove(unsigned long i){
 	Node* removeMe=find(i);
 	removeMe->prev->next = removeMe->next;
 	removeMe->next->prev = removeMe->prev;
+	delete removeMe;
 	numItems--;
 }
 
