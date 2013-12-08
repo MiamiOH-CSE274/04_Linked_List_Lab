@@ -31,12 +31,14 @@ template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	if(i==numItems)
 		return dummyNode;
+	if(i>numItems)
+		throw (std::string)"Cannod add value; list doesn't contain specified num items";
 	else return dummyNode;
 }
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-
+	
 }
 
 template <class T>
