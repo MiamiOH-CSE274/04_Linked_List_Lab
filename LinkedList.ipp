@@ -39,7 +39,19 @@ void LinkedList<T>::set(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
+	if(i > numItems){
+		throw (std::string)"Cannot add value; list doesn't contain specific num items";
+	}
+	else{
+		Node* addMe = new Node();
+		addMe->data=x;
+		addMe->next=find(i);
+		addMe->prev=find(i-1);
+		addMe->next->prev=addMe;
+		find(i-1)->next=addMe;  
 
+		++numItems; 
+	}
 }
 
 template <class T>
