@@ -59,12 +59,23 @@ void LinkedList<T>::add(unsigned long i, T x){
 		throw (std::string)"Cannot add value; list doesn't contain specific num items";
 	}
 	else{
+		//Old Non-working Logic
+		//Node* addMe = new Node();
+		//addMe->data=x;
+		//addMe->next=find(i);
+		//addMe->prev=find(i-1);
+		//addMe->next->prev=addMe;
+		//find(i-1)->next=addMe;  
+
+		Node* oldAtIndex = find(i);
 		Node* addMe = new Node();
 		addMe->data=x;
-		addMe->next=find(i);
-		addMe->prev=find(i-1);
-		addMe->next->prev=addMe;
-		find(i-1)->next=addMe;  
+		addMe->next=oldAtIndex;
+		addMe->prev=oldAtIndex->prev;
+		oldAtIndex->prev->next=addMe;  
+		oldAtIndex->prev=addMe;
+		
+
 
 		++numItems; 
 	}
