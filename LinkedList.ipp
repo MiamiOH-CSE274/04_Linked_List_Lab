@@ -63,8 +63,8 @@ template <class T>
 T LinkedList<T>::get(unsigned long i){
   //TODO -- The code that is here is a useless stub, you probably
   // want to delete it
-  Node junkNode;
-  return junkNode.data; //This is unitialized data
+  //Node junkNode;
+  //return junkNode.data; //This is unitialized data
 
   // get the value at index i
   return find(i)->data;
