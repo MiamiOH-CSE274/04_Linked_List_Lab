@@ -31,9 +31,16 @@ template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	if(i==numItems)
 		return dummyNode;
+	if(i==numItems-1)
+		return dummyNode->prev;
 	if(i>numItems)
 		throw (std::string)"Cannod add value; list doesn't contain specified num items";
-	else return dummyNode;
+	else{
+		
+	}
+	
+	return dummyNode;
+
 }
 
 template <class T>
