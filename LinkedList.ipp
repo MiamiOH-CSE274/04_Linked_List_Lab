@@ -51,6 +51,8 @@ template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
 	if(i>=numItems||i<0)
 		throw (std::string)"Can't set on an invalid index";
+	find(i)->data=x;
+
 }
 
 template <class T>
@@ -72,8 +74,9 @@ void LinkedList<T>::add(unsigned long i, T x){
 		addMe->data=x;
 		addMe->next=oldAtIndex;
 		addMe->prev=oldAtIndex->prev;
-		oldAtIndex->prev->next=addMe;  
 		oldAtIndex->prev=addMe;
+		oldAtIndex->prev->next=addMe;  
+		
 		
 
 
