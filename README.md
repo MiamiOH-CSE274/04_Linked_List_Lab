@@ -29,6 +29,8 @@ Questions
 4. size() is O(1) time.
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
+For an ArrayList, find an item by its index would be fast, because this process takes constant time. Whereas, for a linked list, it takes linear time to loop through every
+item in the linked list, assuming the item to be found is valid. 
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
-
+Maybe draw a graph every time they want to add or remove a node to or from the list.
