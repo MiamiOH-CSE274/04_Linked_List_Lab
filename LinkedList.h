@@ -35,6 +35,8 @@ class LinkedList : public List <T> {
   // If list does not contain at least i+1 items, throw a string exception
   virtual void remove(unsigned long i);
 
+  void splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t);
+
   //Optional, but may be useful in the Shuffle project
   //Remove all items from src, and add them to the end of the current list, in the
   // same order that they started. So if the current list is {4, 1, 2} and src
