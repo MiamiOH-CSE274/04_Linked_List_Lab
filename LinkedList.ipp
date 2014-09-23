@@ -28,8 +28,10 @@ template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i) 
 {
 	if (i > numItems) {
-		throw std::string("error, element " + i + " is larger than the size of the LinkedList");
-	}	
+		throw std::string("error: element is larger than the size of the LinkedList");
+	} else if (numItems == 0) {
+		throws std::string("error: no elements left to remove");
+	}
 
 	LinkedList<T>::Node *p;
 
@@ -55,9 +57,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i)
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
 	LinkedList<T>::Node *node = find(i);
-	T ret = node->data;
 	node->data = x;
-	return ret;
 }
 
 template <class T>
