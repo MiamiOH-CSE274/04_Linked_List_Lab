@@ -1,8 +1,7 @@
 #include "LinkedList.h"
 #include <iostream>
 
-//Check to make sure that numItems returns correct result on a fresh
-// instance of the LinkedList class
+//Check to make sure that numItems returns correct result on a fresh instance of the LinkedList class
 void testCtor(){
 	LinkedList<int> testList;
 	if(testList.size() == 0){
@@ -12,8 +11,7 @@ void testCtor(){
 	}
 }
 
-//Add and remove some items, making sure they come back in the
-// correct order
+//Add and remove some items, making sure they come back in the correct order
 void testBasicMethods(){
 	LinkedList<int> testList;
 	testList.add(0,0);
@@ -194,7 +192,7 @@ int main(){
 	testCtor();
 	testBasicMethods();
 	testExceptions();
-	testSplice();
+	//testSplice();
 
 	return 0;
 }

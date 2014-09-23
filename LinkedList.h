@@ -43,6 +43,8 @@ class LinkedList : public List <T> {
   //Note: This should be O(1) time. Use pointer manipulations to graft the lists together.
   virtual void takeAll(LinkedList<T>& src);
 
+  virtual void splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t);
+
   //Initialize all private member variables.
   // Be sure to create the dummy node using "new"
   LinkedList();
