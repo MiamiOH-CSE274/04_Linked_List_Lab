@@ -87,8 +87,24 @@ LinkedList<T>::~LinkedList() {
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  //TODO
-  return NULL;
+  if (i == numItems){
+	  return dummyNode;
+  }
+  else if (i > numItems){
+	  throw std::string("Index is larger than number of items, in find()");
+  }
+  else {
+	  Node* ret = dummyNode->next;
+	 while(i > 0) {
+		  ret = ret->next;
+		  i--;
+	 }
+	  return ret;
+  }
+
+
+
+ 
 }
 
 template <class T>
@@ -108,7 +124,14 @@ void LinkedList<T>::remove(unsigned long i){
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
- return 5;
+ Node* myNode = find(i);
+ if (myNode == dummyNode) {
+	 throw std::string("In get(), index was too large.");
+ }
+ else {
+
+ }
+
 }
 
 
