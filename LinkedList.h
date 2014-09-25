@@ -73,7 +73,7 @@ class LinkedList : public List <T> {
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-  //TODO
+  
 	dummyNode = new Node();
 	dummyNode->next = dummyNode;  //These two lines compile exactly the same
 	(*dummyNode).prev = dummyNode; //Same as the line above
@@ -88,8 +88,21 @@ LinkedList<T>::~LinkedList() {
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-  //TODO
-  return NULL;
+  
+	if(i == numItems){
+		return dummyNode;
+	} else if(i > numItems) {
+		throw std::string("Index is larger than number of items, in find()");
+	} else {
+		Node* ret = dummyNode->next;
+		while(i > 0){
+			ret = ret->next;
+			i--;
+		}
+		return ret;
+	}
+
+  
 }
 
 template <class T>
@@ -109,10 +122,13 @@ void LinkedList<T>::remove(unsigned long i){
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-  //TODO -- The code that is here is a useless stub, you probably
-  // want to delete it
-  Node junkNode;
-  return junkNode.data; //This is unitialized data
+  //TODO
+	Node* myNode = find(i);
+	if(myNode == dummyNode){
+		throw std::string("In get(), index was too large.");
+	} else{
+		return myNode->data;
+	}
 }
 
 template <class T>
