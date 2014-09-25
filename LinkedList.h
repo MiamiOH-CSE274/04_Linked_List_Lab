@@ -102,9 +102,13 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	} else if(i > numItems){
 		throw std::string("This value is larger than the number of items contained in the list!");
 	} else {
-
+		Node* ret = sentinelNode->next;
+		while(i>0){
+			ret = ret->next
+			i--;
+		}
+		return ret;
 	}
-	return NULL;
 }
 
 template <class T>
