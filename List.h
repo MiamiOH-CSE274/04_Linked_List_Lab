@@ -6,6 +6,7 @@
 // to hold items of type T, but that we are not going to specify what
 // T is until later
 template <class T>
+
 class List {
   //This header file is an INTERFACE for a List. 
   //Because C++ does not support the concept of an interface, we
