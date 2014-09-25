@@ -85,9 +85,20 @@ LinkedList<T>::~LinkedList() {
 }
 
 template <class T>
-typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-	//TODO
-	return NULL;
+typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){ // Do not have to check for negative values because unsigned longs are only positive
+	if(i == numItems)
+		return dummyNode;
+	else if(i > numItems){
+		throw std::string("Index is larger than population of list.");
+	}
+	else{
+		Node* ret = dummyNode->next;
+		while(i > 0){
+			ret = ret->next;
+			i--;
+		}
+		return ret;
+	}
 }
 
 template <class T>
@@ -107,10 +118,12 @@ void LinkedList<T>::remove(unsigned long i){
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-	//TODO -- The code that is here is a useless stub, you probably
-	// want to delete it
-	Node junkNode;
-	return junkNode.data; //This is unitialized data
+	Node* myNode = find(i);
+	if(myNode == dummyNode){
+		throw std::string("Index was to large");
+	} else {
+		return myNode->data;
+	}
 }
 
 template <class T>
