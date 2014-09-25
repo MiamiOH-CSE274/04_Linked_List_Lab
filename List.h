@@ -17,7 +17,7 @@ class List {
   //Syntax note: In C++ you don't put private/protected/public on each
   // individual member function or variable. Instead, we declare a section
   // as public, and now everything that comes afterward will be public, until
-  // we chage it. See LinkedList.h for another example.
+  // we change it. See LinkedList.h for another example.
  public:
 
   //Syntax note: C++ does not have the "abstract" keyword,
