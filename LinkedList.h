@@ -43,8 +43,6 @@ class LinkedList : public List <T> {
   //Note: This should be O(1) time. Use pointer manipulations to graft the lists together.
   virtual void takeAll(LinkedList<T>& src);
 
-  virtual void splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t);
-
   //Initialize all private member variables.
   // Be sure to create the dummy node using "new"
   LinkedList();
@@ -66,3 +64,99 @@ class LinkedList : public List <T> {
 };
 
 #include "LinkedList.ipp"
+#include <string>
+
+template <class T>
+LinkedList<T>::LinkedList(){
+	dummyNode=new Node();
+	dummyNode->next=dummyNode;
+	dummyNode->prev=dummyNode;
+	numItems=0;
+}
+
+template <class T>
+LinkedList<T>::~LinkedList() {
+	delete dummyNode;
+}
+
+/** Too many methods checked for the same thing. This checks for
+  * index-out-of-bounds error and returns true if the index is
+  * in bounds. So if this is true, the index is fine.
+**/
+template <class T>
+bool LinkedList<T>::errorCheck(String method, unsigned long i){
+	if (i > numItems){
+		throw std::cout << "ERROR: List does not contain such index. (" << method << ")" << std::endl;
+		return false;
+	}
+	return true;
+}
+
+template <class T>
+typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
+	if (i == numItems){
+		return dummyNode;
+	} else if (errorCheck("find", i)){
+		Node* p = dummyNode;
+		while (i < 0) {
+			p = p->next;
+			i--;
+		}
+		return p;
+	}
+}
+
+template <class T>
+void LinkedList<T>::set(unsigned long i, T x){
+	if (errorCheck("set", i)){
+		Node* a = find(i);
+		a->data = x;
+	}
+}
+
+template <class T>
+void LinkedList<T>::add(unsigned long i, T x){
+	if (errorCheck("add", i)){
+		Node newNode = new Node;
+		newNode->data = x;
+
+		Node *a = find(i);
+		Node *u = a->next;
+		a->next = newNode;
+		u->prev = newNode;
+		newNode->next = u;
+		newNode->prev = a;
+
+		++numItems;
+	}
+}
+
+template <class T>
+void LinkedList<T>::remove(unsigned long i){
+	if (i == numItems){
+		return;
+	} else if (errorCheck("remove", i)){
+		Node *a = find(i);
+		Node *n = a->next;
+		Node *p = a->prev;
+		n->prev = a->prev;
+		p->next = a->next;
+		delete a;
+
+		--numItems;
+	}
+}
+
+template <class T>
+T LinkedList<T>::get(unsigned long i){
+	Node* myNode = find(i);
+	if(myNode == dummyNode)
+		throw std::cout << "ERROR: List does not contain such index. (get)" << std::endl;
+	else
+		return find(i)->data;
+}
+
+template <class T>
+unsigned long LinkedList<T>::size(){
+	return numItems;
+}

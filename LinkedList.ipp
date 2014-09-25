@@ -20,12 +20,14 @@ LinkedList<T>::~LinkedList() {
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-	if (i >= numItems){throw std::cout << "ERROR: List does not contain such index. (find)" << std::endl; return;}
+	if (i > numItems){throw std::cout << "ERROR: List does not contain such index. (find)" << std::endl; return;}
+	if (i == numItems)
+		return dummyNode;
 
 	Node* p = dummyNode;
 	for (int j = 0; j < i; j++)
 		p = p.next;
-	return (p);
+	return p;
 }
 
 template <class T>
@@ -72,12 +74,8 @@ T LinkedList<T>::get(unsigned long i){
 	Node junkNode;
 	if (i >= numItems){throw std::cout << "ERROR: List does not contain such index. (get)" << std::endl; return junkNode.data;}
 	
-	return find(i).data;
-}
-
-template <class T>
-void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
-	
+	Node *a = find(i);
+	return a;
 }
 
 template <class T>

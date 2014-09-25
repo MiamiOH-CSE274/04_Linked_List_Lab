@@ -153,46 +153,11 @@ void testExceptions(){
 
 }
 
-void testSplice(){
-	LinkedList<int> testList1;
-	LinkedList<int> testList2;
-
-	for(int i=0;i<10;i++){
-		testList1.add(i,i);
-		testList2.add(i,10+i);
-	}
-
-	testList1.splice(0,2,testList2,0);
-	//2,3,4,5,6,7,8,9
-	//0,1,10,11,12,13,14,15,16,17,18,19
-
-	if(testList1.size() == 8 && testList2.size() == 12){
-		std::cout << "SUCCESS: List sizes correct after splice" << std::endl;
-	} else {
-		std::cout << "ERROR: After splice, expected 8 in list 1 and 12 in list 2. Instead, got: " << testList1.size() <<" " <<testList2.size()<< std::endl;
-		return;
-	}
-
-	testList2.splice(2,2,testList1,2);
-	int res1[] = {2,3,10,11,4,5,6,7,8,9};
-	int res2[] = {0,1,12,13,14,15,16,17,18,19};
-	for(int i=0;i<10;i++){
-		if(res1[i] != testList1.get(i)){
-			std::cout << "ERROR: In list1, expected " << res1[i] << " at position " << i << " but got " << testList1.get(i) << std::endl;
-		}
-		if(res2[i] != testList2.get(i)){
-			std::cout << "ERROR: In list2, expected " << res1[i] << " at position " << i << " but got " << testList2.get(i) << std::endl;
-		}
-	}
-	std::cout << "SUCCESS: Splice test worked" << std::endl;
-}
-
 //A simple main function which creates a list, and tests it.
 int main(){
 	testCtor();
 	testBasicMethods();
 	testExceptions();
-	//testSplice();
 
 	return 0;
 }
