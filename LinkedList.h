@@ -8,6 +8,7 @@ class LinkedList : public List <T> {
 	// Private class inside the LinkedList class
 	// struct - only holds data members, no methods
 	// "Node class"
+	// only accessible through the LinkedList class
 private:
 	struct Node{
 		T data;
@@ -44,7 +45,7 @@ public:
 	// is {3, 5}, the result should be that the current list is {4, 1, 2, 3, 5} and src is
 	// empty
 	//Note: This should be O(1) time. Use pointer manipulations to graft the lists together.
-	virtual void takeAll(LinkedList<T>& src);
+	//virtual void takeAll(LinkedList<T>& src);
 
 	//Initialize all private member variables.
 	// Be sure to create the dummy node using "new"
@@ -84,7 +85,11 @@ private:
 // Constructor
 template <class T>
 LinkedList<T>::LinkedList(){
-	//TODO
+	// Create a node for the dummyNode
+	dummyNode = new Node();
+	dummyNode->next = dummyNode;
+	dummyNode->prev = dummyNode;
+	numItems = 0;
 }
 
 // Destructor
@@ -120,11 +125,6 @@ T LinkedList<T>::get(unsigned long i){
 	// want to delete it
 	Node junkNode;
 	return junkNode.data; //This is unitialized data
-}
-
-template <class T>
-void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
-	//TODO
 }
 
 template <class T>
