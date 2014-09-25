@@ -1,6 +1,7 @@
 //DO NOT CHANGE THIS FILE
 //Author: Bo Brinkman
 //Date: 2013/07/11
+//CTRL-K, CTRL-D to reindent
 #include "List.h"
 
 template <class T>
@@ -41,7 +42,8 @@ public:
 	// is {3, 5}, the result should be that the current list is {4, 1, 2, 3, 5} and src is
 	// empty
 	//Note: This should be O(1) time. Use pointer manipulations to graft the lists together.
-	virtual void takeAll(LinkedList<T>& src);
+	
+	//virtual void takeAll(LinkedList<T>& src);
 
 	//Initialize all private member variables.
 	// Be sure to create the dummy node using "new"
@@ -73,7 +75,7 @@ private:
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-	//TODO
+	dummyNode = new node();
 }
 
 template <class T>
@@ -110,10 +112,12 @@ T LinkedList<T>::get(unsigned long i){
 	return junkNode.data; //This is unitialized data
 }
 
+/*
 template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
 	//TODO
 }
+*/
 
 template <class T>
 unsigned long LinkedList<T>::size(){
