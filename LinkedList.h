@@ -113,24 +113,31 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	//TODO
+	Node* myNode = find(i);
+	if (myNode == sentinelNode){
+		throw std::string("The index set(i) was too large!");
+	} else {
+		myNode->data = x;
+	}
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
 	//TODO
+	numItems++;
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
 	//TODO
+	numItems--;
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
 	Node* myNode = find(i);
 	if(myNode == sentinelNode){
-		throw std::string("The index was too large!");
+		throw std::string("The index get(i) was too large!");
 	} else {
 		return myNode->data;
 	}
