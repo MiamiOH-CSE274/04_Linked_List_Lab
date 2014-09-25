@@ -103,10 +103,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 			ret = ret->next;
 			i--;
 		}
-		return ret;
 	}
-
-	
 }
 
 template <class T>
@@ -126,10 +123,12 @@ void LinkedList<T>::remove(unsigned long i){
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-	//TODO -- The code that is here is a useless stub, you probably
-	// want to delete it
-	Node junkNode;
-	return junkNode.data; //This is unitialized data
+	Node* myNode = find(i);
+	if(myNode == dummyNode){
+		throw std::string("In get(), index was too large");
+	} else {
+		return myNode->data;
+	}
 }
 
 /*
