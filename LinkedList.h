@@ -92,7 +92,18 @@ LinkedList<T>::~LinkedList() {
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-	//TODO
+	if(i == numItems){
+		return dummynode;
+	}else if(i > numItems){
+		throw std::string("Index is larger than the number of items!");
+	}else{
+		Node* ret = dummyNode->next;
+		while(i > 0){
+			ret = ret->next;
+			i--;
+		}
+		return ret;
+	}
 	return NULL;
 }
 
