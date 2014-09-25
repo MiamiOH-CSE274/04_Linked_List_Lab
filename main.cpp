@@ -155,7 +155,7 @@ void testExceptions(){
 
 }
 
-void testSplice(){
+/*void testSplice(){
   LinkedList<int> testList1;
   LinkedList<int> testList2;
 
@@ -163,7 +163,7 @@ void testSplice(){
     testList1.add(i,i);
     testList2.add(i,10+i);
   }
-
+	
   testList1.splice(0,2,testList2,0);
   //2,3,4,5,6,7,8,9
   //0,1,10,11,12,13,14,15,16,17,18,19
@@ -188,13 +188,13 @@ void testSplice(){
   }
   std::cout << "SUCCESS: Splice test worked" << std::endl;
 }
-
+*/
 //A simple main function which creates a list, and tests it.
 int main(){
   testCtor();
   testBasicMethods();
   testExceptions();
-  testSplice();
+  //testSplice();
 
   return 0;
 }
