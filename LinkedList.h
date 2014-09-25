@@ -103,7 +103,9 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 			ret = ret->next;
 			i--;
 		}
+		return ret;
 	}
+	
 }
 
 template <class T>
