@@ -98,10 +98,26 @@ LinkedList<T>::~LinkedList() {
 	//TODO
 }
 
+// Returns a pointer to the node at i
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-	//TODO
-	return NULL;
+	// Can techically remove first case, but then it would take longer
+	// since it would have to loop through the whole list
+	// First case in here for speed
+	if(i == numItems){
+		return dummyNode;
+	}else if(i > numItems){
+		throw std::string("This index is larger than the number of items, in find()");
+	}else{
+		// Start at the node to the right of the dummyNode
+		Node* returnVal = dummyNode->next;
+		while(i > 0){
+			// return the pointer to the next node
+			returnVal = returnVal->next;
+			i--;
+		}
+		return returnVal;
+	}
 }
 
 template <class T>
@@ -121,10 +137,15 @@ void LinkedList<T>::remove(unsigned long i){
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-	//TODO -- The code that is here is a useless stub, you probably
-	// want to delete it
-	Node junkNode;
-	return junkNode.data; //This is unitialized data
+	Node* myNode = find(i);
+	if(myNode == dummyNode){
+		// If i is equal to numItems, find will return the dummyNode
+		// If i was larger than numItems, the exception would have been
+		// thrown in find(i)
+		throw std::string("In get(), the index was too large.");
+	}else{
+		return myNode->data;
+	}
 }
 
 template <class T>
