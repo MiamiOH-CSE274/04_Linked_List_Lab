@@ -36,14 +36,6 @@ public:
 	// If list does not contain at least i+1 items, throw a string exception
 	virtual void remove(unsigned long i);
 
-	//Optional, but may be useful in the Shuffle project
-	//Remove all items from src, and add them to the end of the current list, in the
-	// same order that they started. So if the current list is {4, 1, 2} and src
-	// is {3, 5}, the result should be that the current list is {4, 1, 2, 3, 5} and src is
-	// empty
-	//Note: This should be O(1) time. Use pointer manipulations to graft the lists together.
-	virtual void takeAll(LinkedList<T>& src);
-
 	//Initialize all private member variables.
 	// Be sure to create the dummy node using "new"
 	LinkedList();
@@ -74,7 +66,10 @@ private:
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-	//TODO
+	dummyNode = new Node();
+	dummyNode->next = dummyNode;
+	dummyNode->prev = dummyNode;
+	numItems = 0;
 }
 
 template <class T>
@@ -110,12 +105,12 @@ T LinkedList<T>::get(unsigned long i){
 	Node junkNode;
 	return junkNode.data; //This is unitialized data
 }
-
+/*
 template <class T>
 void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
 	//TODO
 }
-
+*/
 template <class T>
 unsigned long LinkedList<T>::size(){
 	//TODO
