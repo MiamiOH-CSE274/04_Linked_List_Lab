@@ -75,7 +75,15 @@ private:
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-	dummyNode = new node();
+	dummyNode = new Node();
+	dummyNode->next = dummyNode;
+	dummyNode->prev = dummyNode;
+	numItems = 0;
+	
+	
+	
+	//int foo = this->size();
+	//(*this).size(); THESE ARE THE SAME THING
 }
 
 template <class T>
