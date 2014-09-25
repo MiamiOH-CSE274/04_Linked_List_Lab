@@ -1,81 +1,79 @@
 //DO NOT CHANGE THIS FILE
 //Author: Bo Brinkman
 //Date: 2013/07/11
+#include <string>
+
 #include "List.h"
 
 template <class T>
-class LinkedList : public List <T> {
- private:
-  struct Node{
-    T data;
-    struct Node* next;
-    struct Node* prev;
-  };
+class LinkedList : public List <T> 
+{
+private:
+	struct Node
+	{
+		T data;
+		struct Node* next;
+		struct Node* prev;
+	};
 
- public:
-  //See List.h for documentation of these methods
-  //Return the number of items currently in the List
-  virtual unsigned long size();
+public:
+	// See List.h for documentation of these methods
+	// Return the number of items currently in the List
+	virtual unsigned long size();
 
-  //Get the value at index i, and return it.
-  // If list does not contain at least i+1 items, throw a string exception
-  virtual T get(unsigned long i);
+	// Get the value at index i, and return it.
+	// If list does not contain at least i+1 items, throw a string exception
+	virtual T get(unsigned long i);
 
-  //Set the value at index i to x
-  // If list does not contain at least i+1 items, throw a string exception
-  virtual void set(unsigned long i, T x);
+	// Set the value at index i to x
+	// If list does not contain at least i+1 items, throw a string exception
+	virtual void set(unsigned long i, T x);
 
-  //Add a new item, x, at position i. All items that were originally
-  // at position i or higher get moved forward 1 to make room.
-  // If list does not contain at least i items, throw a string exception
-  virtual void add(unsigned long i, T x);
+	// Add a new item, x, at position i. All items that were originally
+	// at position i or higher get moved forward 1 to make room.
+	// If list does not contain at least i items, throw a string exception
+	virtual void add(unsigned long i, T x);
 
-  //Remove the item at position i. All items that were originally
-  // at position i+1 or higher get moved backwards 1 to fill the gap.
-  // If list does not contain at least i+1 items, throw a string exception
-  virtual void remove(unsigned long i);
+	// Remove the item at position i. All items that were originally
+	// at position i+1 or higher get moved backwards 1 to fill the gap.
+	// If list does not contain at least i+1 items, throw a string exception
+	virtual void remove(unsigned long i);
 
-  void splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t);
+	// Optional, but may be useful in the Shuffle project
+	// Remove all items from src, and add them to the end of the current list, in the
+	// same order that they started. So if the current list is {4, 1, 2} and src
+	// is {3, 5}, the result should be that the current list is {4, 1, 2, 3, 5} and src is
+	// empty
+	// Note: This should be O(1) time. Use pointer manipulations to graft the lists together.
+	// virtual void takeAll(LinkedList<T>& src);
 
-  //Optional, but may be useful in the Shuffle project
-  //Remove all items from src, and add them to the end of the current list, in the
-  // same order that they started. So if the current list is {4, 1, 2} and src
-  // is {3, 5}, the result should be that the current list is {4, 1, 2, 3, 5} and src is
-  // empty
-  //Note: This should be O(1) time. Use pointer manipulations to graft the lists together.
-  virtual void takeAll(LinkedList<T>& src);
+	// Initialize all private member variables.
+	// Be sure to create the dummy node using "new"
+	LinkedList();
+	// Delete any dynamically allocated memory. You will need to loop
+	// through all your nodes, deleting them one at a time
+	virtual ~LinkedList();
 
-  //Initialize all private member variables.
-  // Be sure to create the dummy node using "new"
-  LinkedList();
-  //Delete any dynamically allocated memory. You will need to loop
-  // through all your nodes, deleting them one at a time
-  virtual ~LinkedList();
+private:
+	// Pointer to the dummy node.
+	Node* dummyNode;
 
- private:
-  //Pointer to the dummy node.
-  Node* dummyNode;
+	// Return a pointer to item i.
+	// Special cases: If i == numItems, return a pointer to the dummyNode
+	// If i is an invalid number, throw a string exception
+	Node* find(unsigned long i);
 
-  //Return a pointer to item i.
-  //Special cases: If i == numItems, return a pointer to the dummyNode
-  //If i is an invalid number, throw a string exception
-  Node* find(unsigned long i);
-  
-  //Number of items in the list
-  unsigned long numItems;
+	// Number of items in the list
+	unsigned long numItems;
 };
 
-//#include "LinkedList.ipp"
-//You will need this so you can make a string to throw in
-// remove
-#include <string>
-
-//Syntax note: C++ is not very good at figuring out which methods belong
+// Syntax note: C++ is not very good at figuring out which methods belong
 // to which classes. That is why we have to use the scope operator to
 // tell the compiler that this LinkedList() method belongs to the
 // LinkedList<T> class.
 template <class T>
-LinkedList<T>::LinkedList(){
+LinkedList<T>::LinkedList()
+{
 	dummyNode = new LinkedList<T>::Node();
 	dummyNode->next = dummyNode;
 	dummyNode->prev = dummyNode;
@@ -84,10 +82,13 @@ LinkedList<T>::LinkedList(){
 }
 
 template <class T>
-LinkedList<T>::~LinkedList() {
+LinkedList<T>::~LinkedList()
+{
 	LinkedList<T>::Node *node = dummyNode;
 
-	while ((node = node->next) != dummyNode) {
+	if (numItems == 0) {
+		delete node;
+	} else while ((node = node->next) != dummyNode) {
 		delete node->prev;
 	}
 }
@@ -102,7 +103,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i)
 	LinkedList<T>::Node *p;
 
 	if (i < numItems / 2) {
-		// start at dummy
+		// start at beginning of list
 		p = dummyNode->next;
 
 		for (unsigned long int k = 0; k < i; k++) {
@@ -121,13 +122,15 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i)
 }
 
 template <class T>
-void LinkedList<T>::set(unsigned long i, T x){
+void LinkedList<T>::set(unsigned long i, T x)
+{
 	LinkedList<T>::Node *node = find(i);
 	node->data = x;
 }
 
 template <class T>
-void LinkedList<T>::add(unsigned long i, T x){
+void LinkedList<T>::add(unsigned long i, T x)
+{
 	// create a new Node object
 	LinkedList<T>::Node *new_node = new LinkedList<T>::Node();
 	new_node->data = x;
@@ -153,7 +156,8 @@ void LinkedList<T>::add(unsigned long i, T x){
 }
 
 template <class T>
-void LinkedList<T>::remove(unsigned long i){
+void LinkedList<T>::remove(unsigned long i)
+{
 	if (numItems == 0) {
 		throw std::string("error: no items left to remove");
 	}
@@ -165,19 +169,22 @@ void LinkedList<T>::remove(unsigned long i){
 	// and the Node after node to point to the one before it
 	node->prev->next = node->next;
 	node->next->prev = node->prev;
-	
+
 	delete node;
 
 	numItems--;
 }
 
 template <class T>
-T LinkedList<T>::get(unsigned long i){
+T LinkedList<T>::get(unsigned long i)
+{
 	return find(i)->data;
 }
 
+/*
 template <class T>
-void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
+void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t)
+{
 	//TODO
 }
 
@@ -186,8 +193,10 @@ void LinkedList<T>::takeAll(LinkedList<T>& src)
 {
 
 }
+*/
 
 template <class T>
-unsigned long LinkedList<T>::size(){
+unsigned long LinkedList<T>::size()
+{
 	return numItems;
 }

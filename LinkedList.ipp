@@ -8,7 +8,7 @@
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-	dummyNode = new LinkedList<T>::Node();
+	dummyNode = new Node();
 	dummyNode->next = dummyNode;
 	dummyNode->prev = dummyNode;
 	dummyNode->data = NULL;
@@ -30,7 +30,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i)
 	if (i > numItems) {
 		throw std::string("error: element is larger than the size of the LinkedList");
 	} else if (numItems == 0) {
-		throws std::string("error: no elements left to remove");
+		throw std::string("error: no elements left to remove");
 	}
 
 	LinkedList<T>::Node *p;
@@ -104,17 +104,6 @@ void LinkedList<T>::remove(unsigned long i){
 template <class T>
 T LinkedList<T>::get(unsigned long i){
 	return find(i)->data;
-}
-
-template <class T>
-void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
-	//TODO
-}
-
-template <class T>
-void LinkedList<T>::takeAll(LinkedList<T>& src)
-{
-
 }
 
 template <class T>
