@@ -106,20 +106,21 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	}
 	return NULL;
 }
-
+//DO THIS FIRST
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
 	//TODO
 }
-
+//TRY THIS
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
 	//TODO
 }
-
+//TRY THIS TOO
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
 	//TODO
+	//POINT TO NODE AFTER FOLLOWING POINTER
 }
 
 template <class T>
