@@ -4,7 +4,7 @@
 #include "List.h"
 
 template <class T>
-class LinkedList : public List <T> {
+class LinkedList : public List < T > {
 	// Private class inside the LinkedList class
 	// struct - only holds data members, no methods
 	// "Node class"
@@ -70,7 +70,12 @@ private:
 };
 
 /*
-* Originality statement!
+* I worked alone on this assignment, but much of the code 
+* is based on what we did in class and on the code
+* examples in the book Open Data Structures by Pat Morin
+*
+* Caroline Danzi
+* September 30, 2014
 */
 
 //You will need this so you can make a string to throw in
@@ -105,14 +110,16 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	// Can techically remove first case, but then it would take longer
 	// since it would have to loop through the whole list
 	// First case in here for speed
-	if(i == numItems){
+	if (i == numItems){
 		return dummyNode;
-	}else if(i > numItems){
+	}
+	else if (i > numItems){
 		throw std::string("This index is larger than the number of items, in find()");
-	}else{
+	}
+	else{
 		// Start at the node to the right of the dummyNode
 		Node* returnVal = dummyNode->next;
-		while(i > 0){
+		while (i > 0){
 			// return the pointer to the next node
 			returnVal = returnVal->next;
 			i--;
@@ -129,7 +136,7 @@ void LinkedList<T>::set(unsigned long i, T x){
 	}
 	else{
 		myNode->data = x;
-	}	
+	}
 }
 
 template <class T>
@@ -159,12 +166,13 @@ void LinkedList<T>::remove(unsigned long i){
 template <class T>
 T LinkedList<T>::get(unsigned long i){
 	Node* myNode = find(i);
-	if(myNode == dummyNode){
+	if (myNode == dummyNode){
 		// If i is equal to numItems, find will return the dummyNode
 		// If i was larger than numItems, the exception would have been
 		// thrown in find(i)
 		throw std::string("In get(), the index was too large.");
-	}else{
+	}
+	else{
 		return myNode->data;
 	}
 }
