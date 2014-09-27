@@ -95,7 +95,8 @@ LinkedList<T>::LinkedList(){
 // Destructor
 template <class T>
 LinkedList<T>::~LinkedList() {
-	//TODO
+	delete dummyNode;
+	dummyNode = NULL;
 }
 
 // Returns a pointer to the node at i
@@ -133,12 +134,26 @@ void LinkedList<T>::set(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	//TODO
+	Node* newNode = new Node();
+	newNode->data = x;
+	Node* displacedNode = find(i);
+	newNode->prev = displacedNode->prev;
+	newNode->next = displacedNode;
+	displacedNode->prev = newNode;
+	newNode->prev->next = newNode;
+	numItems++;
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-	//TODO
+	if (numItems == 0){
+		throw std::string("Tried to remove from a list containing no items, in remove()");
+	}
+	Node* removedNode = find(i);
+	removedNode->prev->next = removedNode->next;
+	removedNode->next->prev = removedNode->prev;
+	delete removedNode;
+	numItems--;
 }
 
 template <class T>
