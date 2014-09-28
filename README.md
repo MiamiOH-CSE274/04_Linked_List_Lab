@@ -26,5 +26,5 @@ Questions
 4. TODO
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
-
+When using an ArrayList as opposed to a LinkedList, there are different changes in runtime based on the inherent structures. An array-based list can offer easy access to any value in the array, so get(i) and set(i,x) can run in constant time. However, arrays are not very dynamic, so adding and removing from the middle of the array requires shifting the elements to fill in the gap, which takes linear time.  On the other hand, linked lists are more dynamic, so add(i,x) and remove(i) take constant time. It is harder to access a specific value in the list, however, so get(i) and set(i,x) take linear time. Therefore, if we used ArrayList instead of a LinkedList, get(i) and set(i,x) would be faster, but add(i,x) and remove(i) would be slower. 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
