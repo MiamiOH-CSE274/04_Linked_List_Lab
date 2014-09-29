@@ -147,7 +147,6 @@ T LinkedList<T>::get(unsigned long i){
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-	//TODO
-	return 0;
+	return numItems;
 }
 
