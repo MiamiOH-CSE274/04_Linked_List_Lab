@@ -81,7 +81,7 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	//TODO
+	
 }
 
 template <class T>
@@ -103,24 +103,67 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){ // Do not ha
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	//TODO
+	Node* myNode = find(i);
+	if(myNode == dummyNode){
+		throw std::string("Index was to large");
+	} else {
+		myNode->data = x;
+	}
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	//TODO
+	if(numItems < i)
+		throw std::string("List is not large enough to add a node at that index");
+	else{
+		Node* u = new Node();
+		u->data = x;
+		if(i == 0){
+			dummyNode->next = u;
+			numItems++;
+			if(numItems==1)
+				u->next = find(i + 1);
+			else
+				u->next = find(i);
+
+		}
+		else{
+			numItems++;
+			find(i - 1)->next = u;
+			if(numItems>i){
+				u->next = find(i+1);
+			}else{
+				u->next = find(i);
+			}
+		}
+	}
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-	//TODO
+	if(numItems < i + 1)
+		throw std::string("Not enough nodes to remove that index");
+	else{
+		if(i == 0){
+			delete find(i);
+		} else{
+			Node* u = find(i - 1);
+			u->next = find(i + 1);
+		}
+		delete find(i);
+		numItems--;
+	}
+	
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
+	if(numItems < i + 1)
+		throw std::string("Not enough nodes to remove that index");
 	Node* myNode = find(i);
 	if(myNode == dummyNode){
 		throw std::string("Index was to large");
+
 	} else {
 		return myNode->data;
 	}
@@ -128,7 +171,6 @@ T LinkedList<T>::get(unsigned long i){
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-	//TODO
-	return 0;
+	return numItems;
 }
 
