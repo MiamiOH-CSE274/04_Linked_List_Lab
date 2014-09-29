@@ -92,7 +92,8 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	//TODO
+	delete LinkedList[];
+	LinkedList = NULL
 }
 
 template <class T>
