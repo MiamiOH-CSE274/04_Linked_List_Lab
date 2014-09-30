@@ -100,6 +100,11 @@ LinkedList<T>::LinkedList(){
 // Destructor
 template <class T>
 LinkedList<T>::~LinkedList() {
+	// Get rid of the normal nodes - can reuse the remove
+	while(numItems > 0){
+		remove(0);
+	}
+	// Delete the dummyNode
 	delete dummyNode;
 	dummyNode = NULL;
 }
@@ -155,6 +160,9 @@ template <class T>
 void LinkedList<T>::remove(unsigned long i){
 	if (numItems == 0){
 		throw std::string("Tried to remove from a list containing no items, in remove()");
+	}
+	if(i == numItems){
+		throw std::string("Tried to remove an element beyond the length of the list, in remove()");
 	}
 	Node* removedNode = find(i);
 	removedNode->prev->next = removedNode->next;
