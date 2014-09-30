@@ -86,7 +86,7 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	while(numItmes > 0)	{
+	while(numItems > 0)	{
 		remove(0);
 	}
 	delete dummyNode;
@@ -110,7 +110,8 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	//TODO
+	//Node* temp = get(i);
+
 }
 
 template <class T>
@@ -122,15 +123,15 @@ void LinkedList<T>::add(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-	if(i == numItems)	{
-		throw std::string("Tried to delete the dummy node");
-	}
-	
 	Node* temp = find(i);
-	temp->prev->next = temp->next;
-	temp->next->prev = temp->prev;
-	delete temp;
-	numItems--;
+	if(temp == dummyNode){
+		throw std::string("Tried to delete the dummy node");
+	} else {
+		temp->prev->next = temp->next;
+		temp->next->prev = temp->prev;
+		delete temp;
+		numItems--;
+	}
 }
 
 template <class T>
