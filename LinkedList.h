@@ -86,7 +86,12 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	//TODO
+	//Get rid of all normal nodes so no memory leak
+	while(numItems > 0) {
+		remove(0);
+	}
+	//Get rid of dummyNode
+	delete dummyNode;
 }
 
 template <class T>
@@ -111,17 +116,40 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	//TODO
+	if(i>numItems) {
+		throw std::string("The index is larger than numItems, in set()");
+	}
+	else {
+		dummyNode->data = x;
+	}
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
 	//TODO
+
+	//numItems++;
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-	//TODO
+	if(numItems==0)
+		throw std::string("Tried to remove when there were no more items");
+	else {
+		Node* temp = find(i);
+		(temp->prev)->next = temp->next;
+		(temp->next)->prev = temp->prev;
+
+		//May not work, at this point code is never reaches cause numItems==0
+		numItems--;
+		delete temp;
+	}
+	//else if(i>numItems)
+	//	throw std::string("Index is larger than number of items, in remove()");
+	//else {
+		//TODO
+	//	numItems--;
+	//}
 }
 
 template <class T>
@@ -136,7 +164,6 @@ T LinkedList<T>::get(unsigned long i){
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-	//TODO
-	return 0;
+	return numItems;
 }
 
