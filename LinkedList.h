@@ -92,6 +92,8 @@ template <class T>
 LinkedList<T>::LinkedList(){
 	// Create a node for the dummyNode
 	dummyNode = new Node();
+	// Set dummyNode's next and prev pointers
+	// to point to itself
 	dummyNode->next = dummyNode;
 	dummyNode->prev = dummyNode;
 	numItems = 0;
@@ -100,12 +102,14 @@ LinkedList<T>::LinkedList(){
 // Destructor
 template <class T>
 LinkedList<T>::~LinkedList() {
-	// Get rid of the normal nodes - can reuse the remove
+	// Get rid of the normal nodes - can reuse remove
+	// since it deletes the node when finished
 	while(numItems > 0){
 		remove(0);
 	}
 	// Delete the dummyNode
 	delete dummyNode;
+	// Take care of the dangling pointer
 	dummyNode = NULL;
 }
 
@@ -114,12 +118,11 @@ template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	// Can techically remove first case, but then it would take longer
 	// since it would have to loop through the whole list
-	// First case in here for speed
 	if (i == numItems){
 		return dummyNode;
 	}
 	else if (i > numItems){
-		throw std::string("This index is larger than the number of items, in find()");
+		throw std::string("This index is larger than the number of items");
 	}
 	else{
 		// Start at the node to the right of the dummyNode
@@ -135,52 +138,70 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	Node* myNode = find(i);
-	if (myNode == dummyNode){
+	// If i equaled the size of the list, the dummyNode
+	// would be returned, which is bad - we do not want
+	// to set the value of the dummyNode to anything.
+	if (i == numItems){
 		throw std::string("In set(), the index was too large.");
-	}
-	else{
-		myNode->data = x;
+	}else{
+		// Otherwise, find the node at i, and replace its data.
+		Node* revisedNode = find(i);
+		revisedNode->data = x;
 	}
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
+	// Create a new Node using the data provided
 	Node* newNode = new Node();
 	newNode->data = x;
+	// Find the node that is in the spot where
+	// we want to add the new Node
 	Node* displacedNode = find(i);
-	newNode->prev = displacedNode->prev;
+
+	// Set the pointers in the newNode to point to
+	// the proper nodes in the list.
+	// The next node after newNode should be the
+	// one that was previously at that index.
 	newNode->next = displacedNode;
+	newNode->prev = displacedNode->prev;
+	// Set the pointers of the nodes around newNode
+	// to point to it.
 	displacedNode->prev = newNode;
 	newNode->prev->next = newNode;
+	// Since we have added an item, increase the number of items.
 	numItems++;
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-	if (numItems == 0){
-		throw std::string("Tried to remove from a list containing no items, in remove()");
-	}
+	// If i equals the number of items, there is no node
+	// at index i, and thus nothing to remove. This also 
+	// takes care of the case where there are no items in
+	// the list. 
 	if(i == numItems){
-		throw std::string("Tried to remove an element beyond the length of the list, in remove()");
+		throw std::string("Tried to remove an element beyond the length of the list, in remove().");
 	}
+	// Find the node to be removed
 	Node* removedNode = find(i);
+	// Set the pointers of the nodes around it to 
+	// point to each other, bypassing the reomovedNode
 	removedNode->prev->next = removedNode->next;
 	removedNode->next->prev = removedNode->prev;
+	// Delete the node at i and subtract one from numItems
 	delete removedNode;
 	numItems--;
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-	Node* myNode = find(i);
-	if (myNode == dummyNode){
-		// If i is equal to numItems, find will return the dummyNode
-		// If i was larger than numItems, the exception would have been
-		// thrown in find(i)
-		throw std::string("In get(), the index was too large.");
-	}
-	else{
+	// If i is equal to numItems, find will return the dummyNode.
+	// This is bad - dummyNode has no data to return.
+	if (i == numItems){
+		throw std::string("In get(), the index was larger than the number of items.");
+	}else{
+		// Otherwise, find the node at i and return its data.
+		Node* myNode = find(i);
 		return myNode->data;
 	}
 }
