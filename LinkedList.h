@@ -81,7 +81,11 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	//TODO
+	//TODO Check!!
+	while(numItems > 0){
+		remove(0);
+	}
+	delete dummyNode;
 }
 
 template <class T>
@@ -112,7 +116,11 @@ void LinkedList<T>::add(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-	//TODO
+	//TODO check bounds/dummy node
+	Node* temp = find(i);
+	(temp->prev)->next = temp->next;
+	(temp->next)->prev = temp->prev;
+	delete temp;
 }
 
 template <class T>
