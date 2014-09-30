@@ -5,7 +5,7 @@
 #include "List.h"
 
 template <class T>
-class LinkedList : public List <T> {
+class LinkedList : public List < T > {
 private:
 	struct Node{
 		T data;
@@ -42,7 +42,7 @@ public:
 	// is {3, 5}, the result should be that the current list is {4, 1, 2, 3, 5} and src is
 	// empty
 	//Note: This should be O(1) time. Use pointer manipulations to graft the lists together.
-	
+
 	//virtual void takeAll(LinkedList<T>& src);
 
 	//Initialize all private member variables.
@@ -86,7 +86,7 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	while(numItems > 0)	{
+	while (numItems > 0)	{
 		remove(0);
 	}
 	delete dummyNode;
@@ -96,9 +96,11 @@ template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	if (i == numItems)	{
 		return dummyNode;
-	} else if (i > numItems)	{
+	}
+	else if (i > numItems)	{
 		throw std::string("Index is longer than number of items, in find()");
-	} else {
+	}
+	else {
 		Node* ret = dummyNode->next;
 		while (i > 0)	{
 			ret = ret->next;
@@ -106,7 +108,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 		}
 		return ret;
 	}
-	
+
 }
 
 template <class T>
@@ -137,15 +139,16 @@ void LinkedList<T>::add(unsigned long i, T x){
 		newNode->prev->next = newNode;
 		numItems++;
 	}
-	
+
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
 	Node* temp = find(i);
-	if(temp == dummyNode){
+	if (temp == dummyNode){
 		throw std::string("Tried to delete the dummy node");
-	} else {
+	}
+	else {
 		temp->prev->next = temp->next;
 		temp->next->prev = temp->prev;
 		delete temp;
@@ -156,16 +159,17 @@ void LinkedList<T>::remove(unsigned long i){
 template <class T>
 T LinkedList<T>::get(unsigned long i){
 	Node* myNode = find(i);
-	if(myNode == dummyNode){
+	if (myNode == dummyNode){
 		throw std::string("In get(), index was too large");
-	} else {
+	}
+	else {
 		return myNode->data;
 	}
 }
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-	
+
 	return numItems;
 }
 
