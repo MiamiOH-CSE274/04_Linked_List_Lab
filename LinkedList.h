@@ -90,12 +90,12 @@ LinkedList<T>::~LinkedList()
 	node = node->prev;
 
 	// loop through each element in list, from end to start
-	for (int i = numItems; i > 0; i--) {
+	for (unsigned int i = 0; i < numItems; i++) {
 		node = node->prev;
 		delete node->next;
 	}
 
-	// regardless of what numItems is, node will be dummyNode here
+	// regardless of what numItems is, node == dummyNode here
 	delete node;
 }
 
