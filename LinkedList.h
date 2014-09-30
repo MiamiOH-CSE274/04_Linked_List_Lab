@@ -120,7 +120,8 @@ void LinkedList<T>::set(unsigned long i, T x){
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
 	// Adds a new Node in front of i
-	// if (i > numItems) throw std::string("Index is too large, amigo.");
+	if (i > numItems) throw std::string("Index is too large, amigo. Can't add() there!");
+	// if (i == numItems) throw std::string("Can't add there!");
 	Node* w = find(i);
 	Node* u = new Node;
 	u->data = x;
@@ -133,8 +134,8 @@ void LinkedList<T>::add(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-	if (i > numItems) throw std::string("Index is too large, amigo.");
-	if (numItems == 0) throw std::string("Nothing to remove!");
+	if (i > numItems) throw std::string("Index is too large, amigo. Can't remove() what's not there!");
+	if (numItems == 0) throw std::string("Nothing to remove()!");
 	Node* w = find(i);
 	(w->prev)->next = w->next;
 	(w->next)->prev = w->prev;
