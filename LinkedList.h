@@ -92,8 +92,11 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	delete LinkedList[];
-	LinkedList = NULL
+	while(numItems > 0) {
+		remove(0);
+	}
+	delete sentinelNode;
+
 }
 
 template <class T>
@@ -124,8 +127,14 @@ void LinkedList<T>::set(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	//TODO
+	Node* temp = find(i);
+	newNode = new Node();
+	newNode->prev = temp->prev;
+	newNode->next = temp->next;
+	(temp->prev)->next = newNode;
+	(temp->next)->prev = newNode;
 	numItems++;
+
 }
 
 template <class T>
