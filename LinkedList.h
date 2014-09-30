@@ -89,7 +89,13 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-  //TODO
+	// Get rid of all the normal nodes
+	while(numItems > 0) {
+		//remove(0);
+		//^commented out so code will work at all
+	}
+	// Get rid of the dummy node
+	delete dummyNode;
 }
 
 template <class T>
