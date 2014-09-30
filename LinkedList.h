@@ -37,10 +37,11 @@ public:
 
 	//Optional, but may be useful in the Shuffle project
 	//Remove all items from src, and add them to the end of the current list, in the
-	// same order that they started. So if the current list is {4, 1, 2} and src is {3, 5},
-	// the result should be that the current list is {4, 1, 2, 3, 5} and src is empty
+	// same order that they started. So if the current list is {4, 1, 2} and src
+	// is {3, 5}, the result should be that the current list is {4, 1, 2, 3, 5} and src is
+	// empty
 	//Note: This should be O(1) time. Use pointer manipulations to graft the lists together.
-	virtual void takeAll(LinkedList<T>& src);
+	// virtual void takeAll(LinkedList<T>& src);
 
 	//Initialize all private member variables.
 	// Be sure to create the dummy node using "new"
@@ -84,7 +85,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	if (i == numItems)
 		return dummyNode;
 	else if (i > numItems)
-		throw std::cout << "ERROR: List does not contain such index. (find)" << std::endl;
+		throw std::string("ERROR: List does not contain such index. (find)");
 	else {
 		Node* a = dummyNode->next;
 		while (i < 0) {
@@ -99,23 +100,23 @@ template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
 	Node* a = find(i);
 	if (a == dummyNode)
-		throw std::string("In set(), index was too large.");
+		throw std::string("ERROR: List does not contain such index. (set)");
 	else
 		a->data = x;
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	++numItems;
+	numItems++;
 	if (i >= numItems)
-		throw std::cout << "ERROR: List does not contain such index. (add)" << std::endl;
+		throw std::string("ERROR: List does not contain such index. (add)");
 
 	Node* a = new Node();
 	a->data = x;
-	if (numItems == 0) {
+	if (i == 0) {
+		dummyNode->next->prev = a;
+		a->next = dummyNode->next;
 		dummyNode->next = a;
-		dummyNode->prev = a;
-		a->next = dummyNode;
 		a->prev = dummyNode;
 	} else if (i == (numItems - 1)) {
 		dummyNode->prev->next = a;
@@ -125,24 +126,22 @@ void LinkedList<T>::add(unsigned long i, T x){
 	} else {
 		Node *b = find(i);
 		b->prev->next = a;
-		a->prev = b->prev;
-		b->prev = a;
-		a->next = b;
+		a->next = b->next;
+		b->next = a;
+		a->prev = b;
 	}
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
 	if (i >= numItems)
-		throw std::cout << "ERROR: List does not contain such index. (remove)" << std::endl;
-	if (numItems == 0)
-		throw std::cout << "ERROR: List is empty. (remove)" << std::endl;
+		throw std::string("ERROR: List does not contain such index. (remove)");
 	else {
 		Node *a = find(i);
 		a->next->prev = a->prev;
 		a->prev->next = a->next;
+		numItems--;
 		delete a;
-		--numItems;
 	}
 }
 
@@ -150,9 +149,9 @@ template <class T>
 T LinkedList<T>::get(unsigned long i){
 	Node* a = find(i);
 	if(a == dummyNode)
-		throw std::cout << "ERROR: List does not contain such index. (get)" << std::endl;
+		throw std::string("ERROR: List does not contain such index. (get)");
 	else
-		return find(i)->data;
+		return a->data;
 }
 
 template <class T>
