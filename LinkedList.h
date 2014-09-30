@@ -44,8 +44,7 @@ public:
 	//virtual void takeAll(LinkedList<T>& src);
 
 	//Initialize all private member variables.
-	// Be sure to create the dummy node using "new"
-	LinkedList();
+	// Be sure to create the dummy node using "new" LinkedList();
 	//Delete any dynamically allocated memory. You will need to loop
 	// through all your nodes, deleting them one at a time
 	virtual ~LinkedList();
@@ -84,6 +83,7 @@ LinkedList<T>::~LinkedList() {
 	//Get rid of the normal nodes
 	while(numItems > 0){
 		remove(0);
+		numItems--;
 	}
 	delete dummyNode;
 }
@@ -108,17 +108,51 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	//TODO
+	if (numItems < i + 1){
+		throw std::string("Index is too large for the list in set()");
+	}
+	else {
+		Node* tempNode = find(i);
+		tempNode->data = x;
+	}
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	//TODO
+	if (numItems < i){
+		throw std::string("i is not contained in add()");
+	}
+	else{
+		Node* newNode = new Node();
+		//slide the next and previous nodes to the correct spots
+		Node* currentNode = find(i);
+		newNode->data = x;
+		newNode->next = currNode;
+		newNode->prev = currNode->prev;
+		currNode->prev->next = newNode;
+		currNode->prev = newNode;
+		numItems++
+	}
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-	//TODO
+	if (numItems < i || numItems == 0){
+		throw std::string("Cannot remove from the list because it is too short.");
+	}
+	else{
+		Node* currNode = find(i);
+		if (currNode == dummyNode){
+			throw std::string("Cannot delete the dummyNode; no items to remove.");
+		}
+		else{
+			currNode->prev->next = currNode->next;
+			currNode->next->prev = currNode->prev;
+
+			delete currNode;
+			numItems--;
+		}
+	}
 }
 
 template <class T>
@@ -133,7 +167,6 @@ T LinkedList<T>::get(unsigned long i){
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-	//TODO
-	return 0;
+	return numItems;
 }
 
