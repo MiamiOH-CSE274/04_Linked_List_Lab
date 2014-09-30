@@ -119,23 +119,38 @@ void LinkedList<T>::set(unsigned long i, T x){
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
   //TODO
-	if(i > numItems){
+	Node *nodeAtIndex, *nodeBeforeIndex;
+	Node* newNode = new Node();
+	newNode->data = x;
+	if(i+1 > numItems){
 		throw std::string("Index is larger than number of items, in add()");
+	} else if(i == numItems){
+		newNode->next = dummyNode;
+		newNode->prev = find(i-1);
+	} else{
+		nodeAtIndex = find(i);
+		nodeBeforeIndex = find(i-1);
+		newNode->prev = nodeAtIndex->prev;
+		newNode->next = nodeAtIndex;
+		nodeAtIndex->prev = newNode;
+		nodeBeforeIndex->next = newNode;
 	}
-	Node newNode = new Node();
-	newNode.data = x;
-	newNode.next = 
+	delete nodeAtIndex;
+	delete nodeBeforeIndex;
 
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-  //TODO
-
-	Node* tempNode = find(i);
-	temp->prev->next = temp->next;
-	temp->next->prev = temp->prev;
-	numItems--;
+	Node* tempNode;
+	if(i+1 > numItems){
+		throw std::string("Index is larger than number of items, in remove()");
+	} else{
+		tempNode = find(i);
+		tempNode->prev->next = tempNode->next;
+		tempNode->next->prev = tempNode->prev;
+		numItems--;
+	}
 
 
 	delete tempNode;
