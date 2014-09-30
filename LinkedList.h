@@ -81,7 +81,12 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	//TODO
+	//delete everything made with new - also delete all nodes
+	while(numItems>0)
+	{
+		remove(0);
+	}
+	delete dummyNode;
 }
 
 template <class T>
@@ -137,11 +142,17 @@ void LinkedList<T>::remove(unsigned long i){
 	{
 		// A B C <-nodes. set a next to c. set c prev to a. delete selected node
 		Node* currNode = find(i);
+		if(currNode==dummyNode)
+		{
+			throw std::string("Trying to delete dummyNode");
+		}
+		else{
 		currNode->prev->next = currNode->next;
 		currNode->next->prev = currNode->prev;
 
 		delete currNode; 
 		numItems--;
+		}
 	}
 }
 
