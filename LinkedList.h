@@ -81,7 +81,10 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	
+	while(numItems>0){
+		remove(0);
+	}
+	delete dummyNode;
 }
 
 template <class T>
@@ -119,25 +122,18 @@ void LinkedList<T>::add(unsigned long i, T x){
 		Node* u = new Node();
 		u->data = x;
 		if(i == 0){
-			numItems++;
-			if(numItems==1){
-				u->next = find(i + 1);
-				dummyNode->next = u;
-			}
-			else{
-				u->next = find(i);
-				dummyNode->next = u;
-			}
+			u->prev = dummyNode;
+			u->next = find(i);
+			u->prev->next = u;
+			u->next->prev = u;
 		}
 		else{
-			numItems++;
-			find(i - 1)->next = u;
-			if(numItems>i){
-				u->next = find(i+1);
-			}else{
-				u->next = find(i);
-			}
+			u->prev = find(i-1);
+			u->next = find(i);
+			u->prev->next = u;
+			u->next->prev = u;
 		}
+		numItems++;
 	}
 }
 
@@ -146,16 +142,8 @@ void LinkedList<T>::remove(unsigned long i){
 	if(numItems < i + 1)
 		throw std::string("Not enough nodes to remove that index");
 	else{
-		if(i == 0){
-			delete find(i);
-		} else{
-			Node* u = find(i - 1);
-			u->next = find(i + 1);
-		}
-		delete find(i);
-		numItems--;
-	}
-	
+		
+	}	
 }
 
 template <class T>
