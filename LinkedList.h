@@ -92,7 +92,7 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	while(numItems > 0) {
+	while(size() > 0) {
 		remove(0);
 	}
 	delete sentinelNode;
@@ -103,7 +103,7 @@ template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	if(i == numItems){
 	return sentinelNode;
-	} else if(i > numItems){
+	} else if(i > size()){
 		throw std::string("This value is larger than the number of items contained in the list!");
 	} else {
 		Node* ret = sentinelNode->next;
@@ -127,24 +127,27 @@ void LinkedList<T>::set(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	Node* temp = find(i);
-	newNode = new Node();
-	newNode->prev = temp->prev;
-	newNode->next = temp->next;
-	(temp->prev)->next = newNode;
-	(temp->next)->prev = newNode;
 	numItems++;
-
+	if (i < size()){
+		Node* temp = find(i);
+		Node* newNode = new Node();
+		newNode->prev = temp->prev;
+		newNode->next = temp->next;
+		(temp->prev)->next = newNode;
+		(temp->next)->prev = newNode;
+	} else {
+		throw std::string("The index given is out of bounds.");
+	}
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-	if(i != numItems){
-	Node* temp = find(i);
-	(temp->prev)->next = temp->next;
-	(temp->next)->prev = temp->prev;
-	delete temp;
-	temp = NULL;
+	if(i != size()){
+	Node* removeNode = find(i);
+	(removeNode->prev)->next = removeNode->next;
+	(removeNode->next)->prev = removeNode->prev;
+	delete removeNode;
+	removeNode = NULL;
 	numItems--;
 	} else {
 	throw std::string("The node is invalid!");

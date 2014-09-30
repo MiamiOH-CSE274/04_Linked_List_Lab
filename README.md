@@ -20,8 +20,8 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
+1. Add, remove, get and set all are constant time.
+2. The methods throw a string exception if a bad value if given.
 3. The destructor deletes data contained in the array and nullifies the pointer to the array.
 4. The size method simply returns the number of items in the list.
 
