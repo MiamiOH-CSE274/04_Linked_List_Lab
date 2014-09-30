@@ -90,7 +90,7 @@ void testExceptions(){
   LinkedList<int> testList;
   bool didException = false;
   try {
-    testList.remove(0);
+     testList.remove(0);
   } catch (std::string s) {
     std::cout << "SUCCESS: Caught exception: " << s << std::endl;
     didException = true;
@@ -162,6 +162,5 @@ int main(){
   testBasicMethods();
   testExceptions();
  // testSplice();
-
   return 0;
 }
