@@ -131,7 +131,18 @@ void LinkedList<T>::add(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-	//TODO
+	if(numItems<i || numItems==0)
+	{ throw std::string("List does not have enough items in remove()"); }
+	else
+	{
+		// A B C <-nodes. set a next to c. set c prev to a. delete selected node
+		Node* currNode = find(i);
+		currNode->prev->next = currNode->next;
+		currNode->next->prev = currNode->prev;
+
+		delete currNode; 
+		numItems--;
+	}
 }
 
 template <class T>
