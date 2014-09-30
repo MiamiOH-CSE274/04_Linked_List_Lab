@@ -109,17 +109,47 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	//TODO
+	Node* temp = find(i);
+	if (temp != dummyNode){
+		temp->data = x;
+	}
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	//TODO
+	Node* toAdd = new Node();
+	toAdd->data = x;
+
+	/*if (numItems == 0){
+		dummyNode->next = toAdd;
+		dummyNode->prev = toAdd;
+
+		toAdd->next = dummyNode;
+		toAdd->prev = dummyNode;
+	}
+	else{*/
+	Node* temp = find(i);
+
+	(temp->prev)->next = toAdd;
+	toAdd->next = temp;
+
+	toAdd->prev = temp->prev;
+	temp->prev = toAdd;
+	numItems++;
+	//}
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-	//TODO
+	Node* temp = find(i);
+	if (temp == dummyNode){
+		throw std::string("Out of bounds remove.");
+	}
+	else{
+		(temp->prev)->next = temp->next;
+		(temp->next)->prev = temp->prev;
+		numItems--;
+	}
 }
 
 template <class T>
@@ -137,7 +167,6 @@ T LinkedList<T>::get(unsigned long i){
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-	//TODO
-	return 0;
+	return numItems;
 }
 
