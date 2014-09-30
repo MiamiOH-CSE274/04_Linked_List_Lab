@@ -86,39 +86,48 @@ LinkedList<T>::~LinkedList()
 {
 	LinkedList<T>::Node *node = dummyNode;
 
-	if (numItems == 0) {
-		delete node;
-	} else while ((node = node->next) != dummyNode) {
-		delete node->prev;
+	// start at end of list (will just be dummyNode if numItems == 0)
+	node = node->prev;
+
+	// loop through each element in list, from end to start
+	for (int i = numItems; i > 0; i--) {
+		node = node->prev;
+		delete node->next;
 	}
+
+	// regardless of what numItems is, node will be dummyNode here
+	delete node;
 }
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i) 
 {
 	if (i > numItems) {
-		throw std::string("error: element is larger than the size of the LinkedList");
+		throw std::string("error: index is larger than the size of the LinkedList");
 	}
 
-	LinkedList<T>::Node *p;
+	LinkedList<T>::Node *ret;
 
-	if (i < numItems / 2) {
+	if (i == numItems) {
+		// the ith element of a LinkedList of size i is always dummyNode
+		ret = dummyNode;
+	} else if (i < numItems / 2) {
 		// start at beginning of list
-		p = dummyNode->next;
+		ret = dummyNode->next;
 
 		for (unsigned long int k = 0; k < i; k++) {
-			p = p->next;
+			ret = ret->next;
 		}
 	} else {
 		// start at end of list
-		p = dummyNode;
+		ret = dummyNode;
 
 		for (unsigned long int k = numItems; k > i; k--) {
-			p = p->prev;
+			ret = ret->prev;
 		}
 	}
 
-	return p;
+	return ret;
 }
 
 template <class T>
@@ -178,22 +187,14 @@ void LinkedList<T>::remove(unsigned long i)
 template <class T>
 T LinkedList<T>::get(unsigned long i)
 {
-	return find(i)->data;
-}
+	LinkedList<T>::Node *node = find(i);
 
-/*
-template <class T>
-void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t)
-{
-	//TODO
+	if (node == dummyNode) {
+		throw std::string("error: index was too large in get()");
+	} else {
+		return node->data;
+	}
 }
-
-template <class T>
-void LinkedList<T>::takeAll(LinkedList<T>& src)
-{
-
-}
-*/
 
 template <class T>
 unsigned long LinkedList<T>::size()
