@@ -130,8 +130,16 @@ void LinkedList<T>::add(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-	//TODO
+	if(i != numItems){
+	Node* temp = find(i);
+	(temp->prev)->next = temp->next;
+	(temp->next)->prev = temp->prev;
+	delete temp;
+	temp = NULL;
 	numItems--;
+	} else {
+	throw std::string("The node is invalid!");
+	}
 }
 
 template <class T>
