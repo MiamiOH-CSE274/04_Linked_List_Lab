@@ -111,15 +111,33 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	//Node* temp = get(i);
+	Node* temp = find(i);
+	if (temp == dummyNode){
+		throw std::string("In set(), index was too large");
+	}
+	else {
+		temp->data = x;
+	}
 
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	//Node* temp = find(i);
-	//4 pointers need to change
-
+	if (numItems < i){
+		throw std::string("List does not contain the index, in add()");
+	}
+	else
+	{
+		Node* temp = find(i);
+		Node* newNode = new Node();
+		newNode->data = x;
+		newNode->prev = temp->prev;
+		newNode->next = temp;
+		newNode->next->prev = newNode;
+		newNode->prev->next = newNode;
+		numItems++;
+	}
+	
 }
 
 template <class T>
@@ -145,16 +163,9 @@ T LinkedList<T>::get(unsigned long i){
 	}
 }
 
-/*
-template <class T>
-void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
-	//TODO
-}
-*/
-
 template <class T>
 unsigned long LinkedList<T>::size(){
-	//TODO
-	return 0;
+	
+	return numItems;
 }
 
