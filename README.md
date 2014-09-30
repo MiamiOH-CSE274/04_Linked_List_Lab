@@ -20,10 +20,10 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
-4. TODO
+1. Works in theory but not in reality. My program successfully tests the constructor and then errors out.
+2. Works! add(), remove(), and find() all throw a string exception if the index is out of bounds.
+3. Works! Remove deletes the pointer variables that it created and the destructor makes sure to delete the dummy node.
+4. Works! size() only has to return the variable that stores the number of items in the list which take constant time.
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
 				LinkedList Runtimes: size() = O(1), add() = O(1), remove() = O(1), set() = O(n), get() = O(n)
