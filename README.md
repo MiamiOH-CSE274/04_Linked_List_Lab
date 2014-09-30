@@ -26,5 +26,10 @@ Questions
 4. TODO
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
+				LinkedList Runtimes: size() = O(1), add() = O(1), remove() = O(1), set() = O(n), get() = O(n)
+				ArrayList Runtimes: size() = O(1), add() = O(n), remove() = O(n), set() = O(1), get() = O(1)
+				
+				So if we used an ArrayList instead of a LinkedList our add() and remove() methods would be faster, our set() and get() methods would be slower, and size() would be the same.
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
+				In the comments that you left for the add() and remove() methods it says that the other nodes will have to be pushed away from or pulled toward the index where we added/removed in order to accommodate the added/removed node. Isn't this what using a linked list is trying to prevent? That is, we don't want to have to move the other items in the list because that would require O(n) time instead of O(1) time.
