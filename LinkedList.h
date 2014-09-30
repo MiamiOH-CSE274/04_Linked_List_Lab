@@ -70,7 +70,7 @@ private:
 };
 
 /*
-* I worked alone on this assignment, but much of the code 
+* I worked alone on this assignment, but much of the code
 * is based on what we did in class and on the code
 * examples in the book Open Data Structures by Pat Morin
 *
@@ -104,7 +104,7 @@ template <class T>
 LinkedList<T>::~LinkedList() {
 	// Get rid of the normal nodes - can reuse remove
 	// since it deletes the node when finished
-	while(numItems > 0){
+	while (numItems > 0){
 		remove(0);
 	}
 	// Delete the dummyNode
@@ -125,12 +125,28 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 		throw std::string("This index is larger than the number of items");
 	}
 	else{
-		// Start at the node to the right of the dummyNode
-		Node* returnVal = dummyNode->next;
-		while (i > 0){
-			// return the pointer to the next node
-			returnVal = returnVal->next;
-			i--;
+		Node* returnVal;
+		// If the index is in the first half of the list, start
+		// at the beginning and move forward to the correct index
+		if (i < numItems / 2){
+			// returnVal should be the next node after the dummyNode
+			returnVal = dummyNode->next;
+			// cycle through until you get to the index, and keep
+			// moving retunrVal to the next node
+			for (unsigned int j = 0; j < i; j++){
+				returnVal = returnVal->next;
+			}
+		}
+		// If the index is in the last half of the list, start 
+		// at the end and work backwards to the correct index
+		else{
+			// returnVal should start at the node before the dummyNode
+			returnVal = dummyNode->prev;
+			// Cycle through the indexes backwards, each time moving
+			// returnVal to the previous node
+			for (unsigned int j = numItems - 1; j > i; j--){
+				returnVal = returnVal->prev;
+			}
 		}
 		return returnVal;
 	}
@@ -143,7 +159,8 @@ void LinkedList<T>::set(unsigned long i, T x){
 	// to set the value of the dummyNode to anything.
 	if (i == numItems){
 		throw std::string("In set(), the index was too large.");
-	}else{
+	}
+	else{
 		// Otherwise, find the node at i, and replace its data.
 		Node* revisedNode = find(i);
 		revisedNode->data = x;
@@ -179,7 +196,7 @@ void LinkedList<T>::remove(unsigned long i){
 	// at index i, and thus nothing to remove. This also 
 	// takes care of the case where there are no items in
 	// the list. 
-	if(i == numItems){
+	if (i == numItems){
 		throw std::string("Tried to remove an element beyond the length of the list, in remove().");
 	}
 	// Find the node to be removed
@@ -199,7 +216,8 @@ T LinkedList<T>::get(unsigned long i){
 	// This is bad - dummyNode has no data to return.
 	if (i == numItems){
 		throw std::string("In get(), the index was larger than the number of items.");
-	}else{
+	}
+	else{
 		// Otherwise, find the node at i and return its data.
 		Node* myNode = find(i);
 		return myNode->data;
