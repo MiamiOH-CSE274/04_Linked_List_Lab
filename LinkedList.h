@@ -106,6 +106,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 		}
 		return ret;
 	}
+	
 }
 
 template <class T>
