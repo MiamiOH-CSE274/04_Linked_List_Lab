@@ -8,7 +8,7 @@
 // LinkedList<T> class.
 template <class T>
 LinkedList<T>::LinkedList(){
-  //TODO
+  dummyNode = new Node();
 }
 
 template <class T>
@@ -45,10 +45,10 @@ T LinkedList<T>::get(unsigned long i){
   return junkNode.data; //This is unitialized data
 }
 
-template <class T>
-void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
-  //TODO
-}
+//template <class T>
+//void LinkedList<T>::splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t){
+  ////TODO
+//}
 
 template <class T>
 unsigned long LinkedList<T>::size(){

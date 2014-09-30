@@ -3,6 +3,11 @@
 //Date: 2013/07/11
 #include "List.h"
 
+
+
+
+
+
 template <class T>
 class LinkedList : public List <T> {
  private:
@@ -41,7 +46,8 @@ class LinkedList : public List <T> {
   // is {3, 5}, the result should be that the current list is {4, 1, 2, 3, 5} and src is
   // empty
   //Note: This should be O(1) time. Use pointer manipulations to graft the lists together.
-  virtual void takeAll(LinkedList<T>& src);
+
+  // virtual void takeAll(LinkedList<T>& src);
 
   //Initialize all private member variables.
   // Be sure to create the dummy node using "new"
@@ -63,4 +69,92 @@ class LinkedList : public List <T> {
   unsigned long numItems;
 };
 
-#include "LinkedList.ipp"
+// #include "LinkedList.ipp"
+//You will need this so you can make a string to throw in
+// remove
+#include <string>
+
+//Syntax note: C++ is not very good at figuring out which methods belong
+// to which classes. That is why we have to use the scope operator to
+// tell the compiler that this LinkedList() method belongs to the
+// LinkedList<T> class.
+template <class T>
+LinkedList<T>::LinkedList(){
+  dummyNode = new Node();
+  dummyNode->next = dummyNode;
+  dummyNode->prev = dummyNode;
+
+  numItems=0;
+}
+
+template <class T>
+LinkedList<T>::~LinkedList() {
+	// Get rid of all the normal nodes
+	while(numItems > 0) {
+		remove(0);
+	}
+	// Get rid of the dummy node
+	delete dummyNode;
+}
+
+template <class T>
+typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
+  if (i == numItems) return dummyNode;
+  else if (i > numItems) throw std::string("Can't find() that index, it's too large.");
+  else {
+	 Node* ret = dummyNode->next;
+	 while(i>0) {
+		ret = ret->next;
+		i--;
+	}
+	 return ret;
+  } 
+}
+
+template <class T>
+void LinkedList<T>::set(unsigned long i, T x){
+	Node* u = find(i);
+	u->data = x;
+}
+
+template <class T>
+void LinkedList<T>::add(unsigned long i, T x){
+	// Adds a new Node in front of i
+	if (i > numItems) throw std::string("Index is too large, amigo. Can't add() there!");
+	// if (i == numItems) throw std::string("Can't add there!");
+	Node* w = find(i);
+	Node* u = new Node;
+	u->data = x;
+	u->prev = w->prev;
+	u->next = w;
+	(u->next)->prev = u;
+	(u->prev)->next = u;
+	numItems++;
+}
+
+template <class T>
+void LinkedList<T>::remove(unsigned long i){
+	if (i > numItems) throw std::string("Index is too large, amigo. Can't remove() what's not there!");
+	if (numItems == 0) throw std::string("Nothing to remove()!");
+	Node* w = find(i);
+	(w->prev)->next = w->next;
+	(w->next)->prev = w->prev;
+	delete w;
+	numItems--;
+}
+
+template <class T>
+T LinkedList<T>::get(unsigned long i){
+  Node* myNode = find(i);
+  if(myNode == dummyNode) {
+	  throw std::string("In get(), index was too large.");
+  } else {
+	  return myNode->data;
+  }
+}
+
+
+template <class T>
+unsigned long LinkedList<T>::size(){
+	return numItems;
+}
