@@ -34,3 +34,4 @@ Remove is faster with ArrayList because there is no need to find the node, pair 
 Add is faster with LinkedList because we simply link the surrounding nodes to the new node, rather than iterate through an ArrayList and bump all elements up.
 
 #### 3. What is one question that confused you about this exercise, or one piece of advice you would share with students next semester?
+Draw out linked list operations and others like it. It really helps to visualize it before coding.
