@@ -1,6 +1,15 @@
 //DO NOT CHANGE THIS FILE
 //Author: Bo Brinkman
 //Date: 2013/07/11
+
+/*
+ Statement of Authenticity:
+ 
+ Storyboards in class by Dr. Brinkman really helped 
+ me with the add and remove methods.
+ 
+ */
+
 #include "List.h"
 
 template <class T>
@@ -74,7 +83,11 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	//TODO
+	
+    while(numItems > 0){
+        remove(0);
+    }
+    delete dummyNode;
 }
 
 template <class T>
@@ -136,6 +149,7 @@ void LinkedList<T>::remove(unsigned long i){
         
         beforeI->next = afterI;
         afterI->prev = beforeI;
+        
         numItems--;
         delete toDelete;
     }
@@ -143,6 +157,7 @@ void LinkedList<T>::remove(unsigned long i){
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
+    
 	Node* myNode = find(i);
 	
 	if(myNode == dummyNode){
