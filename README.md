@@ -27,6 +27,6 @@ Questions
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
 
-3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
+3. What is one question that confused you about this exercise, or one piece of advice you would share with students next semester?
 
 	I would suggest that students review the way you find the location of a variable versus the actual thing in the variable, and vice versa. I messed this up once or twice in my program, and couldn't figure out why it wouldn't work until I realized my mistake. Being new to C++ is a little confusing, and learning how to "think in C++" will help a lot.
