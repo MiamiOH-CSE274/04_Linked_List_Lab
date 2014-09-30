@@ -87,7 +87,7 @@ LinkedList<T>::~LinkedList() {
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	if(i==numItems)
-	{ return dummyNodee; }
+	{ return dummyNode; }
 	else if(i> numItems){
 		throw std::string("Index is larger than numItems in find()"); }
 	else { 
@@ -95,19 +95,38 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 		while(i>0)
 			{
 				ret = ret ->next;
-				i--}
+				i--;}
 		return ret; 
 	}
 }
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	//TODO
+	if(numItems<i+1)
+	{ throw std::string("Index is larger than list in set()"); }
+	else
+	{
+		Node* tempNode = find(i);
+		tempNode->data = x; 
+	}
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	//TODO
+	if(numItems<i){ throw std::string("List does not contain i in add()");}
+	else
+	{
+		Node* newNode = new Node(); 
+		//find node in the same position, make that next. use currentNode prev as new node prev.
+		//set currentNode prev's next as new node
+		Node* currNode= find(i);
+		newNode->data = x;
+		newNode->next = currNode;
+		newNode->prev = currNode->prev;
+		currNode->prev->next = newNode;
+		currNode->prev = newNode;
+		numItems++;
+	}
 }
 
 template <class T>
@@ -127,6 +146,5 @@ T LinkedList<T>::get(unsigned long i){
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-	//TODO
-	return 0;
+	return numItems;
 }
