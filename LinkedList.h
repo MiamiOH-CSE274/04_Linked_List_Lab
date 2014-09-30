@@ -63,6 +63,13 @@ private:
 	unsigned long numItems;
 };
 
+/** 
+* Authored by: Chris Dieter with help of Dr. Brinkman and 
+* the free textbook Open Data Structures by Pat Morin. Help
+* with most functions came from in class lectures during the
+* week of 9/21 and 9/28.
+*/
+
 //You will need this so you can make a string to throw in
 // remove
 #include <string>
