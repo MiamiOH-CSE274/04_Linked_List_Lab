@@ -66,6 +66,9 @@ private:
 //You will need this so you can make a string to throw in
 // remove
 #include <string>
+/*
+* Originality: All code in this project is original or implemented in class.
+*/
 
 //Syntax note: C++ is not very good at figuring out which methods belong
 // to which classes. That is why we have to use the scope operator to
