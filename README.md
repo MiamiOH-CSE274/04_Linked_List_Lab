@@ -31,4 +31,4 @@ In an ArrayList, the add and remove would be a bit slower because the add and re
 
 #### 3. What is one question that confused you about this exercise, or one piece of advice you would share with students next semester?
 
-
+I am still a bit confused about how the nodes work, do they in fact store three variables? I understand they have a next and a previous, but are those initialized and how would a node look in memory?
