@@ -82,6 +82,9 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
+	while(numItems > 0){
+		remove(0);
+	}
 	delete dummyNode;
 }
 
@@ -138,7 +141,7 @@ void LinkedList<T>::add(unsigned long i, T x){
 	}
 
 	else {
-		Node* oldNode = find(i - 1);
+		Node* oldNode = find(i);
 		oldNode->next->prev = newNode;
 		newNode->next = oldNode->next;
 		oldNode->next = newNode;
