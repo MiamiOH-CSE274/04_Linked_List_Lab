@@ -142,7 +142,11 @@ void LinkedList<T>::remove(unsigned long i){
 	if(numItems < i + 1)
 		throw std::string("Not enough nodes to remove that index");
 	else{
-		
+		Node* temp = find(i);
+		temp->prev->next = temp->next;
+		temp->next->prev = temp->prev;
+		delete temp;
+		numItems--;
 	}	
 }
 
