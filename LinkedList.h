@@ -80,46 +80,92 @@ LinkedList<T>::LinkedList(){
 	dummyNode->next = dummyNode;
 	dummyNode->prev = dummyNode;
 	
-	numItems = o;
+	numItems = 0;
 }
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	//TODO
+	while(numItems > 0){
+		remove(0);
+	}
+	delete dummyNode;
 }
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-	//TODO
-	return NULL;
+	if(i == numItems) {
+		return dummyNode;
+	} else if(i > numItems) {
+		throw std::string("Index is larger than number of items, in find()");
+	} else {
+		Node* ret = dummyNode->next;
+		while(i > 0) {
+			 ret = ret->next; 
+			 i--;
+		}
+		return ret;
+	}
 }
+
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	//TODO
+	Node *u = find(i);
+	u->data = x;
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	//TODO
+	if(i == 0){
+		Node *u = new Node;
+		u->data = x;
+		u->prev = dummyNode;
+		u->next = dummyNode->next;
+		u->next->prev = u;
+		u->prev->next = u;
+		numItems++;
+	}
+	else if(i <= numItems && i > 0){
+		Node *w = find(i-1);
+		Node *u = new Node;
+		u->data = x;
+		u->prev = w;
+		u->next = w->next;
+		u->next->prev = u;
+		u->prev->next = u;
+	numItems++;
+	}
+	else{
+		throw std::string("The Index you chose is greater than the number of Items in the list, please choose another");
+	}
+
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-	//TODO
+	Node *u = find(i);
+	if (u == dummyNode){
+		throw std::string("You cannot remove from an empty list");
+	}
+	u->prev->next = u->next;
+	u->next->prev = u->prev;
+	delete u;
+	numItems--;
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
-	//TODO -- The code that is here is a useless stub, you probably
-	// want to delete it
-	Node junkNode;
-	return junkNode.data; //This is unitialized data
+	Node* myNode = find(i);
+	if(myNode == dummyNode){
+		throw std::string("In get(), index was too large");
+	} else { 
+		return myNode->data;
+	}
+	
 }
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-	//TODO
-	return 0;
+	return numItems;
 }
 

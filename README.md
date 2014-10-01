@@ -26,5 +26,8 @@ Questions
 4. TODO
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
+	If we implemented an arrayList instead of a LinkedList, get(i) would be shorter because it would run in constant time. However, adding and removing items requires
+	the elements in the array to be shifted thus having a linear operational time. In a LinkedList, getNode(i) takes O(1+ min{i, n-i}) time, other than that all the other
+	functions run in O(1) time.
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
