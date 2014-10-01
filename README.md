@@ -20,7 +20,7 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
+1. Half-success, add() and remove() are not O(1) because we call find() in the middle of the method.
 2. SUCCESS, when I tested my code for poor index values using your testers, they returned proper error messages from my throw statements.
 3. SUCCESS, I delete nodes and dummyNodes in the right order so that I make sure there are no dangling pointers that just take up memory.
 4. SUCCESS, add() increments numItems by one if an exception is not thrown, remove() decrements numItems by one if an exception is not thrown, which keeps track of numItems perfectly, allowing me to just return numItems when size() is called.

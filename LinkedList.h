@@ -110,46 +110,50 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 		}
 		return retVal;
 	}
-	
-	return NULL;
 }
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	if(i>numItems) {
+	Node *temp = find(i);
+    
+    if(temp == dummyNode) {
 		throw std::string("The index is larger than numItems, in set()");
 	}
 	else {
-		dummyNode->data = x;
+		temp->data = x;
 	}
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	if(i > numItems) {
+    if(i > numItems) {
         throw std::string("The index is larger than numItems, in add()");
-    } else if(i == numItems) {
-        throw std::string("Tried to add before the dummyNode, in add()");
-    }
-    else {
-        //temp node will be index (i+1)
-        Node* temp = find(i);
-        Node* newNode = new Node();
+    } else if(i == 0){
+		Node *newNode = new Node;
         
-        newNode->data = x;
+		newNode->data = x;
+        //Change newNode pointers to the correct values
+		newNode->prev = dummyNode;
+		newNode->next = dummyNode->next;
+        //Change the dummyNode pointers to the correct values
+		dummyNode->next = newNode;
+		(newNode->prev)->next = newNode;
         
-        //Sets the new node's pointers to the right value
-        newNode->next = temp;
-        newNode->prev = temp->prev;
+		numItems++;
+	} else {
+		Node *temp = find(i-1);
+		Node *newNode = new Node;
         
-        //Sets the node of index (i+1) pointers to the right values
-        (temp->prev)->next = newNode;
-        temp->prev = newNode;
+		newNode->data = x;
+        //Changes the new node pointers to the correct values
+		newNode->prev = temp;
+		newNode->next = temp->next;
+        //Changes the node of index (i-1) to the correct values
+        (newNode->next)->prev = newNode;
+		(newNode->prev)->next = newNode;
         
         numItems++;
-        //stops memory leaks
-        delete temp;
-    }
+	}
 }
 
 template <class T>
