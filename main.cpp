@@ -1,6 +1,9 @@
 /*
  * Chris Mabe, 9/30/14
  * This exercise is to assess our understanding of Lists and LinkedLists.
+ *
+ * Needed a little explanation and nudge in the right direction from
+ * Sam Hausfeld. He's the real MVP.
  */
 
 #include "LinkedList.h"

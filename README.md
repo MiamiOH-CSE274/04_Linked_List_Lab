@@ -20,10 +20,10 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
-4. TODO
+1. Kinda successful. The way it's written, I call find() in the method, so it isn't exactly O(1).
+2. Success. My methods throw exceptions in the correct spots.
+3. Success. I delete the nodes as they need to be deleted.
+4. Success. Increments numItems when an addition is made and takes one away when an item is removed.
 
 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
 	
