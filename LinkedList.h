@@ -64,7 +64,8 @@ private:
 };
 
 
-
+//Code is either from me, the class, or Open Data Structures.
+//Emilijus Grasys, 09/30/14
 
 
 //You will need this so you can make a string to throw in
@@ -86,12 +87,15 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	//TODO
+	while (numItems > 0){
+		remove(0);
+	}
+	delete dummyNode; 
 }
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-	if (i = numItems){
+	if (i == numItems){
 		return dummyNode;
 	}
 
@@ -111,37 +115,65 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	//TODO
+	Node* temp = find(i);
+
+	if (temp == dummyNode){
+		throw std::string("Out of bounds");
+	}
+
+	temp->data = x;
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	//TODO
+	if (numItems < i){
+		throw std::string("Out of bounds");
+	}
+
+	Node* temp = find(i);
+	Node* adding = new Node();
+	adding->data = x;
+	adding->prev = temp->prev;
+	adding->next = temp;
+	adding->next->prev = adding;
+	adding->prev->next = adding;
+
+	numItems++;
+
 }
+
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-	//TODO
+	Node* temp = find(i);
+
+	if (temp == dummyNode){
+		throw std::string("Can't delete the dummyNode");
+	}
+
+	(temp->prev)->next = temp->next;
+	(temp->next)->prev = temp->prev;
+	delete temp;
+	numItems--;
 }
+
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
 	Node* myNode = find(i);
 
-	if (myNode == dummyNose){
+	if (myNode == dummyNode){
 		throw std::string("In get(), index was too large.");
 	}
-	else {
-		return myNode->data;
-	}
+	
+	return myNode->data;
 
 }
 
 
-
+//Returns size of list, could have replaced numItems with Size() but didn't have enough time
 template <class T>
 unsigned long LinkedList<T>::size(){
-	//TODO
-	return 0;
+	return numItems;
 }
 
