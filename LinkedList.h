@@ -1,6 +1,9 @@
 //DO NOT CHANGE THIS FILE
-//Author: Bo Brinkman
-//Date: 2013/07/11
+//Author: Bo Brinkman & Nick Cooperrider
+//Date: 2013/07/11  2014/09/30
+// All code after the initialization of variables and methods 
+// is my own (Nick) from myself or in class.
+
 #include "List.h"
 
 template <class T>
@@ -81,7 +84,6 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	//TODO Check!!
 	while(numItems > 0){
 		remove(0);
 	}
