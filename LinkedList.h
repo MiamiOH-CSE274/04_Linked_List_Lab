@@ -85,7 +85,17 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	//TODO
+	int i = numItems;
+
+	while (i > 0){
+		remove(0);
+		i--;
+	}
+
+	dummyNode = NULL;
+	delete dummyNode;
+
+	numItems = NULL;
 }
 
 template <class T>
@@ -120,14 +130,6 @@ void LinkedList<T>::add(unsigned long i, T x){
 	Node* toAdd = new Node();
 	toAdd->data = x;
 
-	/*if (numItems == 0){
-		dummyNode->next = toAdd;
-		dummyNode->prev = toAdd;
-
-		toAdd->next = dummyNode;
-		toAdd->prev = dummyNode;
-	}
-	else{*/
 	Node* temp = find(i);
 
 	(temp->prev)->next = toAdd;
@@ -136,7 +138,7 @@ void LinkedList<T>::add(unsigned long i, T x){
 	toAdd->prev = temp->prev;
 	temp->prev = toAdd;
 	numItems++;
-	//}
+	
 }
 
 template <class T>
@@ -149,6 +151,9 @@ void LinkedList<T>::remove(unsigned long i){
 		(temp->prev)->next = temp->next;
 		(temp->next)->prev = temp->prev;
 		numItems--;
+
+		temp = NULL;
+		delete temp;
 	}
 }
 
