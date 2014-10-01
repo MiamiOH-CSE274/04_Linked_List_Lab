@@ -111,6 +111,9 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
 	Node *u = find(i);
+	if(u == dummyNode){
+		throw std::string("In get(), index was too large");
+	}
 	u->data = x;
 }
 
