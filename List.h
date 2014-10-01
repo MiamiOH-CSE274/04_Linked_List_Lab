@@ -57,7 +57,7 @@ public:
 // to which classes. That is why we have to use the scope operator to
 // tell the compiler that this LinkedList() method belongs to the
 // LinkedList<T> class.
-template < class T >
+template < class T > 
 LinkedList <T>::LinkedList(){
 	//TODO
 }

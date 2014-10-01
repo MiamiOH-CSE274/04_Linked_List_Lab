@@ -198,8 +198,8 @@ void testExceptions(){
 //A simple main function which creates a list, and tests it.
 int main(){
 	testCtor();
-	testBasicMethods();
-	testExceptions();
+	//testBasicMethods();
+	//testExceptions();
 	//testSplice();
 
 	return 0;

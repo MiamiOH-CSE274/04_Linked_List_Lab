@@ -27,7 +27,7 @@ Questions
 
 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
 	
-	a. If we did a LinkedList, get() and set() would be slower because it will have to loop through the list to find the thing that you are looking for. ArrayList is O(1) for these, while LinkedList is O(n).
+	a. If we did a LinkedList, get() and set() would be slower because it will have to loop through the list to find 	the thing that you are looking for. ArrayList is O(1) for these, while LinkedList is O(n).
 	b. Add() and remove() would be faster because ArrayList is O(n) for those functions, and LinkedList is O(1).
 
 3. What is one question that confused you about this exercise, or one piece of advice you would share with students next semester?
