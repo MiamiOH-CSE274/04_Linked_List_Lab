@@ -106,21 +106,59 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	//TODO
+	
+	if(i > numItems + 1) {
+		throw std::string ("There is nothing there that can have its data changed");
+	} else {
+		find(i)->data = x;
+	}
 }
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	//TODO
+	
+	if(i > numItems) {
+		throw std::string("Can't add to that position ");
+	} else {
+		Node* addNode = new Node();
+		addNode->data = x;
+		Node* locationNode = find(i);
+
+		if(numItems == 0) {
+			addNode->next = dummyNode;
+			addNode->prev = dummyNode;
+			dummyNode->next = addNode;
+			dummyNode->prev = addNode;
+			numItems++;
+		} else if(locationNode == dummyNode) {
+			addNode->next = dummyNode;
+			addNode->prev = dummyNode->prev;
+			(dummyNode->prev)->next = addNode;
+			dummyNode->prev = addNode;
+			numItems++;
+		} else {
+			addNode->next = locationNode;
+			addNode->prev = locationNode->prev;
+			(locationNode->prev)->next = addNode;
+			locationNode->prev = addNode;
+			numItems++;
+		}
+	}
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-	//TODO check bounds/dummy node
-	Node* temp = find(i);
-	(temp->prev)->next = temp->next;
-	(temp->next)->prev = temp->prev;
-	delete temp;
+	
+	Node* tempNode = find(i);
+
+	if(tempNode == dummyNode) {
+		throw std::string("There are no items in that spot to remove");
+	} else {
+		(tempNode->prev)->next = tempNode->next;
+		(tempNode->next)->prev = tempNode->prev;
+		delete tempNode;
+		numItems--;
+	}
 }
 
 template <class T>
