@@ -2,6 +2,8 @@
 //Author: Bo Brinkman
 //Date: 2013/07/11
 
+#include "List.h"
+
 template <class T>
 class LinkedList : public List <T> {
 private:
@@ -83,7 +85,6 @@ LinkedList<T>::~LinkedList() {
 	//Get rid of the normal nodes
 	while(numItems > 0){
 		remove(0);
-		numItems--;
 	}
 	delete dummyNode;
 }
@@ -108,13 +109,8 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	if (numItems < i + 1){
-		throw std::string("Index is too large for the list in set()");
-	}
-	else {
-		Node* tempNode = find(i);
-		tempNode->data = x;
-	}
+	Node* u = find(i);
+	u->data = x;
 }
 
 template <class T>
@@ -127,11 +123,11 @@ void LinkedList<T>::add(unsigned long i, T x){
 		//slide the next and previous nodes to the correct spots
 		Node* currentNode = find(i);
 		newNode->data = x;
-		newNode->next = currNode;
-		newNode->prev = currNode->prev;
-		currNode->prev->next = newNode;
-		currNode->prev = newNode;
-		numItems++
+		newNode->next = currentNode;
+		newNode->prev = currentNode->prev;
+		currentNode->prev->next = newNode;
+		currentNode->prev = newNode;
+		numItems++;
 	}
 }
 
@@ -158,10 +154,10 @@ void LinkedList<T>::remove(unsigned long i){
 template <class T>
 T LinkedList<T>::get(unsigned long i){
 	Node* junkNode = find(i);
-	if(myNode == dummyNode){
+	if(junkNode == dummyNode){
 		throw std::string("In get(), index was too large.");
 	} else {
-		return myNode->data;
+		return junkNode->data;
 	}
 }
 
