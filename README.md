@@ -20,11 +20,16 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
-4. TODO
+1. Kinda successful. The way it's written, I call find() in the method, so it isn't exactly O(1).
+2. Success. My methods throw exceptions in the correct spots.
+3. Success. I delete the nodes as they need to be deleted.
+4. Success. Increments numItems when an addition is made and takes one away when an item is removed.
 
-#### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
+2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
+	
+	a. If we did a LinkedList, get() and set() would be slower because it will have to loop through the list to find 	the thing that you are looking for. ArrayList is O(1) for these, while LinkedList is O(n).
+	b. Add() and remove() would be faster because ArrayList is O(n) for those functions, and LinkedList is O(1).
 
-#### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
+3. What is one question that confused you about this exercise, or one piece of advice you would share with students next semester?
+
+	I would suggest that students review the way you find the location of a variable versus the actual thing in the variable, and vice versa. I messed this up once or twice in my program, and couldn't figure out why it wouldn't work until I realized my mistake. Being new to C++ is a little confusing, and learning how to "think in C++" will help a lot.
