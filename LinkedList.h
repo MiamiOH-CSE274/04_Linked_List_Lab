@@ -87,18 +87,23 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-	//TODO
+	while (numItems > 0){
+		remove(0);
+	}
+	delete dummyNode;
 }
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-	if(i == numItems){
-		return dummynode;
-	}else if(i > numItems){
+	if (i == numItems){
+		return dummyNode;
+	}
+	else if (i > numItems){
 		throw std::string("Index is larger than the number of items!");
-	}else{
+	}
+	else{
 		Node* ret = dummyNode->next;
-		while(i > 0){
+		while (i > 0){
 			ret = ret->next;
 			i--;
 		}
@@ -106,36 +111,60 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	}
 	return NULL;
 }
-//DO THIS FIRST
+
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	//TODO
+	Node* myNode = find(i);
+	myNode->data = x;
 }
-//TRY THIS
+
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	//TODO
+	Node* myNode = find(i); 
+	
+	Node* newNode = new Node;
+	newNode->data = x;
+
+	newNode->prev = myNode->prev;
+	newNode->next = myNode;
+
+	(newNode->prev)->next = newNode;
+	(newNode->next)->prev = newNode;
+
+	numItems += 1;
 }
-//TRY THIS TOO
+
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-	//TODO
-	//POINT TO NODE AFTER FOLLOWING POINTER
+	if (i == numItems){
+		throw std::string("Sorry, you can't remove this node.");
+	}
+	else{
+		Node* temp = find(i);
+
+		(temp->prev)->next = temp->next;
+		(temp->next)->prev = temp->prev;
+
+		delete(temp);
+
+		numItems -= 1;
+	}
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
 	Node* myNode = find(i);
-	if(myNode == dummyNode){
+	if (myNode == dummyNode){
 		throw std::string("Index is too big!");
-	}else{
+	}
+	else{
 		return myNode->data;
 	}
 }
 
 template <class T>
 unsigned long LinkedList<T>::size(){
-	//TODO
-	return 0;
+	return numItems;
 }
+
 
