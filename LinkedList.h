@@ -126,30 +126,48 @@ void LinkedList<T>::set(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	//TODO
-
-	//numItems++;
+	if(i > numItems) {
+        throw std::string("The index is larger than numItems, in add()");
+    } else if(i == numItems) {
+        throw std::string("Tried to add before the dummyNode, in add()");
+    }
+    else {
+        //temp node will be index (i+1)
+        Node* temp = find(i);
+        Node* newNode = new Node();
+        
+        newNode->data = x;
+        
+        //Sets the new node's pointers to the right value
+        newNode->next = temp;
+        newNode->prev = temp->prev;
+        
+        //Sets the node of index (i+1) pointers to the right values
+        (temp->prev)->next = newNode;
+        temp->prev = newNode;
+        
+        numItems++;
+        //stops memory leaks
+        delete temp;
+    }
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
-	if(numItems==0)
+	if(i == numItems) {
 		throw std::string("Tried to remove when there were no more items");
-	else {
-		Node* temp = find(i);
+    } else if(i > numItems) {
+        throw std::string("Tried to remove an index larger than numItems, in remove()");
+    } else {
+        //Done during class, sets (i-1) next to (i+1), (i+1) prev to (i-1)
+        Node* temp = find(i);
 		(temp->prev)->next = temp->next;
 		(temp->next)->prev = temp->prev;
 
-		//May not work, at this point code is never reaches cause numItems==0
 		numItems--;
+        //stops memory leaks
 		delete temp;
 	}
-	//else if(i>numItems)
-	//	throw std::string("Index is larger than number of items, in remove()");
-	//else {
-		//TODO
-	//	numItems--;
-	//}
 }
 
 template <class T>
