@@ -131,7 +131,7 @@ void LinkedList<T>::add(unsigned long i, T x){
 	(newNode->prev)->next = newNode;
 	(newNode->next)->prev = newNode;
 
-	numItems += 1;
+	numItems++;
 }
 
 template <class T>
@@ -147,7 +147,7 @@ void LinkedList<T>::remove(unsigned long i){
 
 		delete(temp);
 
-		numItems -= 1;
+		numItems--;
 	}
 }
 
