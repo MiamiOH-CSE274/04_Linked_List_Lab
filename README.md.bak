@@ -20,7 +20,7 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. Works! add(), remove() and get() work in O(1) only when the index given is equal to 0 or numItems, otherwise the program must loop through the nodes to find the correct one.
+1. Works in theory but not in reality. My program successfully tests the constructor and then errors out.
 2. Works! add(), remove(), and find() all throw a string exception if the index is out of bounds.
 3. Works! Remove deletes the pointer variables that it created and the destructor makes sure to delete the dummy node.
 4. Works! size() only has to return the variable that stores the number of items in the list which take constant time.

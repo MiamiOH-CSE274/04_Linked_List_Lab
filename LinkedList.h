@@ -99,6 +99,8 @@ LinkedList<T>::~LinkedList() {
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
   
+	Node* ret;
+
 	if(i == numItems)
 		return dummyNode;
 	
@@ -106,7 +108,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 		throw std::string("Index is larger than number of items, in find()");
 	
 	else {
-		Node* ret = dummyNode->next;
+		ret = dummyNode->next;
 
 		while(i > 0){
 			ret = ret->next;
