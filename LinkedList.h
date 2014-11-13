@@ -119,12 +119,14 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	if(i+1 > numItems){
+
+
+	if(i == numItems)
 		throw std::string("Index is larger than number of items, in set()");
-	} else{
-		Node* tempNode = find(i);
-		tempNode->data = x;
-		delete tempNode;
+	
+	else {
+		Node* updatedNode = find(i);
+		updatedNode->data = x;
 	}
 }
 
