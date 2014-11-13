@@ -133,24 +133,18 @@ void LinkedList<T>::set(unsigned long i, T x){
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
  
-	Node *nodeAtIndex = find(i), *nodeBeforeIndex = find(i-1);
+	Node* nodeAtIndex = find(i);
 	Node* newNode = new Node();
+
 	newNode->data = x;
 
-	if(i == numItems){
-		newNode->next = dummyNode;
-		newNode->prev = nodeBeforeIndex;
-		numItems++;
-	} else{
-		newNode->prev = nodeAtIndex->prev;
-		newNode->next = nodeAtIndex;
-		nodeAtIndex->prev = newNode;
-		nodeBeforeIndex->next = newNode;
-		numItems++;
-	}
-	delete nodeAtIndex;
-	delete nodeBeforeIndex;
+	newNode->next = nodeAtIndex;
+	newNode->prev = nodeAtIndex->prev;
 
+	nodeAtIndex->prev = newNode;
+	newNode->prev->next = newNode;
+
+	numItems++;
 }
 
 template <class T>
