@@ -149,28 +149,30 @@ void LinkedList<T>::add(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i){
+
 	Node* tempNode;
-	if(i+1 > numItems){
+	if(i == numItems)
 		throw std::string("Index is larger than number of items, in remove()");
-	} else{
+
+	else {
 		tempNode = find(i);
 		tempNode->prev->next = tempNode->next;
 		tempNode->next->prev = tempNode->prev;
 		numItems--;
 	}
 
-
 	delete tempNode;
 }
 
 template <class T>
 T LinkedList<T>::get(unsigned long i){
+
 	Node* myNode = find(i);
-	if(myNode == dummyNode){
+	if(myNode == dummyNode)
 		throw std::string("In get(), index was too large.");
-	} else{
+
+	else
 		return myNode->data;
-	}
 }
 
 template <class T>
