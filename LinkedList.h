@@ -41,7 +41,7 @@ class LinkedList : public List <T> {
   // is {3, 5}, the result should be that the current list is {4, 1, 2, 3, 5} and src is
   // empty
   //Note: This should be O(1) time. Use pointer manipulations to graft the lists together.
-  virtual void takeAll(LinkedList<T>& src);
+  //virtual void takeAll(LinkedList<T>& src);
 
   //Initialize all private member variables.
   // Be sure to create the dummy node using "new"
@@ -63,4 +63,123 @@ class LinkedList : public List <T> {
   unsigned long numItems;
 };
 
-#include "LinkedList.ipp"
+// Kyle Busdieker
+// Prof. Bo Brinkman
+// Date: November 13, 2014
+// The skeleton code was created by Bo Brinkman and modified by Kyle Busdieker with help from other students, Open Data Structures textbook, and the internet.
+
+//The LinkedList.ipp file
+//You will need this so you can make a string to throw in
+// remove
+#include <string>
+
+//Syntax note: C++ is not very good at figuring out which methods belong
+// to which classes. That is why we have to use the scope operator to
+// tell the compiler that this LinkedList() method belongs to the
+// LinkedList<T> class.
+template <class T>
+LinkedList<T>::LinkedList(){
+  
+	dummyNode = new Node();
+	dummyNode->next = dummyNode;  //These two lines compile exactly the same
+	(*dummyNode).prev = dummyNode; //Same as the line above
+	numItems = 0;
+}
+
+template <class T>
+LinkedList<T>::~LinkedList() {
+ 
+	while(numItems > 0){
+		remove(0);
+	}
+	delete dummyNode;
+	dummyNode = NULL;
+}
+
+template <class T>
+typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
+  
+	Node* ret;
+
+	if(i == numItems)
+		return dummyNode;
+	
+	else if(i > numItems)
+		throw std::string("Index is larger than number of items, in find()");
+	
+	else {
+		ret = dummyNode->next;
+
+		while(i > 0){
+			ret = ret->next;
+			i--;
+		}
+	}
+
+	return ret;
+}
+
+template <class T>
+void LinkedList<T>::set(unsigned long i, T x){
+
+
+	if(i == numItems)
+		throw std::string("Index is larger than number of items, in set()");
+	
+	else {
+		Node* updatedNode = find(i);
+		updatedNode->data = x;
+	}
+}
+
+template <class T>
+void LinkedList<T>::add(unsigned long i, T x){
+ 
+	Node* nodeAtIndex = find(i);
+	Node* newNode = new Node();
+
+	newNode->data = x;
+
+	newNode->next = nodeAtIndex;
+	newNode->prev = nodeAtIndex->prev;
+
+	nodeAtIndex->prev = newNode;
+	newNode->prev->next = newNode;
+
+	numItems++;
+}
+
+template <class T>
+void LinkedList<T>::remove(unsigned long i){
+
+	Node* tempNode;
+	if(i == numItems)
+		throw std::string("Index is larger than number of items, in remove()");
+
+	else {
+		tempNode = find(i);
+		tempNode->prev->next = tempNode->next;
+		tempNode->next->prev = tempNode->prev;
+		numItems--;
+	}
+
+	delete tempNode;
+}
+
+template <class T>
+T LinkedList<T>::get(unsigned long i){
+
+	Node* myNode = find(i);
+	if(myNode == dummyNode)
+		throw std::string("In get(), index was too large.");
+
+	else
+		return myNode->data;
+}
+
+template <class T>
+unsigned long LinkedList<T>::size(){
+  
+  return numItems;
+}
+
