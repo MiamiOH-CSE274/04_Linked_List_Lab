@@ -84,35 +84,37 @@ LinkedList<T>::LinkedList(){
 	dummyNode->next = dummyNode;  //These two lines compile exactly the same
 	(*dummyNode).prev = dummyNode; //Same as the line above
 	numItems = 0;
-
 }
 
 template <class T>
 LinkedList<T>::~LinkedList() {
-  //TODO
+ 
 	while(numItems > 0){
 		remove(0);
 	}
 	delete dummyNode;
+	dummyNode = NULL;
 }
 
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
   
-	if(i == numItems){
+	if(i == numItems)
 		return dummyNode;
-	} else if(i > numItems) {
+	
+	else if(i > numItems)
 		throw std::string("Index is larger than number of items, in find()");
-	} else {
+	
+	else {
 		Node* ret = dummyNode->next;
+
 		while(i > 0){
 			ret = ret->next;
 			i--;
 		}
-		return ret;
 	}
 
-  
+	return ret;
 }
 
 template <class T>
@@ -128,7 +130,7 @@ void LinkedList<T>::set(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-  //TODO
+ 
 	Node *nodeAtIndex = find(i), *nodeBeforeIndex = find(i-1);
 	Node* newNode = new Node();
 	newNode->data = x;
