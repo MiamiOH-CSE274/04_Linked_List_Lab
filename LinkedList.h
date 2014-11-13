@@ -62,6 +62,12 @@ class LinkedList : public List <T> {
   //Number of items in the list
   unsigned long numItems;
 };
+
+// Kyle Busdieker
+// Prof. Bo Brinkman
+// Date: November 13, 2014
+// The skeleton code was created by Bo Brinkman and modified by Kyle Busdieker with help from other students, Open Data Structures textbook, and the internet.
+
 //The LinkedList.ipp file
 //You will need this so you can make a string to throw in
 // remove
