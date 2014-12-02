@@ -113,23 +113,12 @@ void LinkedList<T>::add(unsigned long i, T x){
 
 	Node* a = new Node();
 	a->data = x;
-	if (i == 0) {
-		dummyNode->next->prev = a;
-		a->next = dummyNode->next;
-		dummyNode->next = a;
-		a->prev = dummyNode;
-	} else if (i == (numItems - 1)) {
-		dummyNode->prev->next = a;
-		a->prev = dummyNode->prev;
-		dummyNode->prev = a;
-		a->next = dummyNode;
-	} else {
-		Node *b = find(i);
-		b->prev->next = a;
-		a->next = b->next;
-		b->next = a;
-		a->prev = b;
-	}
+	
+	Node *b = find(i);
+	b->prev->next = a;
+	a->next = b->next;
+	b->next = a;
+	a->prev = b;
 }
 
 template <class T>
