@@ -20,17 +20,17 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. Yes, the getter and setter are very easy and obviously O(1). Add and remove are also O(1) if 'i == 0' or if 'i == size()-1' as all we have to do is attach nodes to other nodes, though we do have to call find(), but that doesn't take long enough to matter.
+1. These are all O(1) if i is at the end or beginning of the list, as all actions from these methods will occur directly around the current location of i.
 2. Yes, I added this for all methods which deal with an index that could possibly be outside the bounds of the list. If that happens, a string exception is thrown which tells the user what method is throwing the error.
 3. The remove method and the destructor both delete any unused memory to prevent leakage.
 4. Of course, size() is essentially a getter, it is always O(1).
 
 #### 2. If we did an ArrayList instead of a LinkedList, which of the public methods would be faster, and which would be slower? Explain your answer.
-Same: get(), size()
-Faster: remove(),  set()
+Same: size()
+Faster: remove(),  set(), get()
 Slower: add()
-The get and size methods are just getters, they never really vary in speed.
-Remove is faster with ArrayList because there is no need to find the node, pair up nodes linked to it, then delete it. Instead, ArrayLists can just remove the element from the list. Set is also faster with ArrayList because an ArrayList would only need to call the index and replace the data rather than find a node.
+The size method is just a getter, it never really varies in speed.
+Remove is faster with ArrayList because there is no need to find the node, pair up nodes linked to it, then delete it. Instead, ArrayLists can just remove the element from the list. Set is also faster with ArrayList because an ArrayList would only need to call the index and replace the data rather than find a node. Get requires calling the find method in a LinkedList, so it is quite slow compared to that of an ArrayList.
 Add is faster with LinkedList because we simply link the surrounding nodes to the new node, rather than iterate through an ArrayList and bump all elements up.
 
 #### 3. What is one question that confused you about this exercise, or one piece of advice you would share with students next semester?
