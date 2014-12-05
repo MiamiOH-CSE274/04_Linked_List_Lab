@@ -77,7 +77,6 @@ LinkedList<T>::LinkedList()
 	dummyNode = new LinkedList<T>::Node();
 	dummyNode->next = dummyNode;
 	dummyNode->prev = dummyNode;
-	dummyNode->data = NULL;
 	numItems = 0;
 }
 
@@ -134,6 +133,11 @@ template <class T>
 void LinkedList<T>::set(unsigned long i, T x)
 {
 	LinkedList<T>::Node *node = find(i);
+	
+	if (node == dummyNode) {
+		throw std::string("error: invalid item in list");
+	}
+	
 	node->data = x;
 }
 
