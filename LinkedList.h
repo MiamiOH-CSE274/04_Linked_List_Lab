@@ -85,10 +85,12 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList() {
+	//DummyNode is deleted by remove()
 	while(numItems > 0){
 		remove(0);
 	}
-	delete dummyNode;
+	
+	
 }
 
 template <class T>
@@ -124,34 +126,18 @@ void LinkedList<T>::set(unsigned long i, T x){
 
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x){
-	numItems++;
-	if (i >= numItems)
-		throw std::string("In add(), index was too large.");
+	Node* oldNode = find(i);
 	Node* newNode = new Node();
+
 	newNode->data = x;
-	if (i == 0) {
-		dummyNode->next->prev = newNode;
-		newNode->next = dummyNode->next;
-		dummyNode->next = newNode;
-		newNode->prev = dummyNode;
-	} 
-	else if (i == (numItems - 1)) {
-		dummyNode->prev->next = newNode;
-		newNode->prev = dummyNode->prev;
-		dummyNode->prev = newNode;
-		newNode->next = dummyNode;
-		
-	}
 
-	else {
-		Node* oldNode = find(i);
-		oldNode->next->prev = newNode;
-		newNode->next = oldNode->next;
-		oldNode->next = newNode;
-		newNode->prev = oldNode;
-	}
-	
+	newNode->next = oldNode;
+	newNode->prev = oldNode->prev;
 
+	oldNode->prev = newNode;
+	newNode->prev->next = newNode;
+
+	numItems++;
 }
 
 template <class T>
