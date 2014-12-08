@@ -113,7 +113,9 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
-	find(i)->data = x;
+	if (i != numItems){
+		find(i)->data = x;
+	}
 }
 
 template <class T>
@@ -126,6 +128,10 @@ void LinkedList<T>::add(unsigned long i, T x){
 		addDis->next = (temp);
 		addDis->prev = (temp->prev);
 		temp->prev = addDis;
+		temp->next = addDis;
+	}
+	else{
+		throw std::string("i is out of range");
 	}
 
 	
