@@ -78,9 +78,7 @@ template <class T>
 LinkedList<T>::LinkedList(){
 	dummyNode = new Node();
 	dummyNode->next = dummyNode;
-	//same as (*dummyNode).next = dummyNode;
 	dummyNode->prev = dummyNode;
-	//same as (*dummyNode).prev = dummyNode;
 
 	numItems = 0;
 }
@@ -115,7 +113,9 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
 	Node* myNode = find(i);
-	myNode->data = x;
+	if (myNode != dummyNode){
+		myNode->data = x;
+	}
 }
 
 template <class T>
