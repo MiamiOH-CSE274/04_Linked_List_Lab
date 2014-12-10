@@ -4,7 +4,7 @@
 #include "List.h"
 
 template <class T>
-class LinkedList : public List <T> {
+class LinkedList : public List < T > {
 private:
 	struct Node{
 		T data;
@@ -90,7 +90,7 @@ LinkedList<T>::~LinkedList() {
 	while (numItems > 0){
 		remove(0);
 	}
-	delete dummyNode; 
+	delete dummyNode;
 }
 
 template <class T>
@@ -104,12 +104,12 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 	}
 
 	else {
-	Node* ret = dummyNode->next;
-	while (i > 0){
-		ret = ret->next;
-		i--;
-	}
-	return ret;
+		Node* ret = dummyNode->next;
+		while (i > 0){
+			ret = ret->next;
+			i--;
+		}
+		return ret;
 	}
 }
 
@@ -165,7 +165,7 @@ T LinkedList<T>::get(unsigned long i){
 	if (myNode == dummyNode){
 		throw std::string("In get(), index was too large.");
 	}
-	
+
 	return myNode->data;
 
 }
