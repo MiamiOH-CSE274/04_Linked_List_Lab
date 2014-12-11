@@ -1,6 +1,11 @@
 //DO NOT CHANGE THIS FILE
 //Author: Bo Brinkman
 //Date: 2013/07/11
+/*
+ * Author 2: Scott McCartney
+ * Date 2: 2014/12/10
+ * All code was written by me for CSE274.
+ */
 #include "List.h"
 
 template <class T>
