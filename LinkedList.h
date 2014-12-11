@@ -126,25 +126,12 @@ void LinkedList<T>::add(unsigned long i, T x){
 		addNode->data = x;
 		Node* locationNode = find(i);
 
-		if(numItems == 0) {
-			addNode->next = dummyNode;
-			addNode->prev = dummyNode;
-			dummyNode->next = addNode;
-			dummyNode->prev = addNode;
-			numItems++;
-		} else if(locationNode == dummyNode) {
-			addNode->next = dummyNode;
-			addNode->prev = dummyNode->prev;
-			(dummyNode->prev)->next = addNode;
-			dummyNode->prev = addNode;
-			numItems++;
-		} else {
-			addNode->next = locationNode;
-			addNode->prev = locationNode->prev;
-			(locationNode->prev)->next = addNode;
-			locationNode->prev = addNode;
-			numItems++;
-		}
+	    addNode->next = locationNode;
+		addNode->prev = locationNode->prev;
+		(locationNode->prev)->next = addNode;
+		locationNode->prev = addNode;
+		numItems++;
+		
 	}
 }
 
