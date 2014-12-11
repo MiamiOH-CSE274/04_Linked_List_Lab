@@ -1,7 +1,7 @@
 04_Linked_List_Lab
 ==================
 
-Implement a simple linked list using pointers and classes.
+Implement a simple linked list using pointers and classes
 
 Requirements
 ------------

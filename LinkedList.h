@@ -109,7 +109,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x){
 	
-	if(i > numItems + 1) {
+	if(i >= numItems + 1) {
 		throw std::string ("There is nothing there that can have its data changed");
 	} else {
 		find(i)->data = x;
